@@ -1,3 +1,2 @@
-# PI-Countries
-Personal Proyect, Henry Countries
-Este es mi proyecto individual de Henry, el cual está creado usando React, Redux, Express, PostgreSQL y Sequelize
+# api-pf-g25
+Back end Api Proyecto Final Henry. Grupo 25
