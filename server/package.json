@@ -1,0 +1,27 @@
+{
+  "name": "api-pf-g25",
+  "version": "1.0.0",
+  "description": "Back end Api Proyecto Final Henry. Grupo 25",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest",
+    "start": "nodemon -L"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nreveloz/api-pf-g25.git"
+  },
+  "author": "nreveloz",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nreveloz/api-pf-g25/issues"
+  },
+  "homepage": "https://github.com/nreveloz/api-pf-g25#readme",
+  "dependencies": {
+    "body-parser": "^1.20.2",
+    "cookie-parser": "^1.4.6",
+    "express": "^4.18.2",
+    "morgan": "^1.10.0",
+    "nodemon": "^2.0.22"
+  }
+}
