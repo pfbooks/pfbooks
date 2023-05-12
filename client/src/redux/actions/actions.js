@@ -18,7 +18,7 @@ const API_URL = ''
 
 export function allBooks() {
   return async (dispatch) => {
-    await axios.get(`${ENDPOINT_BOOKS}/books`).then((result) => {
+    await axios.get(`${ENDPOINT_BOOKS}`).then((result) => {
       return dispatch({
         type: ALL_BOOKS,
         payload: result.data,
@@ -46,7 +46,7 @@ export function bookByTitle(title) {
 export function bookById(id) {
   return async (dispatch) => {
     try {
-      const response = await axios.get(`${ENDPOINT_BOOKS}/books/${id}`);
+      const response = await axios.get(`${ENDPOINT_BOOKS}/${id}`);
       const data = response.data;
       dispatch({
         type: GET_BOOK_ID,

@@ -1,6 +1,8 @@
 import Card from "../Card/Card";
 
 const CardsContainer = (props) => {
+    return (
+
     <div>
         {props.books && props.books.map(book => {
             return < Card
@@ -13,6 +15,7 @@ const CardsContainer = (props) => {
             />
         })}
     </div>
+    )
 };
 
 export default CardsContainer;
