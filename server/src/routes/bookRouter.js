@@ -1,9 +1,7 @@
 const { Router } = require('express');
 const getAllBooks = require('../controllers/getAllBooks');
 const getBookDetailById = require('../controllers/getBookDetailById');
-const getBookByTitleLike = require('../controllers/getBookByTitleLike');
-const getBooksByGenre = require('../controllers/getBooksByGenre');
-const getBooksByAuthor = require('../controllers/getBooksByAuthor');
+const getBooksByCombinedFilters = require('../controllers/getBooksByCombinedFilters');
 
 
 const bookRouter = Router();
@@ -14,14 +12,9 @@ bookRouter.get("/", async (req, res) => {
     const { title , genre, author } = req.query;
     let books;
     try {
-        if (title){
-            books = await getBookByTitleLike(title)
-        } else if(genre) {
-            books = await getBooksByGenre(genre)
-        } else if(author) {
-            books =  await getBooksByAuthor(author)
-        }
-        else {
+        if(title || genre || author) {
+            books = await getBooksByCombinedFilters(title, genre, author)
+        } else {
             books = await getAllBooks()
         }
         res.status(200).json(books);
