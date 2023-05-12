@@ -3,10 +3,10 @@ import { allBooks } from "../../redux/actions/actions";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 
-const Home = () => {
+export const Home = () => {
 
     const dispatch = useDispatch();
-    const allBooks = useSelector((state) => state.books);
+    const books = useSelector((state) => state.books);
     const currentBooks = "a definir en el paginado";
 
     useEffect(() => {
@@ -17,10 +17,10 @@ const Home = () => {
         <>
             <h1>Home de Proyecto Books</h1>
             <CardsContainer
-                books={currentBooks}
+                books={books}
             />
         </>
     )
 };
 
-export default Home;
+// export default Home;

@@ -5,7 +5,10 @@ const defaultDescription = "The story of Captain Ahab's self-destructive obsessi
 const defaultCover = "https://www.gutenberg.org/cache/epub/1513/pg1513.cover.medium.jpg"
 
 
-const loadDataFromApi = () => {
+const loadDataFromApi = async () => {
+    const booksDB = await Book.findAll()
+    if(booksDB) return console.log("Database successfully loaded")
+    
     for (let page = 1; page <= 4; page ++) {
         axios.get(`https://gutendex.com/books/?page=${page}`)
             .then(response => {

@@ -28,3 +28,5 @@ const Detail = (props) => {
         </div>
     )
 }
+
+export default Detail;

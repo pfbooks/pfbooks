@@ -9,7 +9,7 @@ import {
     SORT_AUTHOR,
     SORT_REVIEW,
     ALL_REVIEWS,
-  } from "./actions";
+  } from "../actions/actions";
   
   
   
