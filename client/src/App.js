@@ -1,17 +1,21 @@
-import { Route, Routes } from "react-router-dom";
-import details from "./components/details/details";
-import landing from './components/landing/landing';
-import home from "./components/home/home";
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+
+import Home from "./components/home/Home.jsx" 
+import Register from './components/form/Register.jsx';
+import { ChakraProvider } from '@chakra-ui/react';
+import theme from '@chakra-ui/theme';
 
 function App() {
   return (
-    <div>
-      <Routes>
-        <Route path="/" element={<landing/>} />
-        <Route path="/books" element={<home/>} />
-        <Route path="/books/:id" element={<details/>} />
-      </Routes>
-    </div>
+    <ChakraProvider theme={theme}>
+      <Router>
+        <Routes>
+          <Route path='/register' element={<Register />} />
+          <Route path="/books" element={<Home />} />
+          {/* <Route path="/books/:id" element={<Details />} /> */}
+        </Routes>
+      </Router>
+    </ChakraProvider>
   );
 }
 
