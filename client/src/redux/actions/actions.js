@@ -10,11 +10,15 @@ export const SORT_AUTHOR = "SORT_AUTHOR";
 export const SORT_REVIEW = "SORT_REVIEW";
 export const ALL_REVIEWS = "ALL_REVIEWS";
 
-const API_URL = "";
+const ENDPOINT_BOOKS = "http://localhost:3001/books";
+const ENDPOINT_GENRE = "http://localhost:3001/genre";
+const ENDPOINT_AUTHORS = "http://localhost:3001/authors";
+const API_URL = ''
+
 
 export function allBooks() {
   return async (dispatch) => {
-    await axios.get(`${API_URL}/books`).then((result) => {
+    await axios.get(`${ENDPOINT_BOOKS}`).then((result) => {
       return dispatch({
         type: ALL_BOOKS,
         payload: result.data,
@@ -26,7 +30,7 @@ export function allBooks() {
 export function bookByTitle(title) {
   return async (dispatch) => {
     await axios
-      .get(`${API_URL}/books?title=${title}`)
+      .get(`${ENDPOINT_BOOKS}?title=${title}`)
       .then((result) => {
         return dispatch({
           type: GET_BOOK_TITLE,
@@ -42,7 +46,7 @@ export function bookByTitle(title) {
 export function bookById(id) {
   return async (dispatch) => {
     try {
-      const response = await axios.get(`${API_URL}/books/${id}`);
+      const response = await axios.get(`${ENDPOINT_BOOKS}/${id}`);
       const data = response.data;
       dispatch({
         type: GET_BOOK_ID,
