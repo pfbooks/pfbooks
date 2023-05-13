@@ -1,9 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import Search from "../Search/Search";
-import logo from "./logoHome.png";
+import logo from './LogoHome.png';
 
-function Navbar({ setInput, setPag }) {
+function NavBar({handlePageChange}) {
   return (
     <nav>
       <div>
@@ -26,10 +26,10 @@ function Navbar({ setInput, setPag }) {
         </ul>
       </div>
       <div>
-        <Search setInput={setInput} setPag={setPag} />
+        <Search handlePageChange={handlePageChange} />
       </div>
     </nav>
   );
 }
 
-export default Navbar;
+export default NavBar;
