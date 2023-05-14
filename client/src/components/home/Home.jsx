@@ -75,8 +75,8 @@ const Home = () => {
             <CardsContainer
                 books={currentBooks}
             />
-            <Paginado size={size} handlePageChange={handlePageChange}/>
-        </div>
+            <Paginado size={size} handlePageChange={handlePageChange} currentPage={currentPage}/>
+
     )
 };
 
