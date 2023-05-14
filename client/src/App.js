@@ -1,16 +1,19 @@
-import { Route, Routes } from "react-router-dom";
-import details from "./components/details/details";
-import landing from './components/landing/landing';
-import home from "./components/home/home";
+// import { Route, Routes } from "react-router-dom";
+import { Route } from "react-router-dom/cjs/react-router-dom.min";
+import Home  from './components/Home/Home';
+import Detail from "./components/Detail/Detail";
+// import landing from './components/landing/landing';
+
+
 
 function App() {
   return (
     <div>
-      <Routes>
-        <Route path="/" element={<landing/>} />
-        <Route path="/books" element={<home/>} />
-        <Route path="/books/:id" element={<details/>} />
-      </Routes>
+      
+        <Route exact path = '/' render = {() =><Home /> } />
+        {/* <Route path = '/login' render = {() => <Form /> } /> */}
+        <Route path = '/detail/:id' render = {() =>  <Detail/>} />
+      
     </div>
   );
 }

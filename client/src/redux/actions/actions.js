@@ -1,5 +1,8 @@
 import axios from "axios";
 export const ALL_BOOKS = "ALL_BOOKS";
+export const ALL_AUTHORS = "ALL_AUTHORS";
+export const ALL_GENRE = "ALL_GENRE";
+export const FILTER_BOOKS = "FILTER_BOOKS";
 export const GET_BOOK_TITLE = "GET_BOOK_TITLE";
 export const GET_BOOK_ID = "GET_BOOK_ID";
 export const CREATE_REVIEW = "CREATE_REVIEW";
@@ -10,11 +13,15 @@ export const SORT_AUTHOR = "SORT_AUTHOR";
 export const SORT_REVIEW = "SORT_REVIEW";
 export const ALL_REVIEWS = "ALL_REVIEWS";
 
-const API_URL = "";
+const ENDPOINT_BOOKS = "http://localhost:3001/books";
+const ENDPOINT_GENRE = "http://localhost:3001/genre";
+const ENDPOINT_AUTHORS = "http://localhost:3001/authors";
+const API_URL = ''
+
 
 export function allBooks() {
   return async (dispatch) => {
-    await axios.get(`${API_URL}/books`).then((result) => {
+    await axios.get(`${ENDPOINT_BOOKS}`).then((result) => {
       return dispatch({
         type: ALL_BOOKS,
         payload: result.data,
@@ -23,10 +30,64 @@ export function allBooks() {
   };
 }
 
+export function allAuthors() {
+  return async (dispatch) => {
+    await axios.get(`${ENDPOINT_AUTHORS}`).then((result) => {
+      return dispatch({
+        type: ALL_AUTHORS,
+        payload: result.data,
+      });
+    });
+  };
+}
+export function allGenre() {
+  return async (dispatch) => {
+    await axios.get(`${ENDPOINT_GENRE}`).then((result) => {
+      return dispatch({
+        type: ALL_GENRE,
+        payload: result.data,
+      });
+    });
+  };
+}
+
+
+
+export function filterBooks(genre, author) {
+  return async (dispatch) => {
+    if(genre && author) {
+      await axios.get(`${ENDPOINT_BOOKS}?genre=${genre}&author=${author}`).then((result) => {
+        return dispatch({
+          type: FILTER_BOOKS,
+          payload: result.data,
+        });
+      });
+    }
+    else if(genre && !author){
+      await axios.get(`${ENDPOINT_BOOKS}?genre=${genre}`).then((result) => {
+        return dispatch({
+          type: FILTER_BOOKS,
+          payload: result.data,
+        });
+      });
+    }
+
+    else if(author && !genre){
+      await axios.get(`${ENDPOINT_BOOKS}?author=${author}`).then((result) => {
+        return dispatch({
+          type: FILTER_BOOKS,
+          payload: result.data,
+        });
+      });
+    }
+
+  };
+}
+
 export function bookByTitle(title) {
   return async (dispatch) => {
     await axios
-      .get(`${API_URL}/books?title=${title}`)
+      .get(`${ENDPOINT_BOOKS}?title=${title}`)
       .then((result) => {
         return dispatch({
           type: GET_BOOK_TITLE,
@@ -42,7 +103,7 @@ export function bookByTitle(title) {
 export function bookById(id) {
   return async (dispatch) => {
     try {
-      const response = await axios.get(`${API_URL}/books/${id}`);
+      const response = await axios.get(`${ENDPOINT_BOOKS}/${id}`);
       const data = response.data;
       dispatch({
         type: GET_BOOK_ID,
