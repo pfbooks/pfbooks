@@ -49,7 +49,7 @@ const Home = () => {
 
 
     return (
-        <>
+        <div className={styles.homeContainer}>
             <NavBar handlePageChange={handlePageChange} />
             <Filters handlePageChange={handlePageChange}/>
 
@@ -76,7 +76,7 @@ const Home = () => {
                 books={currentBooks}
             />
             <Paginado size={size} handlePageChange={handlePageChange}/>
-        </>
+        </div>
     )
 };
 
