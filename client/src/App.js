@@ -2,7 +2,7 @@
 import { Route } from "react-router-dom/cjs/react-router-dom.min";
 import Home  from './components/Home/Home';
 import Detail from "./components/Detail/Detail";
-import Register from "./components/form/Register"
+import Register from "./components/Form/Register"
 // import landing from './components/landing/landing';
 
 

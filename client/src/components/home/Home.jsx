@@ -77,6 +77,11 @@ const Home = () => {
             />
             <Paginado size={size} handlePageChange={handlePageChange} currentPage={currentPage}/>
 
+            </div>
+
+    
+        
+
     )
 };
 
