@@ -9,6 +9,9 @@ export const SORT_RATING = "SORT_RATING";
 export const SORT_AUTHOR = "SORT_AUTHOR";
 export const SORT_REVIEW = "SORT_REVIEW";
 export const ALL_REVIEWS = "ALL_REVIEWS";
+export const CREATE_USER_FAILURE = "CREATE_USER_FAILURE";
+export const CREATE_USER_REQUEST = "CREATE_USER_REQUEST";
+export const CREATE_USER_SUCCESS = "CREATE_USER_SUCCESS";
 
 const ENDPOINT_BOOKS = "http://localhost:3001/books";
 const ENDPOINT_GENRE = "http://localhost:3001/genre";
@@ -114,6 +117,32 @@ export function sortReview(payload) {
     });
   };
 }
+export const createUserRequest = () => {
+  return (dispatch) => {
+    return dispatch({
+      type: CREATE_USER_REQUEST
+    })
+  };
+};
+
+export const createUserSuccess = (user) => {
+  return (dispatch) => {
+    return dispatch({
+      type: CREATE_USER_REQUEST,
+      payload: user
+    })
+  };
+};
+
+export const createUserFailure = (error) => {
+  return (dispatch) => {
+    return dispatch({
+      type: CREATE_USER_FAILURE,
+      payload: error
+    })
+  };
+};
+
 
 export function allReviews() {
   return async (dispatch) => {
@@ -125,3 +154,21 @@ export function allReviews() {
     });
   };
 }
+
+//!!!USERS
+
+
+export const createUser = (userData) => {
+  return (dispatch) => {
+    dispatch(createUserRequest());
+    axios
+      .post("/users", userData)
+      .then((response) => {
+        dispatch(createUserSuccess(response.data));
+      })
+      .catch((error) => {
+        dispatch(createUserFailure(error));
+      });
+  };
+};
+

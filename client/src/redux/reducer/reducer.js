@@ -9,6 +9,9 @@ import {
     SORT_AUTHOR,
     SORT_REVIEW,
     ALL_REVIEWS,
+    CREATE_USER_FAILURE,
+    CREATE_USER_SUCCESS,
+    CREATE_USER_REQUEST
   } from "../actions/actions";
   
   
@@ -18,6 +21,9 @@ import {
     detail: [],
     copyBooks: [],
     allReviews: [],
+    user: [],
+    isLoading: false,
+    error: null
   };
   
   const rootReducer = (state = initialState, action) => {
@@ -128,7 +134,26 @@ import {
           ...state,
           detail: action.payload,
         };
-  
+      //REDUCERS USER
+      case CREATE_USER_REQUEST:
+        return{
+          ...state,
+          isLoading: true,
+          error: null
+        };
+      case CREATE_USER_SUCCESS:
+        return{
+          ...state,
+          isLoading: false,
+          error: null,
+          user: action.payload
+        }
+      case CREATE_USER_FAILURE:
+        return{
+          ...state,
+          isLoading: false,
+          error: action.payload
+        }
       default:
         return { ...state };
     }

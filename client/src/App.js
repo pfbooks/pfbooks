@@ -15,15 +15,6 @@ function App() {
         <Route path = '/detail/:id' render = {() =>  <Detail/>} />
       
     </div>
-    <ChakraProvider theme={theme}>
-      <Router>
-        <Routes>
-          <Route path='/register' element={<Register />} />
-          <Route path="/books" element={<Home />} />
-          {/* <Route path="/books/:id" element={<Details />} /> */}
-        </Routes>
-      </Router>
-    </ChakraProvider>
   );
 }
 

@@ -1,109 +1,96 @@
-import { useState } from 'react';
+import React, { useState } from "react";
 import {
-  Box,
-  Button,
   FormControl,
-  FormErrorMessage,
   FormLabel,
   Input,
+  Button,
   Stack,
-  useToast
-} from '@chakra-ui/react';
-import { useForm } from 'react-hook-form';
+  Box,
+  Heading,
+} from "@chakra-ui/core";
+import { useDispatch } from "react-redux";
+import { createUser } from "../redux/actions/userActions";
 
-function Register() {
-  const [isLoading, setIsLoading] = useState(false);
-  const toast = useToast();
-  const {
-    register,
-    handleSubmit,
-    formState: { errors, isSubmitting, getValues }
-  } = useForm();
+const Register = () => {
+  const dispatch = useDispatch();
+  const [formValues, setFormValues] = useState({
+    name: "",
+    last_name: "",
+    email: "",
+    password: "",
+  });
 
-  const onSubmit = async (data) => {
-    setIsLoading(true);
-
-    // Aquí puedes enviar una solicitud al servidor para registrar al usuario con los datos enviados desde el formulario
-
-    setIsLoading(false);
-    toast({
-      title: 'Usuario registrado exitosamente.',
-      status: 'success',
-      duration: 5000,
-      isClosable: true
+  const handleChange = (event) => {
+    setFormValues({
+      ...formValues,
+      [event.target.name]: event.target.value,
     });
   };
 
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    dispatch(createUser(formValues));
+  };
+
   return (
-    <Box>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <Stack spacing="6">
-          <FormControl isInvalid={errors.username}>
-            <FormLabel htmlFor="username">Nombre de usuario</FormLabel>
+    <Box maxWidth="500px" mx="auto">
+      <Heading as="h1" size="xl" textAlign="center" my={6}>
+        Create User
+      </Heading>
+      <form onSubmit={handleSubmit}>
+        <Stack spacing={4}>
+          <FormControl isRequired>
+            <FormLabel htmlFor="name">Name</FormLabel>
             <Input
-              id="username"
-              placeholder="Ingrese su nombre de usuario"
-              {...register('username', { required: 'Este campo es requerido' })}
+              type="text"
+              id="name"
+              name="name"
+              value={formValues.name}
+              onChange={handleChange}
+              placeholder="Enter your name"
             />
-            <FormErrorMessage>{errors.username && errors.username.message}</FormErrorMessage>
           </FormControl>
-
-          <FormControl isInvalid={errors.email}>
-            <FormLabel htmlFor="email">Correo electrónico</FormLabel>
+          <FormControl isRequired>
+            <FormLabel htmlFor="last_name">Last Name</FormLabel>
             <Input
-              id="email"
-              placeholder="Ingrese su correo electrónico"
+              type="text"
+              id="last_name"
+              name="last_name"
+              value={formValues.last_name}
+              onChange={handleChange}
+              placeholder="Enter your last name"
+            />
+          </FormControl>
+          <FormControl isRequired>
+            <FormLabel htmlFor="email">Email</FormLabel>
+            <Input
               type="email"
-              {...register('email', {
-                required: 'Este campo es requerido',
-                pattern: {
-                  value: /^\S+@\S+$/i,
-                  message: 'Ingrese una dirección de correo electrónico válida'
-                }
-              })}
+              id="email"
+              name="email"
+              value={formValues.email}
+              onChange={handleChange}
+              placeholder="Enter your email"
             />
-            <FormErrorMessage>{errors.email && errors.email.message}</FormErrorMessage>
           </FormControl>
-
-          <FormControl isInvalid={errors.password}>
-            <FormLabel htmlFor="password">Contraseña</FormLabel>
+          <FormControl isRequired>
+            <FormLabel htmlFor="password">Password</FormLabel>
             <Input
+              type="password"
               id="password"
-              placeholder="Ingrese su contraseña"
-              type="password"
-              {...register('password', { required: 'Este campo es requerido' })}
+              name="password"
+              value={formValues.password}
+              onChange={handleChange}
+              placeholder="Enter your password"
             />
-            <FormErrorMessage>{errors.password && errors.password.message}</FormErrorMessage>
           </FormControl>
-
-          <FormControl isInvalid={errors.confirmPassword}>
-            <FormLabel htmlFor="confirmPassword">Confirmar contraseña</FormLabel>
-            <Input
-              id="confirmPassword"
-              placeholder="Confirme su contraseña"
-              type="password"
-              {...register('confirmPassword', {
-                required: 'Este campo es requerido',
-                validate: (value) =>
-                  value === getValues('password') || 'Las contraseñas deben coincidir'
-              })}
-            />
-            <FormErrorMessage>{errors.confirmPassword && errors.confirmPassword.message}</FormErrorMessage>
-          </FormControl>
-
-          <Button
-            type="submit"
-            colorScheme="teal"
-            size="lg"
-            fontSize="md"
-            isLoading={isLoading || isSubmitting}
-          >
-            Registrar
+          <Button type="submit" variantColor="blue">
+            Submit
           </Button>
         </Stack>
       </form>
     </Box>
   );
-}
+};
 
 export default Register;
+
