@@ -6,8 +6,20 @@ const getBookDetailById = async ( id ) => {
             id : id
         }
     });
+    return {
+        id: bookDetail.id,
+        title: bookDetail.title,
+        author: bookDetail.author,
+        price: bookDetail.price,
+        image: bookDetail.image,
+        genre: bookDetail.genre.join(', '),
+        rating: bookDetail.rating,
+        stock: bookDetail.stock,
+        description: bookDetail.description
 
-    return bookDetail;
+    }
+
+  
 }
 
 module.exports = getBookDetailById;
