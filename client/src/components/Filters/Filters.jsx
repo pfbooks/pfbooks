@@ -40,7 +40,7 @@ const Filters = ({handlePageChange}) => {
         console.log(event.target.name)
         if(event.target.name === 'genre' && event.target.value !== 'All') setGenre(event.target.value)
         if(event.target.name === 'author' && event.target.value !== 'All') setAuthor(event.target.value)
-        setOrder(event.target.value)
+        setOrder(event.target.value + order)
 
         handlePageChange(1);
     }
