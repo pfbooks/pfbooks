@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { bookByTitle } from "../../redux/actions/actions";
+import styles from './Search.module.css'
 
 const Search = ({handlePageChange}) => {
 

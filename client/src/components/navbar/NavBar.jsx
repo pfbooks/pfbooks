@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import Search from "../Search/Search";
 import logo from './LogoHome.png';
+import styles from './NavBar.module.css'
 
 function NavBar({handlePageChange}) {
   return (

@@ -1,3 +1,4 @@
+import styles from './Paginado.module.css'
 const Paginado = ({handlePageChange, size}) =>{
     const pageNumers = [];
 
