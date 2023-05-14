@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { allBooks } from "../../redux/actions/actions";
-import NavBar from "../NavBar/NavBar";
+import NavBar from "../Navbar/NavBar";
 import CardsContainer from "../CardsContainer/CardsContainer";
 import Paginado from "../Paginado/Paginado";
 import Search from "../Search/Search";
