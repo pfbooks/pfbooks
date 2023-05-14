@@ -1,0 +1,32 @@
+/* Card.module.css */
+
+.card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width: 250px;
+    height: 350px;
+    padding: 10px;
+    border: 1px solid #ccc;
+  }
+  
+  .card img {
+    max-width: 100%;
+    max-height: 250px;
+    margin-bottom: 10px;
+  }
+  
+  .card p {
+    margin: 5px 0;
+    font-size: 1rem;
+    font-weight: 500;
+  }
+  
+  .card .rating {
+    color: #ffa500;
+    font-size: 1.2rem;
+    font-weight: bold;
+  }
+  

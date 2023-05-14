@@ -1,0 +1,20 @@
+.container {
+    margin: 0 auto;
+    padding: 40px;
+    text-align: center;
+    
+    }
+    
+    .title {
+    font-size: 32px;
+    font-weight: bold;
+    margin-bottom: 40px;
+    text-align: center;
+    }
+    
+    .row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 40px;
+    }
