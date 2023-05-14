@@ -5,6 +5,7 @@ import { useState } from "react";
 import Paginado from "../Paginado/Paginado";
 import Filters from "../Filters/Filters";
 import NavBar from "../NavBar/NavBar";
+import styles from './Home.module.css'
 
 const Home = () => {
 

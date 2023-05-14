@@ -1,4 +1,5 @@
 import Card from "../Card/Card";
+import styles from './Card.module.css'
 
 const CardsContainer = (props) => {
     return (
