@@ -4,7 +4,7 @@ const { conn } = require('../db.js')
 
 const getAllGenres =  async ()  => {
     const genres = await conn.query(
-        'SELECT distinct genre FROM "Books"',
+        'SELECT DISTINCT unnest(genre) as genre FROM "Books"',
         {
             type: QueryTypes.SELECT
         }

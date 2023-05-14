@@ -29,7 +29,7 @@ function mapBookFromApi(book) {
         author: book.authors[0] ? book.authors[0].name : "Not known",
         price: 10 + Math.ceil(1 + Math.random() * 200),
         image: book.formats["image/jpeg"] ? book.formats["image/jpeg"] : defaultCover,
-        genre: book.bookshelves[0] ? book.bookshelves[0] : "Classics",
+        genre: book.bookshelves.length>0 ? book.bookshelves : ["Classics"],
         rating: Math.ceil(Math.random() * 5),
         stock: Math.ceil(1 + Math.random() * 800),
         description: defaultDescription
