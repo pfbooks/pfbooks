@@ -13,7 +13,7 @@ const Home = () => {
     const books = useSelector((state) => state.books);
     const [order, setOrder] = useState('')
     const [currentPage, setCurrentPage] = useState(1);
-    const booksPerPage = 10;
+    const booksPerPage = 8;
     const lastIndex = currentPage * booksPerPage
     const firstIndex = lastIndex - booksPerPage
     const size = books.length / booksPerPage
