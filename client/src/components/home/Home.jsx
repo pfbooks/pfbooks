@@ -1,12 +1,12 @@
 import CardsContainer from "../CardsContainer/CardsContainer";
-import { allAuthors, allBooks, allGenre, filterBooks, sort } from "../../redux/actions/actions";
+import { sort } from "../../redux/actions/actions";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Paginado from "../Paginado/Paginado";
 import Filters from "../Filters/Filters";
 import NavBar from "../NavBar/NavBar";
 
-export const Home = () => {
+const Home = () => {
 
     const dispatch = useDispatch();
     const books = useSelector((state) => state.books);
@@ -28,8 +28,9 @@ export const Home = () => {
 
     const handleSort = (event) => {
         dispatch(sort(event.target.value))
-        setOrder(event.target.value)
+        setOrder(event.target.value + order)
         handlePageChange(1);
+        
     }
 
 
@@ -56,5 +57,5 @@ export const Home = () => {
     )
 };
 
-// export default Home;
+export default Home;
 
