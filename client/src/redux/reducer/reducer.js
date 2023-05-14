@@ -9,6 +9,9 @@ import {
     SORT_AUTHOR,
     SORT_REVIEW,
     ALL_REVIEWS,
+    ALL_AUTHORS,
+    ALL_GENRE,
+    FILTER_BOOKS,
   } from "../actions/actions";
   
   
@@ -16,12 +19,31 @@ import {
   const initialState = {
     books: [],
     detail: [],
+    genres: [],
+    authors: [],
     copyBooks: [],
     allReviews: [],
   };
   
   const rootReducer = (state = initialState, action) => {
     switch (action.type) {
+      case FILTER_BOOKS:
+        return {
+          ...state,
+          books: action.payload
+        }
+
+      case ALL_GENRE:
+        return {
+          ...state,
+          genres: action.payload
+        }
+
+      case ALL_AUTHORS:
+        return {
+          ...state,
+          authors: action.payload
+        }
       case ALL_BOOKS:
         return {
           ...state,

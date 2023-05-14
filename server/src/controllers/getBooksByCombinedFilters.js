@@ -30,12 +30,8 @@ const getBookByCombinedFilters =  async ( title, genre, author) => {
         }
     );
 
-    if(booksByCombinedFilters.length > 0) {
-        return booksByCombinedFilters;
-    }
-    else {
-        throw new Error("There is not books with that title")
-    }
+    return booksByCombinedFilters;
+
 }
 
 module.exports = getBookByCombinedFilters;
