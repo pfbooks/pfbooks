@@ -1,36 +1,23 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import Search from "../Search/Search";
-import logo from './LogoHome.png';
-import styles from './NavBar.module.css'
+import styles from "./NavBar.module.css";
+import logo from "./LogoHome.png";
+import login from "./login.png"
 
-function NavBar({handlePageChange}) {
+const NavBar = () => {
   return (
     <nav>
       <div>
-        <Link to="/">
-          <img src={logo} alt="logo" />
-        </Link>
+        <img src={logo} alt="Logo" />
       </div>
       <div>
-        <ul>
-          <li>
-            <Link to="/cart">
-              <i className="fas fa-shopping-cart"></i>
-            </Link>
-          </li>
-          <li>
-            <Link to="/login">
-              Log In
-            </Link>
-          </li>
-        </ul>
+        <input type="text" placeholder="Search" />
+        <button>Search</button>
       </div>
-      <div>
-        <Search handlePageChange={handlePageChange} />
+      <div >
+        {/* <img src={login} alt="Login" /> */}
       </div>
     </nav>
   );
-}
+};
 
 export default NavBar;

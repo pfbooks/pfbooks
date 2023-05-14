@@ -50,8 +50,6 @@ const Home = () => {
 
     return (
         <>
-      
-            <h1>Home de Proyecto Books</h1>
             <NavBar handlePageChange={handlePageChange} />
             <Filters handlePageChange={handlePageChange}/>
 
@@ -74,10 +72,10 @@ const Home = () => {
             </select>
 
 
-            <Paginado size={size} handlePageChange={handlePageChange}/>
             <CardsContainer
                 books={currentBooks}
             />
+            <Paginado size={size} handlePageChange={handlePageChange}/>
         </>
     )
 };
