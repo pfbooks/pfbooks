@@ -4,13 +4,13 @@ import styles from './Card.module.css'
 const Card = (props) => {
     
     return (
-        <div>
+        <div className={styles.cardContainer}>
             <Link to = {`/detail/${props.id}`}>
                 <img src={props.image} alt={props.id} />
             </Link>
                 <p>{ props.title }</p>
                 <p> {props.rating} </p>
-                <p>{ props.price }</p>
+                <p className={styles.priceText}>${ props.price }</p>
             </div>
     )
 };
