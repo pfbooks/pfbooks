@@ -87,7 +87,7 @@ export function filterBooks(genre, author) {
 export function bookByTitle(title) {
   return async (dispatch) => {
     await axios
-      .get(`${ENDPOINT_BOOKS}/books?title=${title}`)
+      .get(`${ENDPOINT_BOOKS}?title=${title}`)
       .then((result) => {
         return dispatch({
           type: GET_BOOK_TITLE,

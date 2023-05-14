@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import Paginado from "../Paginado/Paginado";
 import Filters from "../Filters/Filters";
+import NavBar from "../NavBar/NavBar";
 
 export const Home = () => {
 
@@ -35,7 +36,9 @@ export const Home = () => {
 
     return (
         <>
+      
             <h1>Home de Proyecto Books</h1>
+            <NavBar handlePageChange={handlePageChange} />
             <Filters handlePageChange={handlePageChange}/>
 
             <select  onChange={event => handleSort(event)}>
@@ -54,3 +57,4 @@ export const Home = () => {
 };
 
 // export default Home;
+
