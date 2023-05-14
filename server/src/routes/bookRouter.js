@@ -9,13 +9,13 @@ const bookRouter = Router();
 
 /// RUTA GET ALL BOOKS Y GET BOOK BY TITLE
 bookRouter.get("/", async (req, res) => {
-    const { title , genre, author } = req.query;
+    const { title , genre, author, sortBy, sortMode } = req.query;
     let books;
     try {
         if(title || genre || author) {
-            books = await getBooksByCombinedFilters(title, genre, author)
+            books = await getBooksByCombinedFilters(title, genre, author, sortBy, sortMode)
         } else {
-            books = await getAllBooks()
+            books = await getAllBooks(sortBy, sortMode)
         }
         res.status(200).json(books);
     }

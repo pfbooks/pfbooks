@@ -1,10 +1,10 @@
-const { QueryTypes } = require('sequelize');  /// uso RAW QUERIES - replacement from sequelize
+const { QueryTypes } = require('sequelize');
 const { conn } = require('../db.js')
 
 
 const getBookByTitleLike =  async ( title ) => {
     const bookByTitleLike = await conn.query(
-        'SELECT * FROM "Books" WHERE title ILIKE :book_title', //-->ILIKE busca en DB ignora mayus y min
+        'SELECT * FROM "Books" WHERE title ILIKE :book_title',
         {
             replacements: { book_title: `%${title}%` },
             type: QueryTypes.SELECT

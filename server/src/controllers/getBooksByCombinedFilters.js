@@ -1,8 +1,8 @@
 const { QueryTypes } = require('sequelize');  /// uso RAW QUERIES - replacement from sequelize
-const { conn } = require('../db.js')
+const { conn } = require('../db.js');
 
 
-const getBookByCombinedFilters =  async ( title, genre, author) => {
+const getBookByCombinedFilters =  async ( title, genre, author, sortBy, sortMode ) => {
     let query = `SELECT * FROM "Books" WHERE`;
     let needsAnd = false
     if(title) {
@@ -23,6 +23,26 @@ const getBookByCombinedFilters =  async ( title, genre, author) => {
         query += ` author = '${author}' `;
         needsAnd = true;
     }
+
+    if ( sortBy ){
+        if (sortBy.toUpperCase() === "RATING" ) {
+            query += " ORDER BY rating "
+        }
+
+        if( sortBy.toUpperCase() === "PRICE" ) {
+            query += " ORDER BY price "
+        }
+
+        if( sortMode ) {
+            if(sortMode.toUpperCase() === "ASCENDENT") {
+                query += " ASC "
+            } else {
+                query += " DESC "
+            }
+        }
+    }
+
+
     const booksByCombinedFilters = await conn.query(
         query,
         {
