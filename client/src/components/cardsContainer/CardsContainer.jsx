@@ -1,10 +1,10 @@
 import Card from "../Card/Card";
-import styles from './Card.module.css'
+import styles from './CardsContainer.module.css'
 
 const CardsContainer = (props) => {
     return (
 
-    <div>
+    <div className={styles.Container}>
         {props.books && props.books.map(book => {
             return < Card
                 key={book.id}

@@ -1,0 +1,36 @@
+.cardContainer{
+    width: 250px;
+    margin: 1rem;
+    border: 1px solid gray;
+    border-radius: 5px;
+    overflow: hidden;
+    transition: transform 0.2s;
+    box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.2);
+}
+
+.Card:hover {
+    transform: translateY(-5px);
+  }
+  
+  .Card img {
+   max-width: 90%;
+      height: auto;
+      margin-left: 10px;
+      margin-right: 10px;
+      margin-bottom: 10px;
+  }
+  
+  .Card p {
+    margin: 0.5rem;
+    font-size: 1rem;
+  }
+  
+  .Card .rating {
+    font-weight: bold;
+    color: #ff9900;
+  }
+  
+  .priceText{
+    font-size: larger;
+    font-weight: bold;
+  }
