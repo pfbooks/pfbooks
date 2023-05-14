@@ -9,6 +9,7 @@ export const CREATE_REVIEW = "CREATE_REVIEW";
 export const CLEAR = "CLEAR";
 export const SORT = "SORT";
 export const SORT_RATING = "SORT_RATING";
+export const SORT_PRICE = "SORT_PRICE";
 export const SORT_AUTHOR = "SORT_AUTHOR";
 export const SORT_REVIEW = "SORT_REVIEW";
 export const ALL_REVIEWS = "ALL_REVIEWS";
@@ -150,6 +151,14 @@ export function sortRating(ordenNum) {
     return dispatch({
       type: SORT_RATING,
       payload: ordenNum,
+    });
+  };
+}
+export function sortPrice(orden) {
+  return (dispatch) => {
+    return dispatch({
+      type: SORT_PRICE,
+      payload: orden,
     });
   };
 }
