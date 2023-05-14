@@ -7,14 +7,14 @@ const NavBar = () => {
   return (
     <nav>
       <div>
-        <img src={logo} alt="Logo" />
+        <img className={styles.logoImg} src={logo} alt="Logo" />
       </div>
       <div>
         <input type="text" placeholder="Search" />
         <button>Search</button>
       </div>
-      <div >
-        {/* <img src={login} alt="Login" /> */}
+      <div>
+        <img className={styles.loginImg} src={login} alt="Login" />
       </div>
     </nav>
   );

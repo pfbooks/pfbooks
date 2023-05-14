@@ -1,0 +1,83 @@
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #ffffff;
+  height: 80px;
+  padding: 0 20px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  background-color: #e2e2a9;
+}
+
+nav div:first-child {
+  flex: 1;
+}
+
+.logoImg {
+  height: 350px;
+}
+
+nav img.loginImage {
+  height: 10px;
+  border: 1px solid #ccc;
+  margin-left: 20px;
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+
+nav .search {
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+}
+
+nav .search input[type="text"] {
+  width: 200px;
+  padding: 10px;
+  border: 1px solid gray;
+  border-radius: 4px 0 0 4px;
+  outline: none;
+  font-size: 16px;
+}
+
+nav .search button {
+  padding: 10px 20px;
+  border: none;
+  background-color: #0077b6;
+  color: white;
+  border-radius: 0 4px 4px 0;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+nav .search button:hover {
+  background-color: #023e8a;
+}
+
+.loginImg{
+    height: 40px;
+    margin-left: 20px;
+}
+
+
+
+@media screen and (max-width: 767px) {
+  nav img.logo {
+    height: 60px;
+  }
+
+  nav img.login {
+    height: 10px;
+  }
+
+  nav .search input[type="text"] {
+    width: 150px;
+    font-size: 14px;
+  }
+
+  nav .search button {
+    padding: 8px 16px;
+    font-size: 14px;
+  }
+}
