@@ -12,6 +12,7 @@ import {
     ALL_AUTHORS,
     ALL_GENRE,
     FILTER_BOOKS,
+    SORT_PRICE,
   } from "../actions/actions";
   
   
@@ -28,6 +29,7 @@ import {
   const rootReducer = (state = initialState, action) => {
     switch (action.type) {
       case FILTER_BOOKS:
+        // if(action.payload === "All") return {...state, books: state.copyBooks}
         return {
           ...state,
           books: action.payload
@@ -107,6 +109,26 @@ import {
           };
         }
         return {...state}
+
+        case SORT_PRICE:
+          if (action.payload === "dsc") {
+            let booksMaMe = state.books.sort((a, b) =>
+              a.price > b.price ? 1 : a.price < b.price ? -1 : 0
+            );
+            return {
+              ...state,
+              books: booksMaMe,
+            };
+          } else if(action.payload === 'asc') {
+            let booksMeMa = state.books.sort((b, a) =>
+              a.price > b.price ? 1 : a.price < b.price ? -1 : 0
+            );
+            return {
+              ...state,
+              books: booksMeMa,
+            };
+          }
+          return {...state}
   
       case SORT_AUTHOR:
         if (action.payload) {
