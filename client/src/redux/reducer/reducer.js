@@ -77,7 +77,7 @@ import {
             ...state,
             books: booksAsc,
           };
-        } else {
+        } else if (action.payload === 'dsc'){
           let booksDes = state.books.sort((b, a) =>
             a.title > b.title ? 1 : a.title < b.title ? -1 : 0
           );
@@ -86,9 +86,10 @@ import {
             books: booksDes,
           };
         }
+        return {...state}
   
       case SORT_RATING:
-        if (action.payload === "asc") {
+        if (action.payload === "dsc") {
           let booksMaMe = state.books.sort((a, b) =>
             a.rating > b.rating ? 1 : a.rating < b.rating ? -1 : 0
           );
@@ -96,7 +97,7 @@ import {
             ...state,
             books: booksMaMe,
           };
-        } else {
+        } else if(action.payload === 'asc') {
           let booksMeMa = state.books.sort((b, a) =>
             a.rating > b.rating ? 1 : a.rating < b.rating ? -1 : 0
           );
@@ -105,6 +106,7 @@ import {
             books: booksMeMa,
           };
         }
+        return {...state}
   
       case SORT_AUTHOR:
         if (action.payload) {
