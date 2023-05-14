@@ -1,5 +1,5 @@
 import CardsContainer from "../CardsContainer/CardsContainer";
-import { sort } from "../../redux/actions/actions";
+import { sort, sortRating } from "../../redux/actions/actions";
 import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
 import Paginado from "../Paginado/Paginado";
@@ -32,6 +32,12 @@ const Home = () => {
         handlePageChange(1);
         
     }
+    const handleRating = (event) => {
+        dispatch(sortRating(event.target.value))
+        setOrder(event.target.value + order)
+        handlePageChange(1);
+        
+    }
 
 
 
@@ -46,6 +52,12 @@ const Home = () => {
                 <option value="">-select-</option>
                 <option value="asc">A-Z</option>
                 <option value="dsc">Z-A</option>
+            </select>
+
+            <select  onChange={event => handleRating(event)}>
+                <option value="">-select-</option>
+                <option value="asc">Higher rating</option>
+                <option value="dsc">Lower rating</option>
             </select>
 
 
