@@ -56,7 +56,7 @@ const Filters = ({handlePageChange}) => {
     return(
         <div>
 
-            <select className={styles.select} onChange={ event => handleFilter(event)} name='genre' >
+            <select className={styles.selectFilters} onChange={ event => handleFilter(event)} name='genre' >
                 <option value="">By genre</option>
                 
                 {genres.map(genre => {
@@ -66,7 +66,7 @@ const Filters = ({handlePageChange}) => {
                 })}
             </select>
 
-            <select className={styles.select} onChange={ event => handleFilter(event)} name ='author'>
+            <select className={styles.selectFilters} onChange={ event => handleFilter(event)} name ='author'>
                 <option value="">By author</option>
                 
                 {authors.map(author => {
@@ -75,7 +75,7 @@ const Filters = ({handlePageChange}) => {
                     )
                 })}
             </select>
-            <button className={styles.button} onClick={event => handleAllBooks(event)}>All books</button>
+            <button className={styles.buttonBooks} onClick={event => handleAllBooks(event)}>All books</button>
 
         </div>
     )

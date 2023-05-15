@@ -55,19 +55,19 @@ const Home = () => {
             <Filters handlePageChange={handlePageChange} />
             <br />
 
-            <select className={styles.select} onChange={event => handleSort(event)}>
+            <select className={styles.selectHome} onChange={event => handleSort(event)}>
                 <option value="">Alphabetic</option>
                 <option value="asc">A-Z</option>
                 <option value="dsc">Z-A</option>
             </select>
 
-            <select className={styles.select} onChange={event => handleRating(event)}>
+            <select className={styles.selectHome} onChange={event => handleRating(event)}>
                 <option value="">Rating</option>
                 <option value="asc">Higher rating</option>
                 <option value="dsc">Lower rating</option>
             </select>
 
-            <select className={styles.select} onChange={event => handlePrice(event)}>
+            <select className={styles.selectHome} onChange={event => handlePrice(event)}>
                 <option value="">Price</option>
                 <option value="asc">Higher price</option>
                 <option value="dsc">Lower price</option>
