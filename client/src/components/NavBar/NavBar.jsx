@@ -3,20 +3,26 @@ import styles from "./NavBar.module.css";
 import logo from "./LogoHome.png";
 import login from "./login.png"
 import Search from "../Search/Search";
+import {Link} from "react-router-dom";
 
 const NavBar = ({handlePageChange}) => {
-  return (
-    <nav>
-      <div>
-        <img className={styles.logoImg} src={logo} alt="Logo" />
-      </div>
-      <Search handlePageChange={handlePageChange}/>
+    return (
+        <nav className={styles.nav}>
+            <div>
+                <img className={styles.logoImg} src={logo} alt="Logo"/>
+            </div>
+            <Search handlePageChange={handlePageChange}/>
 
-      <div>
-        <img className={styles.loginImg} src={login} alt="Login" />
-      </div>
-    </nav>
-  );
+            <div className={styles.divSerchBar}>
+                <div className={styles.dropdown}>
+                    <img className={styles.loginImg} src={login} alt="Login"/>
+                    <div className={styles.dropdownContent}>
+                        <Link to={"/register"}><a href="/register">Register</a></Link>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    );
 };
 
 export default NavBar;
