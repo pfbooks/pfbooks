@@ -51,22 +51,24 @@ const Home = () => {
     return (
         <div className={styles.homeContainer}>
             <NavBar handlePageChange={handlePageChange} />
-            <Filters handlePageChange={handlePageChange}/>
+            <br />
+            <Filters handlePageChange={handlePageChange} />
+            <br />
 
-            <select  onChange={event => handleSort(event)}>
-                <option value="">-select-</option>
+            <select className={styles.selectHome} onChange={event => handleSort(event)}>
+                <option value="">Alphabetic</option>
                 <option value="asc">A-Z</option>
                 <option value="dsc">Z-A</option>
             </select>
 
-            <select  onChange={event => handleRating(event)}>
-                <option value="">-select-</option>
+            <select className={styles.selectHome} onChange={event => handleRating(event)}>
+                <option value="">Rating</option>
                 <option value="asc">Higher rating</option>
                 <option value="dsc">Lower rating</option>
             </select>
 
-            <select  onChange={event => handlePrice(event)}>
-                <option value="">-select-</option>
+            <select className={styles.selectHome} onChange={event => handlePrice(event)}>
+                <option value="">Price</option>
                 <option value="asc">Higher price</option>
                 <option value="dsc">Lower price</option>
             </select>
