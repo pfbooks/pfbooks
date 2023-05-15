@@ -15,13 +15,8 @@ margin-right: 13rem;
 }
 
 .logoImg {
-  height: 350px;
+  height: 300px;
 }
-
-.logoImg:hover {
-  transform: scale(1.02);
-}
-
 
 img.loginImage {
   height: 10px;
