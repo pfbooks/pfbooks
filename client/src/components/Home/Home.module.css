@@ -1,20 +1,31 @@
 .homeContainer{
-    background-color: #09332c;
+    background-color: #fff;
 }
 
-/* .Home-container {
+.select {
+    font-size: 16px;
+    padding: 8px;
+    border-radius: 8px;
+    border: none;
+    background-color: #fff;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
+    margin-right: 16px;
+  }
+  
+
+/* .home-container {
     margin: 0 auto;
     padding: 40px;
     text-align: center;
     }
     
-    .Home-title {
+    .home-title {
     font-size: 32px;
     font-weight: bold;
     margin-bottom: 40px;
     }
     
-    .Home-row {
+    .home-row {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
