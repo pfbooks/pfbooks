@@ -1,0 +1,73 @@
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #ffffff;
+  height: 80px;
+  padding: 0 20px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  background-color: #04ab77;
+}
+
+
+.divSerchBar {
+margin-right: 13rem;
+}
+
+.logoImg {
+  height: 300px;
+}
+
+img.loginImage {
+  height: 10px;
+  border: 1px solid #ccc;
+  margin-left: 20px;
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+
+.loginImg{
+    height: 40px;
+    margin-left: 20px;
+}
+
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdownContent {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  padding: 12px 16px;
+  z-index: 1;
+}
+
+.dropdown:hover .dropdownContent {
+  display: block;
+}
+
+@media screen and (max-width: 767px) {
+  nav img.logo {
+    height: 60px;
+  }
+
+  nav img.login {
+    height: 10px;
+  }
+
+  nav .search input[type="text"] {
+    width: 150px;
+    font-size: 14px;
+  }
+
+  nav .search button {
+    padding: 8px 16px;
+    font-size: 14px;
+  }
+}

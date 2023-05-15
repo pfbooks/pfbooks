@@ -9,13 +9,16 @@ export const CREATE_REVIEW = "CREATE_REVIEW";
 export const CLEAR = "CLEAR";
 export const SORT = "SORT";
 export const SORT_RATING = "SORT_RATING";
+export const SORT_PRICE = "SORT_PRICE";
 export const SORT_AUTHOR = "SORT_AUTHOR";
 export const SORT_REVIEW = "SORT_REVIEW";
 export const ALL_REVIEWS = "ALL_REVIEWS";
+export const CREATE_USER = "CREATE_USER";
 
 const ENDPOINT_BOOKS = "http://localhost:3001/books";
 const ENDPOINT_GENRE = "http://localhost:3001/genre";
 const ENDPOINT_AUTHORS = "http://localhost:3001/authors";
+const ENDPOINT_USER= "http://localhost:3001/user"
 const API_URL = ''
 
 
@@ -153,6 +156,14 @@ export function sortRating(ordenNum) {
     });
   };
 }
+export function sortPrice(orden) {
+  return (dispatch) => {
+    return dispatch({
+      type: SORT_PRICE,
+      payload: orden,
+    });
+  };
+}
 
 export function sortAuthor(payload) {
   return (dispatch) => {
@@ -181,4 +192,18 @@ export function allReviews() {
       });
     });
   };
+}
+
+//USER
+
+export function createUser(user) {
+  console.log(user);
+  return async (dispatch) =>{
+    await axios.post(`${ENDPOINT_USER}`, user).then((result) =>{
+      return dispatch({
+        type: CREATE_USER,
+        payload: result.data,
+      })
+    })
+  }
 }

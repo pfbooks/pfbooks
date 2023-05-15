@@ -13,7 +13,7 @@ const getBookByCombinedFilters =  async ( title, genre, author) => {
         if(needsAnd) {
             query += ' AND '
         }
-        query += ` genre = '${genre}' `;
+        query +=  ` genre @> ARRAY['${genre}']::varchar[] `
         needsAnd = true;
     }
     if(author) {
