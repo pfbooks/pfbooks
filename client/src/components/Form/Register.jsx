@@ -24,7 +24,7 @@
 
 //   return (
 //     <Box maxWidth="500px" mx="auto">
-//       <form onSubmit={handleSubmit}>
+//       <Form onSubmit={handleSubmit}>
 //         <FormControl id="name" isRequired>
 //           <FormLabel>Nombre</FormLabel>
 //           <Input type="text" value={name} onChange={(e) => setName(e.target.value)} />
@@ -48,7 +48,7 @@
 //         <Button mt={4} colorScheme="teal" type="submit">
 //           Crear usuario
 //         </Button>
-//       </form>
+//       </Form>
 //     </Box>
 //   );
 // };
