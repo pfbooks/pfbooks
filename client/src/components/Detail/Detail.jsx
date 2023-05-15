@@ -18,17 +18,23 @@ const Detail = () => {
     }, [dispatch, id])
 
     return(
-        <div>
-            <Link to='/'>
-            <button>Back to home</button>
-            </Link>
-            <p>Title:{detail.title}</p>
-            <p>Author:{detail.author}</p>
-            <p>Price:{detail.author}</p>
-            <p>Genre:{detail.genre}</p>
-            <p>Rating:{detail.rating}</p>
-            <p>Description:{detail.description}</p>
-            <img src={detail.image} alt={id}/>
+        <div className={styles.container}>
+            <img src={detail.image} alt={id} className={styles.image} />
+            <div className={styles.details}>
+                <h2 className={styles.title}>{detail.title}</h2>
+                <p className={styles.author}>{detail.author}</p>
+                <hr/>
+                <p className={styles.genre}>{detail.genre}</p>
+                <hr/>
+                <p className={styles.description}>{detail.description}</p>
+                <div className={styles.ratingPrice}>
+                    <p className={styles.rating}>Rating: {detail.rating}</p>
+                    <p className={styles.price}>$ {detail.price}</p>
+                </div>
+                <Link to='/' className={styles.button}>
+                    Back to home
+                </Link>
+            </div>
         </div>
     )
 }

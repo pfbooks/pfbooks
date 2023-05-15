@@ -4,7 +4,7 @@ const Paginado = ({ handlePageChange, size, currentPage }) => {
   const totalPages = Math.ceil(size);
 
   return (
-    <div className={styles['paginado-container']}>
+    <div className={styles['Paginado-container']}>
       <button
         className={currentPage === 1 ? styles['disabled'] : ''}
         onClick={() => handlePageChange(1)}
