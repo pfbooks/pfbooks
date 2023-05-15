@@ -1,81 +1,97 @@
 body {
-    height: 100vh;
-  }
+  height: 100vh;
+}
 
 .container {
-    display: flex;
-    flex-direction: row;
-    height: 100%;
-  }
-  
-  .image {
-    width: 50%;
-    height: auto;
-    margin: 50px;
-    border-radius: 15px;
-  }
-  
-  .details {
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .title {
-    font-size: 36px;
-    margin-top: 50px;
-    margin-right: 150px;
-  }
-  
-  .author {
-    font-size: 24px;
-    margin-top: 0;
-    margin-right: 150px;
-  }
-  
-  .genre {
-    font-size: 18px;
-    margin-top: 0;
-    margin-bottom: 20px;
-    margin-right: 150px;
-  }
-  
-  .description {
-    font-size: 18px;
-    line-height: 1.5;
-    margin-right: 150px;
-  }
-  
-  .ratingPrice {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    margin-top: 20px;
-  }
-  
-  .rating {
-    font-size: 18px;
-    margin-top: 0;
-    margin-right: 20px;
-    color:#09332c;
-  }
-  
-  .price {
-    font-size: 24px;
-    margin-top: 0;
-    color:#09332c;
-  }
-  
-  .button {
-    padding: 10px 20px;
-    font-size: 16px;
-    text-align: center;
-    background-color: #09332c;;
-    color: #fff;
-    text-decoration: none;
-    border-radius: 5px;
-    margin-top: 20px;
-    margin-right: 150px;
-  }
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+}
+
+.image {
+  width: 50%;
+  height: auto;
+  margin: 50px;
+  border-radius: 15px;
+}
+
+.details {
+  display: flex;
+  flex-direction: column;
+}
+
+.title {
+  font-size: 36px;
+  margin-top: 50px;
+  margin-right: 150px;
+}
+
+.author {
+  font-size: 24px;
+  margin-top: 0;
+  margin-right: 150px;
+}
+
+.genre {
+  font-size: 18px;
+  margin-top: 0;
+  margin-bottom: 20px;
+  margin-right: 150px;
+}
+
+.description {
+  font-size: 18px;
+  line-height: 1.5;
+  margin-right: 150px;
+}
+
+.price {
+  font-size: 24px;
+  margin-top: 0;
+  color: #04ab77;
+}
+
+.home-icon {
+  display: flex;
+  align-items: center;
+  font-size: 40px;
+  cursor: pointer;
+}
+
+.home-icon:hover {
+  transform: scale(1.2);
+  color: #117253;
+}
+
+.starContainer {
+  display: inline-flex;
+}
+
+.star {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  margin-right: 5px;
+  font-family: "star";
+  color: black;
+}
+
+.fullStar {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  margin-right: 5px;
+  font-family: "star";
+  color: #fa9703;
+}
+
+.star:before {
+  content: "★";
+}
+
+.fullStar:before {
+  content: "★";
+}
 
 /* .container {
     display: flex;
