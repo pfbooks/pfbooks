@@ -4,16 +4,16 @@ const Paginado = ({ handlePageChange, size, currentPage }) => {
   const totalPages = Math.ceil(size);
 
   return (
-    <div className={styles['Paginado-container']}>
+    <div className={styles.paginadoContainer}>
       <button
-        className={currentPage === 1 ? styles['disabled'] : ''}
+        className={currentPage === 1 ? styles.pageOf : styles.pageOn}
         onClick={() => handlePageChange(1)}
         disabled={currentPage === 1}
       >
         {'<<'}
       </button>
       <button
-        className={currentPage === 1 ? styles['disabled'] : ''}
+        className={currentPage === 1 ? styles.pageOf : styles.pageOn}
         onClick={() => handlePageChange(currentPage - 1)}
         disabled={currentPage === 1}
       >
@@ -23,14 +23,14 @@ const Paginado = ({ handlePageChange, size, currentPage }) => {
         Page {currentPage} of {totalPages}
       </span>
       <button
-        className={currentPage === totalPages ? styles['disabled'] : ''}
+        className={currentPage === totalPages ? styles.pageOf : styles.pageOn}
         onClick={() => handlePageChange(currentPage + 1)}
         disabled={currentPage === totalPages}
       >
         {'>'}
       </button>
       <button
-        className={currentPage === totalPages ? styles['disabled'] : ''}
+        className={currentPage === totalPages ? styles.pageOf : styles.pageOn}
         onClick={() => handlePageChange(totalPages)}
         disabled={currentPage === totalPages}
       >
@@ -39,6 +39,7 @@ const Paginado = ({ handlePageChange, size, currentPage }) => {
     </div>
   );
 };
+// className={currentPage === totalPages ? styles['disabled'] : ''}
 
 export default Paginado;
 
