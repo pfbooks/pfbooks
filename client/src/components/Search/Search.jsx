@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { bookByTitle } from "../../redux/actions/actions";
-import styles from './Search.module.css'
+import styles from './Search.module.css';
+import { FiSearch } from 'react-icons/fi';
+
 
 const Search = ({handlePageChange}) => {
 
@@ -28,14 +30,14 @@ const Search = ({handlePageChange}) => {
     }
 
     return (
-        <div>
-            <input 
+        <div className={styles.search}>
+            <input className={styles.searchInput}
             type = 'text' placeholder="Search books" 
             value={title} 
             onChange={(e) => handleChange(e)}
             
             /> 
-            <button onClick={(event) => handleSubmit(event)}>Search </button>
+            <button className={styles.searchButton} onClick={(event) => handleSubmit(event)}> <FiSearch style={{ color: "white" }}/></button>
         </div>
     )
 
