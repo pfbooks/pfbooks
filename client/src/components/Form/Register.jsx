@@ -61,7 +61,8 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import styles from "./Register.module.css";
 import * as yup from "yup";
 import { useToasts } from "react-toast-notifications";
-import { useHistory } from "react-router-dom"
+import { Link } from "react-router-dom/cjs/react-router-dom.min";
+import { FaHome } from 'react-icons/fa';
 
 const Register = () => {
   const schema = yup.object().shape({
@@ -92,13 +93,12 @@ const Register = () => {
     resolver: yupResolver(schema),
   });
   const { addToast } = useToasts();
-  const history = useHistory();
+
 
   const onSubmit = (data) => {
     dispatch(createUser(data))
       .then(() => {
         addToast("Usuario creado correctamente", { appearance: "success" });
-        history.push("/");
       })
       .catch((error) => {
         console.log(error);
@@ -116,6 +116,9 @@ const Register = () => {
         onSubmit={handleSubmit(onSubmit)}
         className={styles["form-container"]}
       >
+        <Link to="/">
+          <FaHome className={styles["home-icon"]} style={{ color: "#04ab77" }}/>
+        </Link>
         <h2 className={styles["form-title"]}>Crea tu usuario</h2>
         <label htmlFor="name" className={styles["form-label"]}>
           Nombre:
@@ -183,6 +186,8 @@ const Register = () => {
         <button type="submit" className={styles["form-button"]}>
           Enviar
         </button>
+
+        
       </form>
     </div>
   );
