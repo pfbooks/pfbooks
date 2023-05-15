@@ -63,6 +63,7 @@ import * as yup from "yup";
 import { useToasts } from "react-toast-notifications";
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
 import { FaHome } from 'react-icons/fa';
+import NavBar from "../NavBar/NavBar";
 
 const Register = () => {
   const schema = yup.object().shape({
@@ -111,6 +112,9 @@ const Register = () => {
   };
 
   return (
+    <div>
+      <NavBar/>
+
     <div className={styles["background"]}>
       <form
         onSubmit={handleSubmit(onSubmit)}
@@ -189,6 +193,7 @@ const Register = () => {
 
         
       </form>
+    </div>
     </div>
   );
 };

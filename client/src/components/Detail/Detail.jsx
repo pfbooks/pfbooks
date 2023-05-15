@@ -6,6 +6,7 @@ import { bookById } from "../../redux/actions/actions";
 import { Link } from "react-router-dom";
 import styles from './Detail.module.css'
 import { FaHome } from "react-icons/fa";
+import NavBar from "../NavBar/NavBar";
 
 
 const Detail = () => {
@@ -39,6 +40,11 @@ const Detail = () => {
   }
 
     return(
+      
+      
+          <div>
+            <NavBar/>
+
         <div className={styles.container}>
             <img src={detail.image} alt={id} className={styles.image} />
             <div className={styles.details}>
@@ -58,6 +64,7 @@ const Detail = () => {
                 </Link>
             </div>
         </div>
+          </div>
     )
 }
 
