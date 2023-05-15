@@ -47,7 +47,8 @@ const Filters = ({handlePageChange}) => {
     }
     const handleAllBooks = (event) => {
         dispatch(allBooks())
-
+        setGenre('')
+        setAuthor('')
     }
 
 
@@ -55,9 +56,9 @@ const Filters = ({handlePageChange}) => {
     return(
         <div>
 
-            <select onChange={ event => handleFilter(event)} name='genre' >
-                <option value="">-select-</option>
-                {/* <option value="All">All</option> */}
+            <select className={styles.select} onChange={ event => handleFilter(event)} name='genre' >
+                <option value="">By genre</option>
+                
                 {genres.map(genre => {
                     return (
                         <option key={genre} value={genre} >{genre}</option>
@@ -65,16 +66,16 @@ const Filters = ({handlePageChange}) => {
                 })}
             </select>
 
-            <select onChange={ event => handleFilter(event)} name ='author'>
-                <option value="">-select-</option>
-                {/* <option value="All">All</option> */}
+            <select className={styles.select} onChange={ event => handleFilter(event)} name ='author'>
+                <option value="">By author</option>
+                
                 {authors.map(author => {
                     return (
                         <option key={author} value={author} >{author}</option>
                     )
                 })}
             </select>
-            <button onClick={event => handleAllBooks(event)}>All books</button>
+            <button className={styles.button} onClick={event => handleAllBooks(event)}>All books</button>
 
         </div>
     )
