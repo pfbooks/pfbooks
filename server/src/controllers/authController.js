@@ -1,7 +1,7 @@
 const { User } = require("../db");
 const bcrypt = require('bcrypt');
-// const jwt = require('jsonwebtoken');
-// const { JWT_PRIVATE_KEY, JWT_PUBLIC_KEY } = process.env;
+const jwt = require('jsonwebtoken');
+const { JWT_PRIVATE_KEY, JWT_PUBLIC_KEY } = process.env;
 
 
 const authController = async (email, password) => {
@@ -22,8 +22,8 @@ const authController = async (email, password) => {
     const cleanUser = user.dataValues
     delete cleanUser.password
 
-    // ///implementacion JWT
-    // cleanUser.token= generateJWT(cleanUser)
+    ///implementacion JWT
+    cleanUser.token= generateJWT(cleanUser)
 
     return cleanUser;
 
@@ -33,8 +33,9 @@ const authController = async (email, password) => {
   }
 };
 
-// function generateJWT(cleanUser) {
-//  return jwt.sign(cleanUser, JWT_PRIVATE_KEY,{ expiresIn: 3600, algorithm: 'RS256'});
-// }
+function generateJWT(cleanUser) {
+ //return jwt.sign(cleanUser, JWT_PRIVATE_KEY,{ expiresIn: 3600, algorithm:'RS256'});
+  return jwt.sign(cleanUser, "testSecretKey",{ expiresIn: 3600});
+}
 
 module.exports = authController;
