@@ -8,14 +8,13 @@ router.post('/', async (req, res) => {
   try {
     if (email && password) { 
       const user = await authController(email, password);
-      
       if (user && !user.error) {
         res.status(200).json({ user });
       } else {
-        res.status(401).json({ message: user.error });
+        res.status(user.errorCode).json({ message: user.error });
       }
     } else {
-      res.status(400).json({ message: 'Credenciales inválidas' });
+      res.status(400).json({ message: 'Debe suministrar email y contraseña' });
     }
   } catch (error) {
     res.status(500).json({ message: 'Error del servidor' });

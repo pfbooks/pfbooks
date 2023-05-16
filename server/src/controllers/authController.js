@@ -10,16 +10,15 @@ const authController = async (email, password) => {
     });
 
     if (!user) {
-      return { error: 'Email no coincide' };
+      return { error: 'Email no coincide', errorCode: 404};
     }
-
     const validPassword = await bcrypt.compare(password, user.password);
-
     if (!validPassword) {
-      return { error: 'Contraseña incorrecta' };
+      return { error: 'Contraseña incorrecta', errorCode: 401 };
     }
-
-    return user;
+    const cleanUser = user.dataValues
+    delete cleanUser.password
+    return cleanUser;
 
   } catch (error) {
     console.error(error);

@@ -15,7 +15,9 @@ router.post('/', async (req, res) => {
     try {
       const { name, lastName, email, password } = req.body;
       const user = await User.create({ name, lastName, email, password });
-      res.status(201).json(user);
+      const cleanUser = user.dataValues
+      delete cleanUser.password
+      res.status(201).json(cleanUser);
     } catch (error) {
       res.status(400).json({error: error.message});
     }
