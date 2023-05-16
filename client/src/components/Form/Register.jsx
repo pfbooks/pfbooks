@@ -62,7 +62,7 @@ import styles from "./Register.module.css";
 import * as yup from "yup";
 import { useToasts } from "react-toast-notifications";
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
-import { FaHome } from 'react-icons/fa';
+import { FaHome } from "react-icons/fa";
 import NavBar from "../NavBar/NavBar";
 
 const Register = () => {
@@ -95,7 +95,6 @@ const Register = () => {
   });
   const { addToast } = useToasts();
 
-
   const onSubmit = (data) => {
     dispatch(createUser(data))
       .then(() => {
@@ -105,7 +104,6 @@ const Register = () => {
         console.log(error);
       });
   };
-  
 
   const handleBlur = (event) => {
     trigger(event.target.name);
@@ -113,87 +111,95 @@ const Register = () => {
 
   return (
     <div>
-      <NavBar/>
-
-    <div className={styles["background"]}>
-      <form
-        onSubmit={handleSubmit(onSubmit)}
-        className={styles["form-container"]}
-      >
-        <Link to="/">
-          <FaHome className={styles["home-icon"]} style={{ color: "#04ab77" }}/>
-        </Link>
-        <h2 className={styles["form-title"]}>Crea tu usuario</h2>
-        <label htmlFor="name" className={styles["form-label"]}>
-          Nombre:
-        </label>
-        <div className={styles["input-container"]}>
-          <input
-            {...register("name", { onBlur: handleBlur })}
-            type="text"
-            placeholder="Nombre"
-            className={styles["form-input"]}
-          />
-          {errors.name && (
-            <p className={styles["error-message"]}>{errors.name.message}</p>
-          )}
-        </div>
+      <div className={styles["background"]}>
+        <form
+          onSubmit={handleSubmit(onSubmit)}
+          className={styles["form-container"]}
+        >
+          <Link to="/">
+            <FaHome
+              className={styles["home-icon"]}
+              style={{ color: "#04ab77" }}
+            />
+          </Link>
+          <h2 className={styles["form-title"]}>Crea tu usuario</h2>
+          <label htmlFor="name" className={styles["form-label"]}>
+            Nombre:
+          </label>
+          <div className={styles["input-container"]}>
+            <input
+              {...register("name", { onBlur: handleBlur })}
+              type="text"
+              placeholder="Nombre"
+              className={styles["form-input"]}
+            />
+            {errors.name && (
+              <p className={styles["error-message"]}>{errors.name.message}</p>
+            )}
+          </div>
           <label htmlFor="lastName" className={styles["form-label"]}>
             Apellido:
           </label>
-        <div className={styles["input-container"]}>
-          <input
-            {...register("lastName", { onBlur: handleBlur })}
-            type="text"
-            placeholder="Apellido"
-            className={styles["form-input"]}
-            style={{ width: "100%" }}
-          />
-        {errors.lastName && (
-          <p className={styles["error-message"]}>{errors.lastName.message}</p>
-          )}
+          <div className={styles["input-container"]}>
+            <input
+              {...register("lastName", { onBlur: handleBlur })}
+              type="text"
+              placeholder="Apellido"
+              className={styles["form-input"]}
+              style={{ width: "100%" }}
+            />
+            {errors.lastName && (
+              <p className={styles["error-message"]}>
+                {errors.lastName.message}
+              </p>
+            )}
           </div>
-        <label htmlFor="email" className={styles["form-label"]}>
-          Correo electrónico:
-        </label>
-        <div className={styles["input-container"]}>
-          <input
-            {...register("email", { onBlur: handleBlur })}
-            type="email"
-            placeholder="Correo electrónico"
-            className={styles["form-input"]}
-          />
-          {errors.email && (
-            <div className={styles["error-message"]}>
-              {errors.email.message}
-            </div>
-          )}
-        </div>
+          <label htmlFor="email" className={styles["form-label"]}>
+            Correo electrónico:
+          </label>
+          <div className={styles["input-container"]}>
+            <input
+              {...register("email", { onBlur: handleBlur })}
+              type="email"
+              placeholder="Correo electrónico"
+              className={styles["form-input"]}
+            />
+            {errors.email && (
+              <div className={styles["error-message"]}>
+                {errors.email.message}
+              </div>
+            )}
+          </div>
 
-        <label htmlFor="password" className={styles["form-label"]}>
-          Contraseña:
-        </label>
-        <div className={styles["input-container"]}>
-          <input
-            {...register("password", { onBlur: handleBlur })}
-            type="password"
-            placeholder="Contraseña"
-            className={styles["form-input"]}
-          />
-          {errors.password && (
-            <div className={styles["error-message"]}>
-              {errors.password.message}
-            </div>
-          )}
-        </div>
+          <label htmlFor="password" className={styles["form-label"]}>
+            Contraseña:
+          </label>
+          <div className={styles["input-container"]}>
+            <input
+              {...register("password", { onBlur: handleBlur })}
+              type="password"
+              placeholder="Contraseña"
+              className={styles["form-input"]}
+            />
+            {errors.password && (
+              <div className={styles["error-message"]}>
+                {errors.password.message}
+              </div>
+            )}
+          </div>
 
-        <button type="submit" className={styles["form-button"]}>
-          Enviar
-        </button>
+          <button type="submit" className={styles["form-button"]}>
+            Enviar
+          </button>
 
-        
-      </form>
-    </div>
+          <p>
+          Ya tienes una cuenta? {" "}
+          <a href="/login" className={styles.link}>
+            Inicia sesion
+          </a>
+        </p>
+        </form>
+      </div>
     </div>
   );
 };

@@ -14,7 +14,7 @@ import {
   FILTER_BOOKS,
   SORT_PRICE,
 } from "../actions/actions";
-import { CREATE_USER, LOGIN_FAILURE, LOGIN_SUCCESS } from "../actions/actions";
+import { CREATE_USER, LOGIN_FAILURE, LOGIN_SUCCESS, LOGOUT_USER, GET_USER_DATA_FAILURE, GET_USER_DATA_SUCCESS } from "../actions/actions";
 
 const initialState = {
   books: [],
@@ -181,18 +181,36 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
       };
-      case LOGIN_SUCCESS:
+    case LOGIN_SUCCESS:
         return {
           ...state,
           user: action.payload,
           error: null,
         };
-      case LOGIN_FAILURE:
+    case LOGIN_FAILURE:
         return {
           ...state,
           user: null,
           error: action.payload,
         };
+    case LOGOUT_USER:
+      return {
+        ...state,
+        user: null,
+        error: null,
+      };
+    case GET_USER_DATA_SUCCESS:
+      return {
+        ...state,
+        user: action.payload,
+        error: null,
+      };
+    case GET_USER_DATA_FAILURE:
+      return {
+        ...state,
+        user: null,
+        error: action.payload,
+      };
     default:
       return { ...state };
   }

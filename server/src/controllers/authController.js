@@ -1,7 +1,7 @@
 const { User } = require("../db");
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-const { JWT_PRIVATE_KEY, JWT_PUBLIC_KEY } = process.env;
+// const { JWT_PRIVATE_KEY, JWT_PUBLIC_KEY } = process.env;
 
 
 const authController = async (email, password) => {

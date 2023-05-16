@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { loginUser } from '../../redux/actions/actions';
+import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
+import styles from './LoginForm.module.css';
 
 const LoginForm = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const dispatch = useDispatch();
+  const history = useHistory();
   const user = useSelector((state) => state.user);
 
   useEffect(() => {
@@ -15,27 +18,30 @@ const LoginForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     dispatch(loginUser(email, password));
+    history.push('/');
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form className={styles['form-container']} onSubmit={handleSubmit}>
       <div>
-        <label>Email:</label>
+        <label className={styles['form-label']}>Email:</label>
         <input
+          className={styles['form-input']}
           type="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
       </div>
       <div>
-        <label>Password:</label>
+        <label className={styles['form-label']}>Password:</label>
         <input
+          className={styles['form-input']}
           type="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
       </div>
-      <button type="submit">Submit</button>
+      <button className={styles['form-button']} type="submit">Submit</button>
     </form>
   );
 };

@@ -16,8 +16,10 @@ export const ALL_REVIEWS = "ALL_REVIEWS";
 export const CREATE_USER = "CREATE_USER";
 export const LOGIN_FAILURE = "LOGIN_FAILURE";
 export const LOGIN_SUCCESS = "LOGIN_SUCCESS"
-// export const LOGIN_USER = "LOGIN_USER";
-// export const LOGOUT_USER = "LOGOUT_USER"
+export const LOGOUT_USER = "LOGOUT_USER";
+export const GET_USER_DATA_FAILURE = "GET_USER_DATA_FAILURE";
+export const GET_USER_DATA_SUCCESS = "GET_USER_DATA_SUCCESS"
+export const SET_USER = 'SET_USER';
 
 const ENDPOINT_BOOKS = "http://localhost:3001/books";
 const ENDPOINT_GENRE = "http://localhost:3001/genre";
@@ -236,6 +238,37 @@ export const loginUser = (email, password) => async (dispatch) => {
     });
   }
 };
+export const logoutUser = () => (dispatch) => {
+  // Borrar el token de local storage
+  localStorage.removeItem('token');
+  // Limpiar los datos del usuario del estado de Redux
+  dispatch({
+    type: LOGOUT_USER,
+  });
+};
+
+export const getUserData = () => async (dispatch) => {
+  try {
+    const token = localStorage.getItem('token');
+    const res = await axios.get(`${ENDPOINT_LOGIN}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    const userData = res.data.user;
+
+    dispatch({
+      type: GET_USER_DATA_SUCCESS,
+      payload: userData,
+    });
+  } catch (error) {
+    dispatch({
+      type: GET_USER_DATA_FAILURE,
+      payload: error.response.data.message,
+    });
+  }
+};
+
 
 
 

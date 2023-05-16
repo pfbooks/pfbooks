@@ -32,7 +32,6 @@ img.loginImage {
     margin-left: 20px;
 }
 
-
 .dropdown {
   position: relative;
   display: inline-block;
@@ -41,16 +40,43 @@ img.loginImage {
 .dropdownContent {
   display: none;
   position: absolute;
-  background-color: #f9f9f9;
-  min-width: 160px;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-  padding: 12px 16px;
+  top: 100%;
+  left: 0;
+  background-color: #fff;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+  border: 1px solid #ccc;
   z-index: 1;
 }
 
 .dropdown:hover .dropdownContent {
   display: block;
 }
+
+.dropdownContent ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.dropdownContent ul li {
+  padding: 10px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.dropdownContent ul li:hover {
+  background-color: #f4f4f4;
+}
+
+.dropdownContent ul li a {
+  color: #333;
+  text-decoration: none;
+}
+
+.dropdownContent ul li a:hover {
+  color: #000;
+}
+
 
 @media screen and (max-width: 767px) {
   nav img.logo {
