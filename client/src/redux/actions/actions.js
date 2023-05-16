@@ -220,27 +220,36 @@ export function createUser(user) {
 export const loginUser = (email, password) => async (dispatch) => {
   try {
     const res = await axios.post(`${ENDPOINT_LOGIN}`, { email, password });
-    const userData = res.data.user;
-    console.log(userData)
+    if(res.status === 200){
+      const userData = res.data.user;
+      console.log(userData)
+      // Guardar el token en local storage para persistencia
+      //localStorage.setItem('token', userData.token);
+      localStorage.setItem('user', JSON.stringify(userData))
 
-    // Guardar el token en local storage para persistencia
-    localStorage.setItem('token', userData.token);
+      // Guardar los datos del usuario en el estado de Redux
+      return dispatch({
+        type: LOGIN_SUCCESS,
+        payload: userData,
+      });
+    } else {
+      return dispatch({
+        type: LOGIN_FAILURE,
+        payload: res.data.message,
+      });
+    }
 
-    // Guardar los datos del usuario en el estado de Redux
-    dispatch({
-      type: LOGIN_SUCCESS,
-      payload: userData,
-    });
   } catch (error) {
-    dispatch({
+    return dispatch({
       type: LOGIN_FAILURE,
       payload: error.response.data.message,
     });
   }
 };
+
 export const logoutUser = () => (dispatch) => {
-  // Borrar el token de local storage
-  localStorage.removeItem('token');
+  // Borrar el usuario de local storage
+  localStorage.clear();
   // Limpiar los datos del usuario del estado de Redux
   dispatch({
     type: LOGOUT_USER,
@@ -249,10 +258,10 @@ export const logoutUser = () => (dispatch) => {
 
 export const getUserData = () => async (dispatch) => {
   try {
-    const token = localStorage.getItem('token');
+    const user = JSON.parse(localStorage.getItem('user'));
     const res = await axios.get(`${ENDPOINT_LOGIN}`, {
       headers: {
-        Authorization: `Bearer ${token}`,
+        Authorization: `Bearer ${user.token}`,
       },
     });
     const userData = res.data.user;
@@ -261,6 +270,7 @@ export const getUserData = () => async (dispatch) => {
       type: GET_USER_DATA_SUCCESS,
       payload: userData,
     });
+
   } catch (error) {
     dispatch({
       type: GET_USER_DATA_FAILURE,
@@ -268,14 +278,3 @@ export const getUserData = () => async (dispatch) => {
     });
   }
 };
-
-
-
-
-
-
-
-
-
-
-

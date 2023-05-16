@@ -24,7 +24,8 @@ const NavBar = ({ handlePageChange }) => {
   const dispatch = useDispatch();
   const location = useLocation();
 
-  const user = useSelector((state) => state.user);
+  //const user = useSelector((state) => state.user);
+  const user = JSON.parse(localStorage.getItem('user'))
   const userName = user ? user.name.charAt(0).toUpperCase() : "";
 
   const handleLogout = () => {

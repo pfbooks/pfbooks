@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { loginUser } from '../../redux/actions/actions';
+import {LOGIN_FAILURE, loginUser} from '../../redux/actions/actions';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 import styles from './LoginForm.module.css';
 
@@ -17,8 +17,14 @@ const LoginForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    dispatch(loginUser(email, password));
-    history.push('/');
+    dispatch(loginUser(email, password))
+        .then((result)=> {
+          if(result.type === LOGIN_FAILURE) {
+            alert(result.payload)
+          } else {
+            history.push('/');
+          }
+        })
   };
 
   return (

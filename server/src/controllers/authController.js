@@ -13,11 +13,11 @@ const authController = async (email, password) => {
     });
 
     if (!user) {
-      return { error: 'Email no coincide', errorCode: 404};
+      return { error: 'Usuario no encontrado', errorCode: 404};
     }
     const validPassword = await bcrypt.compare(password, user.password);
     if (!validPassword) {
-      return { error: 'Contraseña incorrecta', errorCode: 401 };
+      return { error: 'Credenciales incorrectas', errorCode: 401 };
     }
     const cleanUser = user.dataValues
     delete cleanUser.password
