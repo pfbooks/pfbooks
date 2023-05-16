@@ -1,25 +1,14 @@
 import { Link } from "react-router-dom";
-import styles from './Card.module.css';
+import styles from "./CardPayment.module.css";
 
-const Card = (props) => {
-
+const CardPayment = (props) => {
   const stars = [];
 
   for (let i = 1; i <= 5; i++) {
     if (i <= props.rating) {
-      stars.push(
-        <div
-          key={i}
-          className={styles.fullStar}
-        />
-      );
+      stars.push(<div key={i} className={styles.fullStar} />);
     } else {
-      stars.push(
-        <div
-          key={i}
-          className={styles.star}
-        />
-      );
+      stars.push(<div key={i} className={styles.star} />);
     }
   }
 
@@ -35,14 +24,9 @@ const Card = (props) => {
         </div>
         <p className={styles.priceText}>${props.price}</p>
       </div>
+      <button></button>
     </div>
   );
 };
 
-export default Card;
-
-
-
-
-
-
+export default CardPayment;
