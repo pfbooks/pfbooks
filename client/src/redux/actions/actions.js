@@ -14,11 +14,17 @@ export const SORT_AUTHOR = "SORT_AUTHOR";
 export const SORT_REVIEW = "SORT_REVIEW";
 export const ALL_REVIEWS = "ALL_REVIEWS";
 export const CREATE_USER = "CREATE_USER";
+export const LOGIN_FAILURE = "LOGIN_FAILURE";
+export const LOGIN_SUCCESS = "LOGIN_SUCCESS"
+// export const LOGIN_USER = "LOGIN_USER";
+// export const LOGOUT_USER = "LOGOUT_USER"
 
 const ENDPOINT_BOOKS = "http://localhost:3001/books";
 const ENDPOINT_GENRE = "http://localhost:3001/genre";
 const ENDPOINT_AUTHORS = "http://localhost:3001/authors";
-const ENDPOINT_USER= "http://localhost:3001/user"
+const ENDPOINT_USER= "http://localhost:3001/user";
+const ENDPOINT_LOGIN = "http://localhost:3001/login";
+// const ENDPOINT_LOGIN= "http://localhost:3001/login"
 const API_URL = ''
 
 
@@ -207,3 +213,36 @@ export function createUser(user) {
     })
   }
 }
+
+
+export const loginUser = (email, password) => async (dispatch) => {
+  try {
+    const res = await axios.post(`${ENDPOINT_LOGIN}`, { email, password });
+    const userData = res.data.user;
+    console.log(userData)
+
+    // Guardar el token en local storage para persistencia
+    localStorage.setItem('token', userData.token);
+
+    // Guardar los datos del usuario en el estado de Redux
+    dispatch({
+      type: LOGIN_SUCCESS,
+      payload: userData,
+    });
+  } catch (error) {
+    dispatch({
+      type: LOGIN_FAILURE,
+      payload: error.response.data.message,
+    });
+  }
+};
+
+
+
+
+
+
+
+
+
+

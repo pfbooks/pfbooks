@@ -1,5 +1,5 @@
 const { Router } = require("express");
-const {User} = require('../db')
+const { User } = require('../db')
 
 
 const router = Router();
@@ -20,17 +20,18 @@ router.post('/', async (req, res) => {
       res.status(400).json({error: error.message});
     }
   });
+
 //PUT
 router.put('/:id', async (req, res) => {
     const { id } = req.params;
-    const { name, lastName, email, password, role } = req.body;
+    const { name, lastName, email, password, adminRole } = req.body;
     const user = await User.findOne({ where: { id } });
     if (user) {
         user.name = name;
         user.lastName = lastName;
         user.email = email;
         user.password = password;
-        user.role = role;
+        user.adminRole = adminRole;
         await user.save();
         res.json(user);
     } else {

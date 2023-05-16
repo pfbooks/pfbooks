@@ -6,6 +6,7 @@ import Detail from "./components/Detail/Detail";
 import { ToastProvider } from 'react-toast-notifications';
 import 'react-toastify/dist/ReactToastify.css';
 import Register from "./components/Form/Register";
+import LoginForm from "./components/Login/LoginForm";
 
 
 function App() {
@@ -15,6 +16,7 @@ function App() {
           <Route exact path = '/' render = {() =><Home /> } />
           {/* <Route path = '/login' render = {() => <Form /> } /> */}
           <Route path = '/detail/:id' render = {() =>  <Detail/>} />
+          <Route exact path="/login" render = {() =>  <LoginForm />} />
           <Route path = '/register' render = {() => <Register />} />
       </div>
     </ToastProvider>
