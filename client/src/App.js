@@ -19,7 +19,7 @@ function App() {
   const dispatch = useDispatch()
   useEffect(() =>{
     const user = JSON.parse(localStorage.getItem('user'));
-    if(user.token) {
+    if(user && user.token) {
       axios
         .get(`${ENDPOINT_USER}`, { headers: {Authorization: `Bearer ${user.token}`}},{withCredentials: true})
         .then((response) =>{
