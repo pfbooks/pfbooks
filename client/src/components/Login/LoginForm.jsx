@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import {LOGIN_FAILURE, loginUser} from '../../redux/actions/actions';
+import {LOGIN_FAILURE, loginUser, loginWhitGoogle} from '../../redux/actions/actions';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 import styles from './LoginForm.module.css';
+import { GoogleLogin } from '@react-oauth/google';
+import { useToasts } from "react-toast-notifications";
 
 const LoginForm = () => {
   const [email, setEmail] = useState('');
@@ -10,6 +12,7 @@ const LoginForm = () => {
   const dispatch = useDispatch();
   const history = useHistory();
   const user = useSelector((state) => state.user);
+  const { addToast } = useToasts();
 
   useEffect(() => {
     console.log(user);
@@ -18,14 +21,31 @@ const LoginForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     dispatch(loginUser(email, password))
-        .then((result)=> {
+        .then((result) => {
           if(result.type === LOGIN_FAILURE) {
             alert(result.payload)
           } else {
-            history.push('/');
+              addToast("Sesión Iniciada", { appearance: "success" });
+              history.push('/');
           }
         })
   };
+
+    const handleGoogleResponse = async (googleResponse) => {
+        dispatch(loginWhitGoogle(googleResponse.credential))
+            .then((result) => {
+                if(result.type === LOGIN_FAILURE) {
+                    alert(result.payload)
+                } else {
+                    addToast("Sesión Iniciada", { appearance: "success" });
+                    history.push('/');
+                }
+            })
+    };
+
+    const errorMessageFromGoogle = (error) => {
+        console.log(error);
+    };
 
   return (
     <form className={styles['form-container']} onSubmit={handleSubmit}>
@@ -47,7 +67,14 @@ const LoginForm = () => {
           onChange={(e) => setPassword(e.target.value)}
         />
       </div>
-      <button className={styles['form-button']} type="submit">Submit</button>
+        <div id="googleAuth">
+            <GoogleLogin
+                onSuccess={handleGoogleResponse}
+                onError={errorMessageFromGoogle}
+                text="Custom"
+            />
+        </div>
+        <button className={styles['form-button']} type="submit">Submit</button>
     </form>
   );
 };
