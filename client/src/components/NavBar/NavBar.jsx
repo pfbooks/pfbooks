@@ -7,13 +7,13 @@ import { Link } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import { logoutUser } from "../../redux/actions/actions";
 import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { RiUserFill } from "react-icons/ri";
-import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import { useDispatch } from "react-redux";
+import { FaUser } from "react-icons/fa";
+import { FiLogOut } from "react-icons/fi";
+import { AiOutlineUserAdd, AiOutlineLogin } from "react-icons/ai";
 
 const NavBar = ({ handlePageChange }) => {
   const [showMenu, setShowMenu] = useState(false);
-
   const handleMouseEnter = () => {
     setShowMenu(true);
   };
@@ -21,16 +21,17 @@ const NavBar = ({ handlePageChange }) => {
   const handleMouseLeave = () => {
     setShowMenu(false);
   };
+
   const dispatch = useDispatch();
   const location = useLocation();
 
-  //const user = useSelector((state) => state.user);
-  const user = JSON.parse(localStorage.getItem('user'))
-  const userName = user ? user.name.charAt(0).toUpperCase() : "";
+  const user = JSON.parse(localStorage.getItem("user"));
+  const userName = user ? user.name : "";
 
   const handleLogout = () => {
     dispatch(logoutUser());
   };
+
   return (
     <nav className={styles.nav}>
       <div>
@@ -47,9 +48,11 @@ const NavBar = ({ handlePageChange }) => {
           onMouseLeave={handleMouseLeave}
         >
           {user ? (
-            <div className={styles.userName}>
-              <RiUserFill size={20} />
-              <span>{userName}</span>
+            <div className={styles.userContainer}>
+              <FaUser size={20} className={styles.userIcon} />
+              <div className={styles.userNameContainer}>
+                <span className={styles.userName}>{userName}</span>
+              </div>
             </div>
           ) : (
             <img className={styles.loginImg} src={login} alt="Login" />
@@ -59,20 +62,23 @@ const NavBar = ({ handlePageChange }) => {
               <ul className={styles.dropdownList}>
                 {user ? (
                   <li className={styles.dropdownItem} onClick={handleLogout}>
-                    Logout
+                    <FiLogOut size={20} />
+                    <span className={styles.dropdownLink}>Logout</span>
                   </li>
                 ) : (
                   <>
-                    <li className={styles.dropdownItem}>
-                      <Link to={"/register"} className={styles.dropdownLink}>
-                        Register
-                      </Link>
-                    </li>
-                    <li className={styles.dropdownItem}>
-                      <Link to={"/login"} className={styles.dropdownLink}>
-                        Login
-                      </Link>
-                    </li>
+                    <Link to={"/register"} className={styles.dropdownLink}>
+                      <li className={styles.dropdownItem}>
+                        <AiOutlineUserAdd size={20} />
+                        <span>Register</span>
+                      </li>
+                    </Link>
+                    <Link to={"/login"} className={styles.dropdownLink}>
+                      <li className={styles.dropdownItem}>
+                        <AiOutlineLogin size={20} />
+                        <span>Login</span>
+                      </li>
+                    </Link>
                   </>
                 )}
               </ul>
@@ -85,5 +91,3 @@ const NavBar = ({ handlePageChange }) => {
 };
 
 export default NavBar;
-
-
