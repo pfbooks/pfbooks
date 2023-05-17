@@ -10,9 +10,9 @@ mercadopago.configure({
 const paymentRouter = Router();
 
 paymentRouter.post("/payments", (req, res) => {
-  const { user, pago } = req.body;
+//   const { user, pago } = req.body; luego pasar a setPreference ahora esta hardcodeado dentro de la function
 
-  const preference = setPreference(pago);
+  const preference = setPreference();
 
   mercadopago.preferences
     .create(preference)

@@ -7,6 +7,7 @@ import { ToastProvider } from 'react-toast-notifications';
 import 'react-toastify/dist/ReactToastify.css';
 import Register from "./components/Form/Register";
 import Payment from "./components/Payment/Payment";
+import Feedback from "./components/Payment/DemoFeedback";
 
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
           <Route path = '/detail/:id' render = {() =>  <Detail/>} />
           <Route path = '/register' render = {() => <Register />} />
           <Route path = '/payment' render = {() => <Payment />} />
+          <Route path = '/feedback' render = {() => <Feedback />} />
       </div>
     </ToastProvider>
   );

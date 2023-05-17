@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import styles from "./CardPayment.module.css";
 
 const CardPayment = (props) => {
+  
   const stars = [];
 
   for (let i = 1; i <= 5; i++) {
@@ -24,7 +25,6 @@ const CardPayment = (props) => {
         </div>
         <p className={styles.priceText}>${props.price}</p>
       </div>
-      <button></button>
     </div>
   );
 };
