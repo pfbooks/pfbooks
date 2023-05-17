@@ -7,33 +7,17 @@ mercadopago.configure({
   access_token: `${MERCADOPAGO_KEY}`,
 });
 
-const user = {
-  name: 'Jorge',
-  lastName: 'JImenez',
-  email: 'jorge970102@gmail.com'
-}
-
 const payment = async (req, res) => {
-  const compra= req.body;
-  console.log(compra)
+  const {obj}= req.body;
+  // console.log(compra)
 
   let preference = {
-    items: [
-      {
-        title: compra.title,
-        // picture_url: compra.image,
-        // description: compra.description,
-        // currency_id: "USD",
-        // category_id: "art",
-        unit_price: compra.unit_price,
-        quantity: compra.quantity,
-      },
-    ],
-    payer: {
-        name: user.name,
-        surname: user.lastName,
-        email: user.email
-      },
+    items:obj.items[0],
+    // payer: {
+    //     name: user.name,
+    //     surname: user.lastName,
+    //     email: user.email
+    //   },
     back_urls: {
       success: `${URL}`,
       failure: `${URL}`,
@@ -47,10 +31,12 @@ const payment = async (req, res) => {
     access_token: `${MERCADOPAGO_KEY}`,
   });
 
-  console.log(preference);
+  // console.log(preference);
   await mercadopago.preferences
     .create(preference)
-    .then((response) => res.status(200).send(response.body))
+    .then((response) => {
+      console.log(response.body)
+      res.status(200).send(response.body.id)})
     .catch((err) => res.status(400).send(console.log(err)));
 };
 
@@ -61,3 +47,21 @@ const payment = async (req, res) => {
 module.exports = {
   payment,
 };
+
+// user: TTTEST69172
+// pass: x2Ia9zucVu
+
+// no: 5120 6944 7061 6271
+// cvv: 123
+// date: 11/25
+
+// payer: {
+//   phone: { area_code: '', number: '' },
+//   address: { zip_code: '', street_name: '', street_number: null },
+//   email: '',
+//   identification: { number: '', type: '' },
+//   name: '',
+//   surname: '',
+//   date_created: null,
+//   last_purchase: null
+// }
