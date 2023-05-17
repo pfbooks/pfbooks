@@ -1,13 +1,19 @@
 const { Router } = require("express");
 const { User } = require('../db')
+const {validateJWT} = require("../tokenvalidation/tokenValidation");
 
 
 const router = Router();
 
 // GET 
 router.get('/', async (req, res) => {
-    const users = await User.findAll();
-    res.json(users);
+    try {
+        validateJWT(req)
+        const users = await User.findAll();
+        res.json(users);
+    } catch (error) {
+        res.status(401).send("invalid JWT credentials")
+    }
 });
 
 // POST 
