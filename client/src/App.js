@@ -2,6 +2,7 @@
 import { Route } from "react-router-dom/cjs/react-router-dom.min";
 import Home  from './components/Home/Home';
 import Detail from "./components/Detail/Detail";
+import Profile from "./components/Profile/Profile";
 // import landing from './components/landing/landing';
 import { ToastProvider } from 'react-toast-notifications';
 import 'react-toastify/dist/ReactToastify.css';
@@ -16,6 +17,7 @@ function App() {
           {/* <Route path = '/login' render = {() => <Form /> } /> */}
           <Route path = '/detail/:id' render = {() =>  <Detail/>} />
           <Route path = '/register' render = {() => <Register />} />
+          <Route path = '/profile' render = {() => <Profile />} />
       </div>
     </ToastProvider>
   );
