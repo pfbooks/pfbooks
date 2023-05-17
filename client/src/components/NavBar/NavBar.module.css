@@ -32,25 +32,92 @@ img.loginImage {
     margin-left: 20px;
 }
 
-
 .dropdown {
   position: relative;
   display: inline-block;
 }
 
 .dropdownContent {
-  display: none;
   position: absolute;
-  background-color: #f9f9f9;
-  min-width: 160px;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-  padding: 12px 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  top: 100%;
   z-index: 1;
+  height: fit-content;
+  background-color: #f4f4f4;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+  padding: 5px 0;
+  bottom: -100%; /* Agregamos esta propiedad para que el menú se abra hacia abajo */
+}
+
+.dropdownList {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.dropdownItem {
+  text-align: center;
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+  width: 7rem;
+  background-color: #f5f5f5;
+  box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.25);
+  font-size: 1rem;
+  font-weight: bold;
+  color: #333;
+  cursor: pointer;
+}
+
+.dropdownItem:hover {
+  background-color: #dcdcdc;
+}
+
+.dropdownLink {
+  text-decoration: none;
+  color: #333;
+  margin-left: 10px;
 }
 
 .dropdown:hover .dropdownContent {
   display: block;
 }
+
+.dropdownContent ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.svg {
+  vertical-align: middle;
+}
+
+.dropdownContent ul li {
+  padding: 10px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.dropdownContent ul li:hover {
+  background-color: #f4f4f4;
+}
+
+.dropdownContent ul li a {
+  color: #333;
+  text-decoration: none;
+}
+
+.dropdownContent ul li a:hover {
+  color: #000;
+}
+
 
 @media screen and (max-width: 767px) {
   nav img.logo {
@@ -70,4 +137,29 @@ img.loginImage {
     padding: 8px 16px;
     font-size: 14px;
   }
+}
+.userContainer {
+  display: flex;
+  align-items: center;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  padding: 10px;
+  margin-left: 20px;
+}
+
+.userIcon {
+  color: #2a9d8f;
+  margin-right: 10px;
+}
+
+.userNameContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.userName {
+  font-weight: bold;
+  font-size: 16px;
+  color: #4d4d4d;
 }
