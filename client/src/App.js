@@ -23,6 +23,6 @@ function App() {
       </div>
     </ToastProvider>
   );
-}
+};
 
 export default App;
