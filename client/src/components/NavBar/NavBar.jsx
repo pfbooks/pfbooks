@@ -3,7 +3,7 @@ import styles from "./NavBar.module.css";
 import logo from "./LogoHome.png";
 import login from "./login.png";
 import Search from "../Search/Search";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import { logoutUser } from "../../redux/actions/actions";
 import { useState } from "react";
@@ -13,9 +13,14 @@ import { FiLogOut } from "react-icons/fi";
 import { AiOutlineUserAdd, AiOutlineLogin } from "react-icons/ai";
 
 const NavBar = ({ handlePageChange }) => {
+  const history = useHistory()
   const [showMenu, setShowMenu] = useState(false);
   const handleMouseEnter = () => {
     setShowMenu(true);
+  };
+
+  const handleProfile = () => {
+    history.push('/profile')
   };
 
   const handleMouseLeave = () => {
@@ -61,10 +66,17 @@ const NavBar = ({ handlePageChange }) => {
             <div className={styles.dropdownContent}>
               <ul className={styles.dropdownList}>
                 {user ? (
+                  <div>
                   <li className={styles.dropdownItem} onClick={handleLogout}>
                     <FiLogOut size={20} />
                     <span className={styles.dropdownLink}>Logout</span>
                   </li>
+                  <br/>
+                  <li className={styles.dropdownItem} onClick={handleProfile}>
+                    <FaUser size={20} />
+                    <span className={styles.dropdownLink}>Profile</span>
+                  </li>
+                  </div>
                 ) : (
                   <>
                     <Link to={"/register"} className={styles.dropdownLink}>
