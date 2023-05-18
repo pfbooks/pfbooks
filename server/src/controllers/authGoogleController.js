@@ -1,6 +1,7 @@
 const { OAuth2Client } = require("google-auth-library");
 const { User } = require("../db");
 const jwt = require("jsonwebtoken");
+const sendEmail = require("../emailNotifications/emailNotification");
 const { GOOGLE_CLIENT_ID, JWT_KEY } = process.env;
 const googleClient = new OAuth2Client(GOOGLE_CLIENT_ID);
 
@@ -27,6 +28,7 @@ const authGoogleController = async (credential) =>  {
                 email:ticket.getPayload().email,
                 password:getRandomPassword(),
             })
+            sendEmail(createdUser.email);
             return generateUserResponse(createdUser)
         }
 
