@@ -5,6 +5,9 @@ import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 import styles from './LoginForm.module.css';
 import { GoogleLogin } from '@react-oauth/google';
 import { useToasts } from "react-toast-notifications";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
+
 
 const LoginForm = () => {
   const [email, setEmail] = useState('');
@@ -13,6 +16,7 @@ const LoginForm = () => {
   const history = useHistory();
   const user = useSelector((state) => state.user);
   const { addToast } = useToasts();
+  const [showPassword, setShowPassword] = useState(false);
 
   useEffect(() => {
     console.log(user);
@@ -37,7 +41,8 @@ const LoginForm = () => {
                 if(result.type === LOGIN_FAILURE) {
                     alert(result.payload)
                 } else {
-                    addToast("Sesión Iniciada", { appearance: "success" });
+                  const name = result.payload
+                    addToast(`Bienvenido, ${name}`, { appearance: "success" });
                     history.push('/');
                 }
             })
@@ -59,14 +64,23 @@ const LoginForm = () => {
           onChange={(e) => setEmail(e.target.value)}
         />
       </div>
-      <div>
-        <label className={styles['form-label']}>Password:</label>
-        <input
-          className={styles['form-input']}
-          type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
+      <div >
+        <label htmlFor="password">Password</label>
+        <div >
+          <input
+            type={showPassword ? "text" : "password"}
+            name="password"
+            value={password}
+            id="password"
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
+          {showPassword ? (
+            <FaEyeSlash onClick={togglePasswordVisibility} />
+          ) : (
+            <FaEye onClick={togglePasswordVisibility} />
+          )}
+        </div>
       </div>
         <div id="googleAuth">
             <GoogleLogin
