@@ -56,7 +56,6 @@ const Payment = () => {
         visual: {
             buttonBackground: 'black',
             borderRadius: '6px',
-            // valuePropColor: white
         },
        }
 
