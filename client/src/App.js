@@ -14,6 +14,7 @@ import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import NavBar from "./components/NavBar/NavBar";
 import Profile from "./components/Profile/Profile";
+import { CartProvider } from "./Context/cart.jsx";
 
 
 function App() {
@@ -36,11 +37,16 @@ function App() {
   return (
     <ToastProvider>
       <div>
+        {/* <CartProvider> */}
           <NavBar />
           <Route exact path = '/' render = {() =><Home /> } />
-          {/* <Route path = '/login' render = {() => <Form /> } /> */}
           <Route path = '/detail/:id' render = {() =>  <Detail/>} />
           <Route path = '/pay' render = {() =>  <Payment/>} />
+
+        {/* </CartProvider> */}
+        
+          {/* <Route path = '/login' render = {() => <Form /> } /> */}
+
           <Route exact path="/login" render = {() =>  <LoginForm />} />
           <Route path = '/register' render = {() => <Register />} />
           <Route path = '/profile' render = {() => <Profile />} />

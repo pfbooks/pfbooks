@@ -8,7 +8,6 @@ import NavBar from "../NavBar/NavBar";
 import styles from './Home.module.css'
 
 const Home = () => {
-
     const dispatch = useDispatch();
     const books = useSelector((state) => state.books);
     const [order, setOrder] = useState('')

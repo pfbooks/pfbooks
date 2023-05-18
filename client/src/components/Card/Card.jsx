@@ -1,8 +1,13 @@
 import React from "react";
+import {styles} from "./Card.module.css"
 import { Link } from "react-router-dom";
-import styles from './Card.module.css';
+// import { UseCart } from "../../hooks/UseCart";
 
 const Card = (props) => {
+  // const [addToCart, cart] = UseCart()
+  // console.log(cart)
+
+
 
   const stars = [];
 
@@ -36,6 +41,7 @@ const Card = (props) => {
         </div>
         <p className={styles.priceText}>${props.price}</p>
       </div>
+      {/* <button onClick={addToCart}>Añadir al carrito</button> */}
     </div>
   );
 };

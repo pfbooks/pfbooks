@@ -13,6 +13,8 @@ import { FiLogOut } from "react-icons/fi";
 import { AiOutlineUserAdd, AiOutlineLogin } from "react-icons/ai";
 
 const NavBar = ({ handlePageChange }) => {
+
+
   const [showMenu, setShowMenu] = useState(false);
   const handleMouseEnter = () => {
     setShowMenu(true);
