@@ -50,7 +50,7 @@ const Home = () => {
 
     return (
         <div className={styles.homeContainer}>
-            <NavBar handlePageChange={handlePageChange} />
+            {/* <NavBar handlePageChange={handlePageChange} /> */}
             <br />
             <Filters handlePageChange={handlePageChange} />
             <br />
