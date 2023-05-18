@@ -13,6 +13,7 @@ import { getUserData } from "./redux/actions/actions";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import NavBar from "./components/NavBar/NavBar";
+import Profile from "./components/Profile/Profile";
 
 
 function App() {
@@ -42,6 +43,7 @@ function App() {
           <Route path = '/pay' render = {() =>  <Payment/>} />
           <Route exact path="/login" render = {() =>  <LoginForm />} />
           <Route path = '/register' render = {() => <Register />} />
+          <Route path = '/profile' render = {() => <Profile />} />
       </div>
     </ToastProvider>
   );
