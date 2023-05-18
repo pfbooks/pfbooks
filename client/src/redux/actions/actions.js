@@ -21,6 +21,7 @@ export const LOGOUT_USER = "LOGOUT_USER";
 export const GET_USER_DATA_FAILURE = "GET_USER_DATA_FAILURE";
 export const GET_USER_DATA_SUCCESS = "GET_USER_DATA_SUCCESS"
 export const SET_USER = 'SET_USER';
+export const GET_USER_BY_ID = "GET_USER_BY_ID"
 
 
 const ENDPOINT_BOOKS = "http://localhost:3001/books";
@@ -108,6 +109,22 @@ export function bookByTitle(title) {
                 console.log(e);
             });
     };
+}
+
+export function userById(id){
+    return async (dispatch) => {
+        try {
+            const response = await axios.get(`${ENDPOINT_USER}/${id}`)
+            const data = response.data
+            console.log('data')
+            dispatch({
+                type: GET_USER_BY_ID,
+                payload: data,
+            })
+        } catch (error) {
+            console.log("User info error:", error)
+        }
+    }
 }
 
 export function bookById(id) {
