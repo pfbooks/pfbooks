@@ -23,16 +23,25 @@ const obj = {
     },
     items: [{
         title: 'Prueba',
+        description: 'Cien años de soledad',
         quantity: 2,
         unit_price: 10
       },
       {
         title: 'Prueba2',
+        description: 'Los hermanos kamarasov',
         quantity: 3,
         unit_price: 15
       }]
 
+      
+
 }
+// const compra =       {
+//     title: 'Prueba2',
+//     quantity: 3,
+//     unit_price: 15
+//   }
 
 
 const Payment = () => {
