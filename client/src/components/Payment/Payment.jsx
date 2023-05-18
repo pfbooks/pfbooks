@@ -19,30 +19,24 @@ const obj = {
     user: {
         name: 'Jorge',
         lastName: 'JImenez',
-        email: 'jorge970102@gmail.com'
+        email: 'jorge970102@test.com'
     },
     items: [{
         title: 'Prueba',
         description: 'Cien años de soledad',
         quantity: 2,
-        unit_price: 10
+        unit_price: 20000
       },
       {
         title: 'Prueba2',
         description: 'Los hermanos kamarasov',
         quantity: 3,
-        unit_price: 15
+        unit_price: 30000
       }]
 
       
 
 }
-// const compra =       {
-//     title: 'Prueba2',
-//     quantity: 3,
-//     unit_price: 15
-//   }
-
 
 const Payment = () => {
     const [prefrenceId, setPreference] = useState('')
@@ -57,24 +51,21 @@ const Payment = () => {
         
     }, [obj]);
 
-       
-    //     .then((res) => {window.open(res.data.init_point,'_modal')
-    //     console.log(res.data.init_point)
-    // })
-    
 
-
-
+    const customization = {
+        visual: {
+            buttonBackground: 'black',
+            borderRadius: '6px',
+            // valuePropColor: white
+        },
+       }
 
     return (
-        // <div>
-        //     <button onClick={console.log(prefrenceId)}>buton</button>
-        // </div>
-        
-           
-<Wallet initialization={{ preferenceId: prefrenceId, redirectMode: 'modal' }}  />
 
-       
+        <div>
+          <Wallet initialization={{ preferenceId: prefrenceId, redirectMode: 'modal' }} customization={customization}  />
+
+        </div>   
     )
 
 }

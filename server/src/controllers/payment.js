@@ -1,7 +1,7 @@
 const mercadopago = require("mercadopago");
 // require("dotenv").config();
 const { MERCADOPAGO_KEY } = process.env;
-const URL = 'http://localhost:3001/'
+const URL = 'http://localhost:3000/'
 
 mercadopago.configure({
   access_token: `${MERCADOPAGO_KEY}`,
@@ -24,6 +24,7 @@ const payment = async (req, res) => {
     //     quantity: obj.items[0].quantity,
     //   },
     // ],
+    // guestCheckout: true,
     payer: obj.user,
     back_urls: {
       success: `${URL}`,
