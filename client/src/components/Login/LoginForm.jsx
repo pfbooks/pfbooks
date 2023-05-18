@@ -5,8 +5,9 @@ import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 import styles from './LoginForm.module.css';
 import { GoogleLogin } from '@react-oauth/google';
 import { useToasts } from "react-toast-notifications";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { Form, Button, Container } from 'react-bootstrap';
+
 
 
 const LoginForm = () => {
@@ -21,6 +22,9 @@ const LoginForm = () => {
   useEffect(() => {
     console.log(user);
   }, [user]);
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -29,8 +33,15 @@ const LoginForm = () => {
           if(result.type === LOGIN_FAILURE) {
             alert(result.payload)
           } else {
-              addToast("Sesión Iniciada", { appearance: "success" });
-              history.push('/');
+                  const user = result.payload; // Obtener el objeto del usuario desde el resultado
+                  const name = user.name;
+                  const toastContent = (
+                    <Container>
+                      Bienvenido, <strong>{name}</strong>
+                    </Container>
+                  );
+                    addToast(toastContent, { appearance: "success" });
+                    history.push('/');
           }
         })
   };
@@ -41,8 +52,14 @@ const LoginForm = () => {
                 if(result.type === LOGIN_FAILURE) {
                     alert(result.payload)
                 } else {
-                  const name = result.payload
-                    addToast(`Bienvenido, ${name}`, { appearance: "success" });
+                  const user = result.payload; // Obtener el objeto del usuario desde el resultado
+                  const name = user.name;
+                  const toastContent = (
+                    <Container>
+                      Bienvenido, <strong>{name}</strong>
+                    </Container>
+                  );
+                    addToast(toastContent, { appearance: "success" });
                     history.push('/');
                 }
             })
@@ -52,47 +69,49 @@ const LoginForm = () => {
         console.log(error);
     };
 
-  return (
-    <div className={styles["login-form"]}>
-    <form className={styles['form-container']} onSubmit={handleSubmit}>
-      <div>
-        <label className={styles['form-label']}>Email:</label>
-        <input
-          className={styles['form-input']}
-          type="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
-      </div>
-      <div >
-        <label htmlFor="password">Password</label>
-        <div >
-          <input
-            type={showPassword ? "text" : "password"}
-            name="password"
-            value={password}
-            id="password"
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-          {showPassword ? (
-            <FaEyeSlash onClick={togglePasswordVisibility} />
-          ) : (
-            <FaEye onClick={togglePasswordVisibility} />
-          )}
-        </div>
-      </div>
-        <div id="googleAuth">
-            <GoogleLogin
-                onSuccess={handleGoogleResponse}
-                onError={errorMessageFromGoogle}
-                text="Custom"
+    return (
+      < Container>
+        <Form className={styles['form-container']} onSubmit={handleSubmit}>
+          <Form.Group>
+            <Form.Label>Email:</Form.Label>
+            <Form.Control
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
             />
-        </div>
-        <button className={styles['form-button']} type="submit">Submit</button>
-    </form>
-    </div>
-  );
+          </Form.Group>
+          <Form.Group>
+            <Form.Label>Password:</Form.Label>
+            <Container className={styles['password-input']}>
+              <Form.Control
+                type={showPassword ? 'text' : 'password'}
+                name="password"
+                value={password}
+                id="password"
+                onChange={(e) => setPassword(e.target.value)}
+                required
+              />
+              {showPassword ? (
+                <FaEyeSlash onClick={togglePasswordVisibility} />
+              ) : (
+                <FaEye onClick={togglePasswordVisibility} />
+              )}
+            </Container>
+          </Form.Group>
+          <Container id="googleAuth">
+            <GoogleLogin
+              onSuccess={handleGoogleResponse}
+              onError={errorMessageFromGoogle}
+              text="Custom"
+            />
+          </Container>
+          <Button className={styles['form-button']} type="submit">
+            Submit
+          </Button>
+        </Form>
+      </ Container>
+    );
+    
 };
 
 export default LoginForm;
