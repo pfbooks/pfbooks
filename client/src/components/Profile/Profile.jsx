@@ -7,11 +7,7 @@ const Profile = () => {
 
     const user = JSON.parse(localStorage.getItem('user'))
     const userId = user ? user.id : ''
-    const dispatch = useDispatch()
-
-    useEffect( () =>{
-        dispatch(userById(userId))
-    }, [dispatch, userId])
+   
 
     return (
         <div>
