@@ -8,16 +8,23 @@ mercadopago.configure({
 });
 
 const payment = async (req, res) => {
-  const {obj}= req.body;
-  // console.log(compra)
+  const obj = req.body;
+  console.log(obj)
 
   let preference = {
-    items:obj.items[0],
-    // payer: {
-    //     name: user.name,
-    //     surname: user.lastName,
-    //     email: user.email
+    items: obj.items,
+    // [
+    //   {
+    //     title: obj.items[0].title,
+    //     // picture_url: compra.image,
+    //     // description: compra.description,
+    //     // currency_id: "USD",
+    //     // category_id: "art",
+    //     unit_price: obj.items[0].unit_price,
+    //     quantity: obj.items[0].quantity,
     //   },
+    // ],
+    payer: obj.user,
     back_urls: {
       success: `${URL}`,
       failure: `${URL}`,
