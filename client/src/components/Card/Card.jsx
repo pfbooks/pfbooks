@@ -4,6 +4,7 @@ import styles from './Card.module.css';
 
 const Card = (props) => {
 
+
   const stars = [];
 
   for (let i = 1; i <= 5; i++) {
@@ -35,6 +36,14 @@ const Card = (props) => {
           <div className={styles.starContainer}>{stars}</div>
         </div>
         <p className={styles.priceText}>${props.price}</p>
+      </div>
+      <div>
+        <button onClick={() => props.handleAddToCart({
+          image: props.image,
+          id: props.id,
+          title: props.title,
+          unit_price: props.price
+        })}>Añadir al carrito</button>
       </div>
     </div>
   );
