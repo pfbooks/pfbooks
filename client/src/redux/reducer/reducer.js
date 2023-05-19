@@ -13,6 +13,7 @@ import {
   ALL_GENRE,
   FILTER_BOOKS,
   SORT_PRICE,
+  GET_USER_BY_ID,
 } from "../actions/actions";
 import { CREATE_USER, LOGIN_FAILURE, LOGIN_SUCCESS, LOGOUT_USER, GET_USER_DATA_FAILURE, GET_USER_DATA_SUCCESS } from "../actions/actions";
 
@@ -23,7 +24,7 @@ const initialState = {
   authors: [],
   copyBooks: [],
   allReviews: [],
-  user: null,
+  user: {},
   isLoading: false,
   error: null,
 };
@@ -66,6 +67,12 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         detail: action.payload,
       };
+
+      case GET_USER_BY_ID:
+        return {
+          ...state,
+          user: action.payload
+        }
 
     case CREATE_REVIEW:
       return {

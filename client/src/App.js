@@ -2,6 +2,7 @@
 import { Route } from "react-router-dom/cjs/react-router-dom.min";
 import Home  from './components/Home/Home';
 import Detail from "./components/Detail/Detail";
+import Payment from "./components/Payment/Payment";
 // import landing from './components/landing/landing';
 import { ToastProvider } from 'react-toast-notifications';
 import 'react-toastify/dist/ReactToastify.css';
@@ -12,6 +13,7 @@ import { getUserData } from "./redux/actions/actions";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import NavBar from "./components/NavBar/NavBar";
+import Profile from "./components/Profile/Profile";
 
 
 function App() {
@@ -38,8 +40,10 @@ function App() {
           <Route exact path = '/' render = {() =><Home /> } />
           {/* <Route path = '/login' render = {() => <Form /> } /> */}
           <Route path = '/detail/:id' render = {() =>  <Detail/>} />
+          <Route path = '/pay' render = {() =>  <Payment/>} />
           <Route exact path="/login" render = {() =>  <LoginForm />} />
           <Route path = '/register' render = {() => <Register />} />
+          <Route path = '/profile' render = {() => <Profile />} />
       </div>
     </ToastProvider>
   );
