@@ -2,6 +2,7 @@ import React from 'react';
 import { useCart } from '../../hooks/useCart';
 import { RiCloseCircleFill } from 'react-icons/ri';
 import styles from "./Chart.module.css"
+import ButtonMP from '../Payment/ButtonMP';
 
 const Chart = () => {
   const { cart, removeFromCart } = useCart();
@@ -39,7 +40,11 @@ const Chart = () => {
             ))}
           </div>
           <p>Total gastado: ${calculateTotal()}</p>
+          <div>
+            <ButtonMP />
+          </div>
         </div>
+        
       )}
     </div>
   );
