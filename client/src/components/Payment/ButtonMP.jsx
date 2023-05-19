@@ -1,6 +1,7 @@
 import { useEffect,  } from 'react'
 import axios from "axios";
 import { useState } from "react";
+import { useCart } from '../../hooks/useCart';
 
 import { initMercadoPago, Wallet } from '@mercadopago/sdk-react'
 initMercadoPago('TEST-75896b1c-2143-43c1-82c4-274c670747f1');
@@ -15,41 +16,37 @@ initMercadoPago('TEST-75896b1c-2143-43c1-82c4-274c670747f1');
 // and then use the mp.checkout() method
 
 const endpoint= "http://localhost:3001"
-const obj = {
-    user: {
-        name: 'Jorge',
-        lastName: 'JImenez',
-        email: 'jorge970102@test.com'
-    },
-    items: [{
-        title: 'Prueba',
-        description: 'Cien años de soledad',
-        quantity: 2,
-        unit_price: 20000
-      },
-      {
-        title: 'Prueba2',
-        description: 'Los hermanos kamarasov',
-        quantity: 3,
-        unit_price: 30000
-      }]
+// const obj = {
+//     user: {
+//         name: 'Jorge',
+//         lastName: 'JImenez',
+//         email: 'jorge970102@test.com'
+//     },
+//     items: cart
+// }
 
-      
-
-}
-
-const Payment = () => {
+const ButtonMP = () => {
     const [prefrenceId, setPreference] = useState('')
+    const { cart, removeFromCart } = useCart();
+    const obj = {
+        user: {
+            name: 'Jorge',
+            lastName: 'JImenez',
+            email: 'jorge970102@gmail.com'
+        },
+        items: cart
+    }
+
+
 
     const pay = async() =>{
         const response = await axios.post(`${endpoint}/payment`, obj)
         setPreference(response.data)
-        // console.log(prefrenceId)
     }
     useEffect(() => {
         pay()
         
-    }, [obj]);
+    }, [cart]);
 
 
     const customization = {
@@ -69,4 +66,4 @@ const Payment = () => {
 
 }
 
-export default Payment;
+export default ButtonMP;
