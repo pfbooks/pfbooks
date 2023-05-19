@@ -1,7 +1,7 @@
 import Card from "../Card/Card";
 import styles from './CardsContainer.module.css'
 import { useCart } from "../../hooks/useCart";
-
+import { RiShoppingCartLine } from 'react-icons/ri';
 
 const CardsContainer = (props) => {
 
