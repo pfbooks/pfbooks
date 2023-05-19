@@ -4,6 +4,13 @@ const jwt = require("jsonwebtoken");
 const sendEmail = require("../emailNotifications/emailNotification");
 const { GOOGLE_CLIENT_ID, JWT_KEY } = process.env;
 const googleClient = new OAuth2Client(GOOGLE_CLIENT_ID);
+const USERNAME_PLACEHOLDER = "${userName}"
+const REGISTRATION_MESSAGE = "Hola " + USERNAME_PLACEHOLDER + ".\n\n" +
+    "Te informamos que tu registro en nuestro sitio web fue exitoso.\n" +
+    "A partir de ahora, podrás acceder a nuestros servicios y funcionalidades.\n" +
+    "Gracias por unirte a SERENDIPIA, esperamos disfrutes de la experiencia.\n\n" +
+    "Saludos cordiales.\n" +
+    "SERENDIPIA"
 
 
 const authGoogleController = async (credential) =>  {
@@ -28,7 +35,10 @@ const authGoogleController = async (credential) =>  {
                 email:ticket.getPayload().email,
                 password:getRandomPassword(),
             })
-            sendEmail(createdUser.email);
+            sendEmail(
+                createdUser.email,
+                `Registro exitoso del usuario : ${createdUser.email}`,
+                REGISTRATION_MESSAGE.replace(USERNAME_PLACEHOLDER, createdUser.name + " " + createdUser.lastName));
             return generateUserResponse(createdUser)
         }
 
