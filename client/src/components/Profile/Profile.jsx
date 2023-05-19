@@ -27,6 +27,9 @@ const Profile = () => {
 
       // Actualizar la URL de la imagen en el objeto de usuario en localStorage
       const updatedUser = { ...user, image: imageUrl };
+      // deberia llamar al API PUT
+        ///action  put
+
       localStorage.setItem("user", JSON.stringify(updatedUser));
       // await User.Update({ image: imageUrl }, { where: { id: userId } });
     } catch (error) {

@@ -1,6 +1,7 @@
 const { Router } = require("express");
 const { User } = require('../db')
 const {validateJWT} = require("../tokenvalidation/tokenValidation");
+const getUserById = require('../controllers/getUserById');
 
 
 const router = Router();
@@ -28,27 +29,38 @@ router.post('/', async (req, res) => {
       res.status(400).json({error: error.message});
     }
   });
-
-  // GET from a specific user
-router.get('/:id', async(req, res) =>{
+// GET from a specific user
+// router.get('/:id', async(req, res) =>{
+//     try {
+//         validateJWT(req)
+//         const userId = req.params.id;
+//         const user = await User.findByPk(userId)
+//         if(!user){
+//             return res.status(404).json({error: 'User not found'})
+//         }
+//         res.status(200).json(user)
+//     } catch (error) {
+//         console.log('Error retrieving user', error);
+//         res.status(500).json({error:'Server error'})
+//     }
+// })
+router.get('/:id', async (req, res) => {
     try {
         validateJWT(req)
-        const userId = req.params.id;
-        const user = await User.findByPk(userId)
-        if(!user){
-            return res.status(404).json({error: 'User not found'})
-        }
-        res.status(200).json(user)
-    } catch (error) {
-        console.log('Error retrieving user', error);
-        res.status(500).json({error:'Server error'})
+        const { id } = req.params;
+        const userById = await getUserById(id);
+
+        res.status(200).json(userById);
     }
-})
+    catch (error) {
+        res.status(400).json({ err : error.message });
+    }
+});
 
 //PUT
 router.put('/:id', async (req, res) => {
     const { id } = req.params;
-    const { name, lastName, email, password, adminRole } = req.body;
+    const { name, lastName, email, password, adminRole, image } = req.body;
     const user = await User.findOne({ where: { id } });
     if (user) {
         user.name = name;
@@ -56,6 +68,7 @@ router.put('/:id', async (req, res) => {
         user.email = email;
         user.password = password;
         user.adminRole = adminRole;
+        user.image = image;
         await user.save();
         res.json(user);
     } else {
