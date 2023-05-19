@@ -3,7 +3,6 @@ import { useState, useRef, useEffect } from "react";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { useDispatch, useSelector } from "react-redux";
 import { userById, putProfileImage } from "../../redux/actions/actions";
-import axios from "axios"; // Importa la librería axios
 
 const Profile = () => {
   const user = JSON.parse(localStorage.getItem("user"));
@@ -16,9 +15,6 @@ const Profile = () => {
 
   useEffect(() => {
     dispatch(userById(userId));
-    console.log(userId);
-    console.log(user);
-    console.log(profileImage)
   }, [dispatch, userId]);
 
   const handleImageUpload = async (event) => {

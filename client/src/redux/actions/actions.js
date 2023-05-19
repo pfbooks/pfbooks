@@ -132,7 +132,6 @@ export function putProfileImage(id, imageUrl) {
       try {
         const response = await axios.put(`${ENDPOINT_USER}/image/${id}`, { imageUrl }); // Incluye imageUrl en el cuerpo de la solicitud
         const data = response.data;
-        console.log(data);
         dispatch({
           type: PUT_PROFILE_IMAGE,
           payload: data,
@@ -255,7 +254,6 @@ export const loginUser = (email, password) => async (dispatch) => {
         const res = await axios.post(`${ENDPOINT_LOGIN}`, {email, password});
         if (res.status === 200) {
             const userData = res.data.user;
-            console.log(userData)
             // Guardar el token en local storage para persistencia
             //localStorage.setItem('token', userData.token);
             localStorage.setItem('user', JSON.stringify(userData))

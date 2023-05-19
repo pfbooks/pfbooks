@@ -9,7 +9,7 @@ const router = Router();
 // GET 
 router.get('/', async (req, res) => {
     try {
-        //  validateJWT(req)
+         validateJWT(req)
         const users = await User.findAll();
         res.json(users);
     } catch (error) {
@@ -46,7 +46,7 @@ router.post('/', async (req, res) => {
 // })
 router.get('/:id', async (req, res) => {
     try {
-        // validateJWT(req)
+        validateJWT(req)
         const { id } = req.params;
         const userById = await getUserById(id);
 
@@ -86,7 +86,9 @@ router.put('/image/:id', async (req, res) => {
     if (user) {
       user.image = imageUrl;
       await user.save();
-      res.json(user);
+      const cleanUser = user.dataValues
+      delete cleanUser.password
+      res.json(cleanUser);
     } else {
       res.status(404).json({ message: 'Usuario no encontrado' });
     }
