@@ -29,8 +29,10 @@ router.post('/', async (req, res) => {
     }
   });
 
+  // GET from a specific user
 router.get('/:id', async(req, res) =>{
     try {
+        validateJWT(req)
         const userId = req.params.id;
         const user = await User.findByPk(userId)
         if(!user){
@@ -60,4 +62,23 @@ router.put('/:id', async (req, res) => {
         res.status(404).json({ message: 'User not found' });
     }
 });
+// put of a profileImage
+router.put('/:id/image', async (req, res) => {
+    const { id } = req.params;
+    const { imageUrl } = req.body;
+    
+    try {
+      const user = await User.findOne({ where: { id } });
+      if (user) {
+        user.image = imageUrl;
+        await user.save();
+        res.json(user);
+      } else {
+        res.status(404).json({ message: 'User not found' });
+      }
+    } catch (error) {
+      console.error('Error saving user image:', error);
+      res.status(500).json({ message: 'Internal server error' });
+    }
+  });
 module.exports = router;

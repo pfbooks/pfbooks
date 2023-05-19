@@ -1,6 +1,7 @@
 import { storage } from "../../Firebase/firebase";
 import { useState, useRef } from "react";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
+// import { User } from '../../../../server/src/db'
 
 const Profile = () => {
   const user = JSON.parse(localStorage.getItem("user"));
@@ -13,7 +14,7 @@ const Profile = () => {
     const storageRef = ref(storage, `profileImages/${userId}`);
     const uploadTask = uploadBytesResumable(storageRef, imageFile);
 
-    try {
+      try {
       // Subir la imagen al almacenamiento de Firebase
       await uploadTask;
 
@@ -22,8 +23,12 @@ const Profile = () => {
 
       // Actualizar el estado de la URL de la imagen
       setProfileImageUrl(imageUrl);
+      console.log(imageUrl);
 
-      console.log("Imagen subida correctamente");
+      // Actualizar la URL de la imagen en el objeto de usuario en localStorage
+      const updatedUser = { ...user, image: imageUrl };
+      localStorage.setItem("user", JSON.stringify(updatedUser));
+      // await User.Update({ image: imageUrl }, { where: { id: userId } });
     } catch (error) {
       console.error("Error al subir la imagen:", error);
     }
