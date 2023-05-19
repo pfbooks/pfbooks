@@ -9,7 +9,7 @@ const router = Router();
 // GET 
 router.get('/', async (req, res) => {
     try {
-        validateJWT(req)
+        //  validateJWT(req)
         const users = await User.findAll();
         res.json(users);
     } catch (error) {
@@ -46,13 +46,14 @@ router.post('/', async (req, res) => {
 // })
 router.get('/:id', async (req, res) => {
     try {
-        validateJWT(req)
+        // validateJWT(req)
         const { id } = req.params;
         const userById = await getUserById(id);
 
         res.status(200).json(userById);
     }
     catch (error) {
+        console.log('')
         res.status(400).json({ err : error.message });
     }
 });
@@ -76,22 +77,22 @@ router.put('/:id', async (req, res) => {
     }
 });
 // put of a profileImage
-router.put('/:id/image', async (req, res) => {
-    const { id } = req.params;
-    const { imageUrl } = req.body;
-    
-    try {
-      const user = await User.findOne({ where: { id } });
-      if (user) {
-        user.image = imageUrl;
-        await user.save();
-        res.json(user);
-      } else {
-        res.status(404).json({ message: 'User not found' });
-      }
-    } catch (error) {
-      console.error('Error saving user image:', error);
-      res.status(500).json({ message: 'Internal server error' });
+router.put('/image/:id', async (req, res) => {
+  const { id } = req.params;
+  const { imageUrl } = req.body; // Extrae imageUrl del cuerpo de la solicitud
+
+  try {
+    const user = await User.findOne({ where: { id } });
+    if (user) {
+      user.image = imageUrl;
+      await user.save();
+      res.json(user);
+    } else {
+      res.status(404).json({ message: 'Usuario no encontrado' });
     }
-  });
+  } catch (error) {
+    console.error('Error al guardar la imagen del usuario:', error);
+    res.status(500).json({ message: 'Error interno del servidor' });
+  }
+});
 module.exports = router;

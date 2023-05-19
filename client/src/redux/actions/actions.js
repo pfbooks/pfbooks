@@ -22,6 +22,7 @@ export const GET_USER_DATA_FAILURE = "GET_USER_DATA_FAILURE";
 export const GET_USER_DATA_SUCCESS = "GET_USER_DATA_SUCCESS"
 export const SET_USER = 'SET_USER';
 export const GET_USER_BY_ID = "GET_USER_BY_ID"
+export const PUT_PROFILE_IMAGE = "PUT_PROFILE_IMAGE"
 
 
 const ENDPOINT_BOOKS = "http://localhost:3001/books";
@@ -116,7 +117,6 @@ export function userById(id){
         try {
             const response = await axios.get(`${ENDPOINT_USER}/${id}`)
             const data = response.data
-            console.log('data')
             dispatch({
                 type: GET_USER_BY_ID,
                 payload: data,
@@ -126,6 +126,22 @@ export function userById(id){
         }
     }
 }
+
+export function putProfileImage(id, imageUrl) {
+    return async (dispatch) => {
+      try {
+        const response = await axios.put(`${ENDPOINT_USER}/image/${id}`, { imageUrl }); // Incluye imageUrl en el cuerpo de la solicitud
+        const data = response.data;
+        console.log(data);
+        dispatch({
+          type: PUT_PROFILE_IMAGE,
+          payload: data,
+        });
+      } catch (error) {
+        console.log('Error en la imagen');
+      }
+    };
+  }
 
 export function bookById(id) {
     return async (dispatch) => {
