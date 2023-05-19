@@ -68,7 +68,7 @@ const LoginForm = () => {
     };
 
   return (
-    <div className={styles["login-form"]}>
+
     <form className={styles['form-container']} onSubmit={handleSubmit}>
       <div>
         <label className={styles['form-label']}>Email:</label>
@@ -106,7 +106,7 @@ const LoginForm = () => {
         </div>
         <button className={styles['form-button']} type="submit">Submit</button>
     </form>
-    </div>
+
   );
 };
 

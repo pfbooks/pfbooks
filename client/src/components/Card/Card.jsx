@@ -40,14 +40,15 @@ const Card = (props) => {
       </div>
       <br />
       <div className={styles.cardContainer2}>
-            <button className={styles.AddToCartButton} onClick={() => props.handleAddToCart({
+          <button className={styles.AddToCartButton} onClick={() => props.handleAddToCart({
           image: props.image,
           id: props.id,
           title: props.title,
           unit_price: props.price
         })}>
                 <span className={styles.ButtonText}>Agregar al carrito </span>
-                <RiShoppingCartLine className={styles.CartIcon} />
+                <span>&nbsp;</span>
+              <RiShoppingCartLine className={styles.CartIcon} />
             </button>
         </div>
     </div>

@@ -3,7 +3,7 @@ import axios from "axios";
 import { useState } from "react";
 
 import { initMercadoPago, Wallet } from '@mercadopago/sdk-react'
-initMercadoPago('TEST-db48b08a-4c56-4fb8-8e6c-046a23871e3a');
+initMercadoPago('TEST-75896b1c-2143-43c1-82c4-274c670747f1');
 
 
 

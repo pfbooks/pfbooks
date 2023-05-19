@@ -8,9 +8,11 @@ import { useLocation } from "react-router-dom";
 import { logoutUser } from "../../redux/actions/actions";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { FaUser } from "react-icons/fa";
+import { FaUser,  } from "react-icons/fa";
 import { FiLogOut } from "react-icons/fi";
 import { AiOutlineUserAdd, AiOutlineLogin } from "react-icons/ai";
+import { RiShoppingCartLine } from "react-icons/ri";
+
 
 const NavBar = ({ handlePageChange }) => {
   const history = useHistory()
@@ -22,6 +24,9 @@ const NavBar = ({ handlePageChange }) => {
   const handleProfile = () => {
     history.push('/profile')
   };
+  const handleChart = () => {
+    history.push('/chart')
+  }
 
   const handleMouseLeave = () => {
     setShowMenu(false);
@@ -75,6 +80,11 @@ const NavBar = ({ handlePageChange }) => {
                   <li className={styles.dropdownItem} onClick={handleProfile}>
                     <FaUser size={20} />
                     <span className={styles.dropdownLink}>Profile</span>
+                  </li>
+                  <br />
+                  <li className={styles.dropdownItem} onClick={handleChart}>
+                    <RiShoppingCartLine size={20} />
+                    <span className={styles.dropdownLink}>Shopping Chart</span>
                   </li>
                   </div>
                 ) : (

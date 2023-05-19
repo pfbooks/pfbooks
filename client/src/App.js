@@ -14,7 +14,7 @@ import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import NavBar from "./components/NavBar/NavBar";
 import Profile from "./components/Profile/Profile";
-
+import Chart from "./components/Chart/Chart";
 
 function App() {
   const ENDPOINT_USER= "http://localhost:3001/user";
@@ -41,6 +41,7 @@ function App() {
           {/* <Route path = '/login' render = {() => <Form /> } /> */}
           <Route path = '/detail/:id' render = {() =>  <Detail/>} />
           <Route path = '/pay' render = {() =>  <Payment/>} />
+          <Route path = '/chart' render = {() => <Chart />} />
           <Route exact path="/login" render = {() =>  <LoginForm />} />
           <Route path = '/register' render = {() => <Register />} />
           <Route path = '/profile' render = {() => <Profile />} />
