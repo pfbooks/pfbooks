@@ -267,6 +267,7 @@ export const loginUser = (email, password) => async (dispatch) => {
 export const logoutUser = () => (dispatch) => {
     // Borrar el usuario de local storage
     localStorage.clear();
+    window.localStorage.removeItem('cart')
     // Limpiar los datos del usuario del estado de Redux
     dispatch({
         type: LOGOUT_USER,

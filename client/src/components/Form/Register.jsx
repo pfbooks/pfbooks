@@ -1,59 +1,3 @@
-// import { useState } from 'react';
-// import { Box, Button, FormControl, FormLabel, Input } from '@chakra-ui/react';
-// import axios from 'axios';
-
-// const Formulario = () => {
-//   const [name, setName] = useState('');
-//   const [lastName, setLastName] = useState('');
-//   const [email, setEmail] = useState('');
-//   const [password, setPassword] = useState('');
-
-//   const handleSubmit = async (event) => {
-//     event.preventDefault();
-//     try {
-//       await axios.post('/users', { name, lastName, email, password });
-//       setName('');
-//       setLastName('');
-//       setEmail('');
-//       setPassword('');
-//       alert('Usuario creado exitosamente');
-//     } catch (error) {
-//       console.error(error);
-//     }
-//   };
-
-//   return (
-//     <Box maxWidth="500px" mx="auto">
-//       <Form onSubmit={handleSubmit}>
-//         <FormControl id="name" isRequired>
-//           <FormLabel>Nombre</FormLabel>
-//           <Input type="text" value={name} onChange={(e) => setName(e.target.value)} />
-//         </FormControl>
-
-//         <FormControl id="lastName" isRequired>
-//           <FormLabel>Apellido</FormLabel>
-//           <Input type="text" value={lastName} onChange={(e) => setLastName(e.target.value)} />
-//         </FormControl>
-
-//         <FormControl id="email" isRequired>
-//           <FormLabel>Correo electrónico</FormLabel>
-//           <Input type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
-//         </FormControl>
-
-//         <FormControl id="password" isRequired>
-//           <FormLabel>Contraseña</FormLabel>
-//           <Input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
-//         </FormControl>
-
-//         <Button mt={4} colorScheme="teal" type="submit">
-//           Crear usuario
-//         </Button>
-//       </Form>
-//     </Box>
-//   );
-// };
-
-// export default Formulario;
 import { useDispatch } from "react-redux";
 import { createUser } from "../../redux/actions/actions";
 import { useForm } from "react-hook-form";
@@ -61,9 +5,10 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import styles from "./Register.module.css";
 import * as yup from "yup";
 import { useToasts } from "react-toast-notifications";
-import { Link } from "react-router-dom/cjs/react-router-dom.min";
+import { Link, useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import { FaHome } from "react-icons/fa";
 import NavBar from "../NavBar/NavBar";
+
 
 const Register = () => {
   const schema = yup.object().shape({
@@ -94,11 +39,13 @@ const Register = () => {
     resolver: yupResolver(schema),
   });
   const { addToast } = useToasts();
+  const history = useHistory();
 
   const onSubmit = (data) => {
     dispatch(createUser(data))
       .then(() => {
         addToast("Usuario creado correctamente", { appearance: "success" });
+        history.push("/login")
       })
       .catch((error) => {
         console.log(error);

@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import styles from './Card.module.css';
+import { RiShoppingCartLine } from 'react-icons/ri';
 
 const Card = (props) => {
 
@@ -37,14 +38,19 @@ const Card = (props) => {
         </div>
         <p className={styles.priceText}>${props.price}</p>
       </div>
-      <div>
-        <button onClick={() => props.handleAddToCart({
+      <br />
+      <div className={styles.cardContainer2}>
+          <button className={styles.AddToCartButton} onClick={() => props.handleAddToCart({
           image: props.image,
           id: props.id,
           title: props.title,
           unit_price: props.price
-        })}>Añadir al carrito</button>
-      </div>
+        })}>
+                <span className={styles.ButtonText}>Agregar al carrito </span>
+                <span>&nbsp;</span>
+              <RiShoppingCartLine className={styles.CartIcon} />
+            </button>
+        </div>
     </div>
   );
 };

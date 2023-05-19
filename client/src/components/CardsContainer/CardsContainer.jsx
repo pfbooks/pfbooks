@@ -15,6 +15,7 @@ const CardsContainer = (props) => {
     const handleAddToCart = (product)=>{
       addToCart(product)
       // console.log(cart)
+      alert("Producto agregado al carrito")
     }
     return (
 

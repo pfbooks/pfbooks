@@ -1,3 +1,5 @@
+
+
 body {
   background-color: #fff;
 }
@@ -6,6 +8,16 @@ body {
   background-color: #fff;
   height: 100%;
 }
+.error-message {
+  font-size: 1.2rem;
+  color: #dc3545;
+  padding: 0.5rem;
+  margin-top: 0.5rem;
+  border: 1px solid #dc3545;
+  border-radius: 0.25rem;
+  background-color: #f8d7da;
+}
+
 
 .form-container {
   display: flex;
@@ -31,6 +43,7 @@ body {
   font-size: 18px;
   color: #186571;
   margin-bottom: 10px;
+  width: 100;
 }
 
 .form-input {
