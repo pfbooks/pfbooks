@@ -1,19 +1,46 @@
-import React from 'react';
-import { useCart } from '../../hooks/useCart';
-import { RiCloseCircleFill } from 'react-icons/ri';
-import styles from "./Chart.module.css"
-import ButtonMP from '../Payment/ButtonMP';
+import React from "react";
+import { useCart } from "../../hooks/useCart";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPlus, faMinus, faTrash } from "@fortawesome/free-solid-svg-icons";
+
+import styles from "./Chart.module.css";
+import ButtonMP from "../Payment/ButtonMP";
 
 const Chart = () => {
-  const { cart, removeFromCart } = useCart();
+  const {
+    cart,
+    removeFromCart,
+    increaseQuantity,
+    decreaseQuantity,
+    clearCart,
+  } = useCart();
 
   const handleRemoveFromCart = (productId) => {
     removeFromCart({ id: productId });
   };
+
+  const handleIncreaseQuantity = (productId) => {
+    increaseQuantity({ id: productId });
+  };
+
+  const handleDecreaseQuantity = (productId) => {
+    const product = cart.find(item => item.id === productId);
+    if (product && product.quantity === 1) {
+      handleRemoveFromCart(productId);
+    } else {
+      decreaseQuantity({ id: productId });
+    }
+  };
+  
+
+  const handleClearCart = () => {
+    clearCart();
+  };
+
   const calculateTotal = () => {
     let total = 0;
     cart.forEach((product) => {
-      total += product.unit_price;
+      total += product.unit_price * product.quantity;
     });
     return total;
   };
@@ -31,20 +58,32 @@ const Chart = () => {
                 <img src={product.image} alt={product.title} />
                 <div>
                   <h3>{product.title}</h3>
+                  <p>Cantidad: {product.quantity}</p>
                   <p>Precio: ${product.unit_price}</p>
+                  <div>
+                    <button onClick={() => handleIncreaseQuantity(product.id)}>
+                      <FontAwesomeIcon icon={faPlus} />
+                    </button>
+                    <button onClick={() => handleDecreaseQuantity(product.id)}>
+                      <FontAwesomeIcon icon={faMinus} />
+                    </button>
+                  </div>
                 </div>
-                <button className={styles.deleteButton} onClick={() => handleRemoveFromCart(product.id)}>
-                  <RiCloseCircleFill />
+                <button
+                  className={styles.deleteButton}
+                  onClick={() => handleRemoveFromCart(product.id)}
+                >
+                  <FontAwesomeIcon icon={faTrash} />
                 </button>
               </div>
             ))}
           </div>
+          <button onClick={handleClearCart}>Limpiar carrito</button>
           <p>Total gastado: ${calculateTotal()}</p>
           <div>
             <ButtonMP />
           </div>
         </div>
-        
       )}
     </div>
   );

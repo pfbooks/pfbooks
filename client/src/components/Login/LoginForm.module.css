@@ -1,23 +1,17 @@
-
-
-body {
-  background-color: #fff;
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 88vh;
+  overflow: hidden;
+  background-image: url("https://cdn.pixabay.com/photo/2017/08/06/22/01/books-2596809_1280.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  font-family: "Roboto", sans-serif;
+  margin: 0;
+  padding: 0;
 }
-
-.background {
-  background-color: #fff;
-  height: 100%;
-}
-.error-message {
-  font-size: 1.2rem;
-  color: #dc3545;
-  padding: 0.5rem;
-  margin-top: 0.5rem;
-  border: 1px solid #dc3545;
-  border-radius: 0.25rem;
-  background-color: #f8d7da;
-}
-
 
 .form-container {
   display: flex;
@@ -29,98 +23,88 @@ body {
   height: 100%;
   margin: 0 auto;
   padding: 20px;
-  background-color: #f4f4f4;
-  margin-top: 3rem;
+  background-color: rgba(244, 244, 244, 0.9); /* Transparencia añadida */
 }
-
 .form-title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   font-size: 32px;
   margin-bottom: 30px;
   color: #09332c;
 }
-
 .form-label {
   font-size: 18px;
   color: #186571;
   margin-bottom: 10px;
-  width: 100;
 }
 
+
 .form-input {
-  width: 100%;
+  width: 90%;
   padding: 10px;
   margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   border: none;
   border-bottom: 1px solid #186571;
   font-size: 16px;
   color: #09332c;
+  background-color: transparent;
 }
 
 .form-input:focus {
   outline: none;
-  border-bottom: 2px solid #d68974;
+  border-bottom: 2px solid #09332c;
 }
 
-.form-button {
-  background-color: #04ab77;
-  color: #ffffff;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-  margin-top: 1.5rem;
-}
+
+  .form-button {
+    background-color: #04ab77;
+    color: #ffffff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
 
 .form-button:hover {
   background-color: #117253;
 }
+
 .error-message {
   font-size: 12px;
-  margin-top: 5px;
   color: #d68974;
 }
+.image-container {
+  flex: 0; /* La imagen no ocupará espacio adicional en el contenedor */
+}
 
-.disabled {
-  background-color: gray;
-  cursor: not-allowed;
+.image {
+  max-width: 100%; /* La imagen se ajustará al ancho máximo disponible */
+  height: auto; /* La altura se ajustará proporcionalmente */
 }
-.home-icon {
-  display: flex;
-  align-items: center;
-  font-size: 40px;
-  cursor: pointer;
-}
-.home-icon:hover {
-  transform: scale(1.2);
-  color: #117253;
-}
-.loginPrompt {
+.googleAuth {
   display: flex;
   justify-content: center;
-  align-items: center;
-  height: 40px;
-  background-color: #f5f5f5;
-  border-top: 1px solid #e5e5e5;
-  margin-top: 20px;
-  font-size: 14px;
-  color: #333;
+  margin: 20px 0;
+}
+.input-container {
+  position: relative;
 }
 
-.loginPrompt p {
-  margin-right: 10px;
-}
-
-.loginPrompt button {
-  padding: 6px 12px;
-  border-radius: 4px;
-  background-color: #04ab77;
-  color: #fff;
-  border: none;
+.show-password-button {
+  position: absolute;
+  top: 30%;
+  right: 10px;
+  transform: translateY(-50%);
   cursor: pointer;
-  transition: all 0.2s ease-in-out;
 }
 
-.loginPrompt button:hover {
-  background-color: #008752;
-}
+
+
+
+

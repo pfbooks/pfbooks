@@ -57,8 +57,7 @@ const Register = () => {
   };
 
   return (
-    <div>
-      <div className={styles["background"]}>
+    <div className={styles["container"]}>
         <form
           onSubmit={handleSubmit(onSubmit)}
           className={styles["form-container"]}
@@ -146,7 +145,6 @@ const Register = () => {
           </a>
         </p>
         </form>
-      </div>
     </div>
   );
 };

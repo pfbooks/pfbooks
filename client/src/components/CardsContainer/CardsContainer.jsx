@@ -1,11 +1,14 @@
 import Card from "../Card/Card";
 import styles from './CardsContainer.module.css'
 import { useCart } from "../../hooks/useCart";
+import { useEffect, useState } from "react";
+
 
 
 const CardsContainer = (props) => {
 
     const { addToCart, removeFromCart, cart } = useCart()
+    const [showNotification, setShowNotification] = useState(false);
 
     // const checkProductInCart = product => {
     //   return cart.some(item => item.id === product.id)
@@ -15,8 +18,21 @@ const CardsContainer = (props) => {
     const handleAddToCart = (product)=>{
       addToCart(product)
       // console.log(cart)
-      alert("Producto agregado al carrito")
+      setShowNotification(true);
     }
+    useEffect(() => {
+        let timeoutId;
+    
+        if (showNotification) {
+          timeoutId = setTimeout(() => {
+            setShowNotification(false);
+          }, 3000); // Duración de la animación o tiempo que deseas mostrar el cartelito
+        }
+    
+        return () => {
+          clearTimeout(timeoutId);
+        };
+      }, [showNotification]);
     return (
 
     <div className={styles.Container}>
@@ -29,6 +45,7 @@ const CardsContainer = (props) => {
                 price={book.price}
                 rating={book.rating}
                 handleAddToCart={handleAddToCart}
+                showNotification={showNotification}
             />
         })}
     </div>
