@@ -1,7 +1,16 @@
 const { Router } = require("express");
 const { User } = require('../db')
 const {validateJWT} = require("../tokenvalidation/tokenValidation");
+const sendEmail = require("../emailNotifications/emailNotification");
+const USERNAME_PLACEHOLDER = "${userName}";
+const REGISTRATION_MESSAGE = "Hola " + USERNAME_PLACEHOLDER + ".\n\n" +
+    "Te informamos que tu registro en nuestro sitio web fue exitoso.\n" +
+    "A partir de ahora, podrás acceder a nuestros servicios y funcionalidades.\n" +
+    "Gracias por unirte a SERENDIPIA, esperamos disfrutes de la experiencia.\n\n" +
+    "Saludos cordiales.\n" +
+    "SERENDIPIA"
 const getUserById = require('../controllers/getUserById');
+
 
 
 const router = Router();
@@ -24,6 +33,9 @@ router.post('/', async (req, res) => {
       const user = await User.create({ name, lastName, email, password });
       const cleanUser = user.dataValues
       delete cleanUser.password
+      sendEmail(cleanUser.email,
+            `Registro exitoso del usuario : ${cleanUser.email}`,
+            REGISTRATION_MESSAGE.replace(USERNAME_PLACEHOLDER, user.name + " " + cleanUser.lastName));
       res.status(201).json(cleanUser);
     } catch (error) {
       res.status(400).json({error: error.message});
