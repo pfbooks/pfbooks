@@ -9,13 +9,16 @@ const REGISTRATION_MESSAGE = "Hola " + USERNAME_PLACEHOLDER + ".\n\n" +
     "Gracias por unirte a SERENDIPIA, esperamos disfrutes de la experiencia.\n\n" +
     "Saludos cordiales.\n" +
     "SERENDIPIA"
+const getUserById = require('../controllers/getUserById');
+
+
 
 const router = Router();
 
 // GET 
 router.get('/', async (req, res) => {
     try {
-        validateJWT(req)
+         validateJWT(req)
         const users = await User.findAll();
         res.json(users);
     } catch (error) {
@@ -38,25 +41,39 @@ router.post('/', async (req, res) => {
       res.status(400).json({error: error.message});
     }
   });
-
-router.get('/:id', async(req, res) =>{
+// GET from a specific user
+// router.get('/:id', async(req, res) =>{
+//     try {
+//         validateJWT(req)
+//         const userId = req.params.id;
+//         const user = await User.findByPk(userId)
+//         if(!user){
+//             return res.status(404).json({error: 'User not found'})
+//         }
+//         res.status(200).json(user)
+//     } catch (error) {
+//         console.log('Error retrieving user', error);
+//         res.status(500).json({error:'Server error'})
+//     }
+// })
+router.get('/:id', async (req, res) => {
     try {
-        const userId = req.params.id;
-        const user = await User.findByPk(userId)
-        if(!user){
-            return res.status(404).json({error: 'User not found'})
-        }
-        res.status(200).json(user)
-    } catch (error) {
-        console.log('Error retrieving user', error);
-        res.status(500).json({error:'Server error'})
+        validateJWT(req)
+        const { id } = req.params;
+        const userById = await getUserById(id);
+
+        res.status(200).json(userById);
     }
-})
+    catch (error) {
+        console.log('')
+        res.status(400).json({ err : error.message });
+    }
+});
 
 //PUT
 router.put('/:id', async (req, res) => {
     const { id } = req.params;
-    const { name, lastName, email, password, adminRole } = req.body;
+    const { name, lastName, email, password, adminRole, image } = req.body;
     const user = await User.findOne({ where: { id } });
     if (user) {
         user.name = name;
@@ -64,10 +81,32 @@ router.put('/:id', async (req, res) => {
         user.email = email;
         user.password = password;
         user.adminRole = adminRole;
+        user.image = image;
         await user.save();
         res.json(user);
     } else {
         res.status(404).json({ message: 'User not found' });
     }
+});
+// put of a profileImage
+router.put('/image/:id', async (req, res) => {
+  const { id } = req.params;
+  const { imageUrl } = req.body; // Extrae imageUrl del cuerpo de la solicitud
+
+  try {
+    const user = await User.findOne({ where: { id } });
+    if (user) {
+      user.image = imageUrl;
+      await user.save();
+      const cleanUser = user.dataValues
+      delete cleanUser.password
+      res.json(cleanUser);
+    } else {
+      res.status(404).json({ message: 'Usuario no encontrado' });
+    }
+  } catch (error) {
+    console.error('Error al guardar la imagen del usuario:', error);
+    res.status(500).json({ message: 'Error interno del servidor' });
+  }
 });
 module.exports = router;
