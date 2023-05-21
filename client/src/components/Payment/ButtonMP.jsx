@@ -27,7 +27,7 @@ const endpoint= "http://localhost:3001"
 
 const ButtonMP = () => {
     const [prefrenceId, setPreference] = useState('')
-    const { cart, removeFromCart } = useCart();
+    const { cart } = useCart();
     const obj = {
         user: {
             name: 'Jorge',

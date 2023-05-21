@@ -1,7 +1,7 @@
 import { storage } from "../../Firebase/firebase";
 import { useState, useRef, useEffect } from "react";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { userById, putProfileImage } from "../../redux/actions/actions";
 import { AiOutlineUser, AiOutlineMail } from "react-icons/ai";
 import styles from "./Profile.module.css";
@@ -12,7 +12,6 @@ const Profile = () => {
   const [profileImageUrl, setProfileImageUrl] = useState(user ? user.image : "");
   const fileInputRef = useRef(null);
 
-  const profileImage = useSelector((state) => (state.user ? state.user.image : null));
   const dispatch = useDispatch();
 
   useEffect(() => {

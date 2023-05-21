@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 
 const CardsContainer = (props) => {
 
-    const { addToCart, removeFromCart, cart } = useCart()
+    const { addToCart } = useCart()
     const [showNotification, setShowNotification] = useState(false);
 
     // const checkProductInCart = product => {

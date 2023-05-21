@@ -30,7 +30,7 @@ function App() {
           console.log(error);
         });
     }
-  }, []);
+  }, [dispatch]);
 
   return (
     <ToastProvider>
