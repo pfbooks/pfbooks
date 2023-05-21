@@ -58,8 +58,8 @@ const ButtonMP = () => {
 
     return (
 
-        <div>
-          <Wallet initialization={{ preferenceId: prefrenceId, redirectMode: 'modal' }} customization={customization}  />
+        <div id='button-mp'>
+          <Wallet id='button-mp' initialization={{ preferenceId: prefrenceId, redirectMode: 'modal' }} customization={customization}  />
 
         </div>   
     )

@@ -25,6 +25,11 @@ img.loginImage {
   margin-left: 20px;
   margin-right: 10px;
   cursor: pointer;
+  transition: filter 0.3s ease; 
+}
+
+img.loginImage:hover {
+  filter: brightness(120%); 
 }
 
 
