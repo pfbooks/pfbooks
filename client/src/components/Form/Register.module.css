@@ -7,6 +7,21 @@ body {
   height: 100%;
 }
 
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  overflow: hidden;
+  background-image: url("https://cdn.pixabay.com/photo/2017/08/06/22/01/books-2596809_1280.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  font-family: "Roboto", sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
 .form-container {
   display: flex;
   flex-direction: column;
@@ -17,10 +32,28 @@ body {
   height: 100%;
   margin: 0 auto;
   padding: 20px;
-  background-color: #f4f4f4;
+  background-color: rgba(244, 244, 244, 0.9); /* Transparencia añadida */
+}
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  overflow: hidden;
+  background-image: url("https://cdn.pixabay.com/photo/2017/08/06/22/01/books-2596809_1280.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  font-family: "Roboto", sans-serif; /* Cambia la fuente a Roboto o a la que prefieras */
+  margin: 0;
+  padding: 0;
 }
 
+
 .form-title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   font-size: 32px;
   margin-bottom: 30px;
   color: #09332c;
@@ -33,18 +66,22 @@ body {
 }
 
 .form-input {
-  width: 100%;
+  width: 90%;
   padding: 10px;
   margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   border: none;
   border-bottom: 1px solid #186571;
   font-size: 16px;
   color: #09332c;
+  background-color: transparent;
 }
 
 .form-input:focus {
   outline: none;
-  border-bottom: 2px solid #d68974;
+  border-bottom: 2px solid #09332c;
 }
 
 .form-button {

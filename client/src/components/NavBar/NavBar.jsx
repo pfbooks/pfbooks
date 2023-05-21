@@ -44,9 +44,11 @@ const NavBar = ({ handlePageChange }) => {
 
   return (
     <nav className={styles.nav}>
+      <Link to="/">
       <div>
         <img className={styles.logoImg} src={logo} alt="Logo" />
       </div>
+      </Link>
       {location.pathname === "/" && (
         <Search handlePageChange={handlePageChange} />
       )}
