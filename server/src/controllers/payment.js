@@ -32,7 +32,7 @@ const payment = async (req, res) => {
     },
     auto_return: "approved",
     binary_mode: true,
-    guestCheckout: true,
+    // guestCheckout: true, Averiguar porque rompe?
   };
 
   mercadopago.configure({
