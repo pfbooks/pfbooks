@@ -8,11 +8,11 @@ const userRouter = require("./userRouter")
 const authRouter = require('./authRouter');
 const router = Router();
 
-router.use('/books', bookRouter);
-router.use ('/genre', genreRouter);
-router.use('/authors', authorRouter);
-router.use('/user', userRouter);
-router.use('/payment', paymentRouter);
-router.use('/login', authRouter);
+router.use("/books", bookRouter);
+router.use ("/genre", genreRouter);
+router.use("/authors", authorRouter);
+router.use("/user", userRouter);
+router.use("/payment", paymentRouter);
+router.use("/login", authRouter);
 
 module.exports = router;

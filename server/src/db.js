@@ -13,6 +13,10 @@ const sequelize = new Sequelize(
   {
     logging: false,
     native: false,
+    dialectOptions: {
+      charset: "utf8mb4",
+      collate: "utf8mb4_general_ci",
+    },
   }
 );
 
