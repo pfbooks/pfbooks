@@ -40,17 +40,29 @@ const Card = (props) => {
       </div>
       <br />
       <div className={styles.cardContainer2}>
-          <button className={styles.AddToCartButton} onClick={() => props.handleAddToCart({
-          image: props.image,
-          id: props.id,
-          title: props.title,
-          unit_price: props.price
-        })}>
-                <span className={styles.ButtonText}>Agregar al carrito </span>
-                <span>&nbsp;</span>
-              <RiShoppingCartLine className={styles.CartIcon} />
-            </button>
-        </div>
+      <div className={styles.cardContainer2}>
+        <button
+          className={styles.AddToCartButton}
+          onClick={() =>
+            props.handleAddToCart({
+              image: props.image,
+              id: props.id,
+              title: props.title,
+              unit_price: props.price,
+            })
+          }
+        >
+          <span className={styles.ButtonText}>Agregar al carrito </span>
+          <span>&nbsp;</span>
+          <RiShoppingCartLine className={styles.CartIcon} />
+        </button>
+        {props.showNotification && (
+          <div className={styles.notification}>
+            Producto agregado al carrito
+          </div>
+        )}
+      </div>
+    </div>
     </div>
   );
 };

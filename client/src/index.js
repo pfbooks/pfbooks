@@ -7,7 +7,7 @@ import { Provider } from "react-redux";
 import reportWebVitals from './reportWebVitals';
 import store from "./redux/store/store";
 import { GoogleOAuthProvider } from '@react-oauth/google';
-import { CartProvider } from './context/cart.jsx';
+import { CartProvider } from './context/cart';
 
 
 // const root = ReactDOM.createRoot(document.getElementById('root'));
