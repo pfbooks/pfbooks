@@ -5,6 +5,9 @@ import {
   loginUser,
   loginWhitGoogle,
 } from "../../redux/actions/actions";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import styles from "./LoginForm.module.css";
 import { GoogleLogin } from "@react-oauth/google";
@@ -19,6 +22,33 @@ const LoginForm = () => {
   const user = useSelector((state) => state.user);
   const { addToast } = useToasts();
   const [showPassword, setShowPassword] = useState(false);
+
+  //validations
+  const schema = yup.object().shape({
+    name: yup
+      .string()
+      .required("Campo requerido")
+      .max(20, "El nombre no puede tener más de 20 caracteres"),
+    lastName: yup
+      .string()
+      .required("Campo requerido")
+      .max(20, "El apellido no puede tener más de 20 caracteres"),
+    email: yup
+      .string()
+      .required("Campo requerido")
+      .email("Correo electrónico inválido"),
+    password: yup
+      .string()
+      .required("Campo requerido")
+      .min(8, "La contraseña debe tener al menos 8 caracteres"),
+  });
+  const {
+    register,
+    formState: { errors },
+    trigger,
+  } = useForm({
+    resolver: yupResolver(schema),
+  });
 
   useEffect(() => {
     console.log(user);
@@ -63,13 +93,15 @@ const LoginForm = () => {
       }
     });
   };
+  const handleBlur = (event) => {
+    trigger(event.target.name);
+  };
 
   const errorMessageFromGoogle = (error) => {
     console.log(error);
   };
 
   return (
-    <body className={styles["body-login"]}>
     <div className={styles["container"]}>
       {/* <div className={styles["image-container"]}>
         <img
@@ -78,36 +110,59 @@ const LoginForm = () => {
           className={styles["image"]}
         />
       </div> */}
-      <form className={styles["form-container"]} onSubmit={handleSubmit}>
-      <h2 className={styles["form-title"]}>Login</h2>
+      <form 
+      className={styles["form-container"]} 
+      onSubmit={handleSubmit}>
+        <h2 className={styles["form-title"]}>Login</h2>
+          <label className={styles["form-label"]}>
+            Email:
+          </label>
         <div className={styles["input-container"]}>
-          <label className={styles["form-label"]}>Email:</label>
           <input
+            {...register("email", { onBlur: handleBlur })}
             className={styles["form-input"]}
             type="email"
+            placeholder="Email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
+
+          {errors.email && (
+            <div className={styles["error-message"]}>
+              {errors.email.message}
+            </div>
+          )}
+          <br />
         </div>
-        <div>
-          <label className={styles["form-label"]}>Password</label>
-          <div>
-            <input
-              className={styles["form-input"]}
-              type={showPassword ? "text" : "password"}
-              name="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
-            />
-            {showPassword ? (
-              <FaEyeSlash onClick={togglePasswordVisibility} />
-            ) : (
-              <FaEye onClick={togglePasswordVisibility} />
-            )}
-          </div>
-        </div>
-        <div id="googleAuth">
+          <label 
+          htmlFor="password" 
+          className={styles["form-label"]}>
+            Password
+          </label>
+          <div className={styles["input-container"]}>
+  <input
+    {...register("password", { onBlur: handleBlur })}
+    className={styles["form-input"]}
+    type={showPassword ? "text" : "password"}
+    name="password"
+    placeholder="Password"
+    value={password}
+    onChange={(e) => setPassword(e.target.value)}
+    required
+  />
+  {showPassword ? (
+    <FaEyeSlash
+      className={styles["show-password-button"]}
+      onClick={togglePasswordVisibility}
+    />
+  ) : (
+    <FaEye
+      className={styles["show-password-button"]}
+      onClick={togglePasswordVisibility}
+    />
+  )}
+</div>
+        <div id="googleAuth" className={styles.googleAuth}>
           <GoogleLogin
             onSuccess={handleGoogleResponse}
             onError={errorMessageFromGoogle}
@@ -119,7 +174,6 @@ const LoginForm = () => {
         </button>
       </form>
     </div>
-    </body>
   );
 };
 

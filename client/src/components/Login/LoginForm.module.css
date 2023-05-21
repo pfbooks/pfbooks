@@ -2,35 +2,29 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 100vh;
+  height: 88vh;
   overflow: hidden;
   background-image: url("https://cdn.pixabay.com/photo/2017/08/06/22/01/books-2596809_1280.jpg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  font-family: "Roboto", sans-serif; /* Cambia la fuente a Roboto o a la que prefieras */
+  font-family: "Roboto", sans-serif;
   margin: 0;
   padding: 0;
 }
 
-.image-container {
-  flex: 0; /* La imagen no ocupará espacio adicional en el contenedor */
-}
-
-.image {
-  max-width: 100%; /* La imagen se ajustará al ancho máximo disponible */
-  height: auto; /* La altura se ajustará proporcionalmente */
-}
-
 .form-container {
-  background-color: rgba(255, 255, 255, 0.9);
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
-  padding: 20px;
-  border-radius: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #f4f4f4;
+  width: 400px;
   height: 100%;
-  width: 33%;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: rgba(244, 244, 244, 0.9); /* Transparencia añadida */
 }
-
 .form-title {
   display: flex;
   justify-content: center;
@@ -39,6 +33,12 @@
   margin-bottom: 30px;
   color: #09332c;
 }
+.form-label {
+  font-size: 18px;
+  color: #186571;
+  margin-bottom: 10px;
+}
+
 
 .form-input {
   width: 90%;
@@ -51,7 +51,7 @@
   border-bottom: 1px solid #186571;
   font-size: 16px;
   color: #09332c;
-  background-color: transparent; /* Agrega transparencia al fondo del input */
+  background-color: transparent;
 }
 
 .form-input:focus {
@@ -59,16 +59,17 @@
   border-bottom: 2px solid #09332c;
 }
 
-.form-button {
-  margin-top: 1em;
-  background-color: #04ab77;
-  color: #ffffff;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
+
+  .form-button {
+    background-color: #04ab77;
+    color: #ffffff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
 
 .form-button:hover {
   background-color: #117253;
@@ -76,6 +77,34 @@
 
 .error-message {
   font-size: 12px;
-  margin-top: 5px;
   color: #d68974;
 }
+.image-container {
+  flex: 0; /* La imagen no ocupará espacio adicional en el contenedor */
+}
+
+.image {
+  max-width: 100%; /* La imagen se ajustará al ancho máximo disponible */
+  height: auto; /* La altura se ajustará proporcionalmente */
+}
+.googleAuth {
+  display: flex;
+  justify-content: center;
+  margin: 20px 0;
+}
+.input-container {
+  position: relative;
+}
+
+.show-password-button {
+  position: absolute;
+  top: 30%;
+  right: 10px;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+
+
+
+
+

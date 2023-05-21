@@ -58,7 +58,6 @@ const Register = () => {
 
   return (
     <div className={styles["container"]}>
-      <div className={styles["background"]}>
         <form
           onSubmit={handleSubmit(onSubmit)}
           className={styles["form-container"]}
@@ -146,7 +145,6 @@ const Register = () => {
           </a>
         </p>
         </form>
-      </div>
     </div>
   );
 };

@@ -16,6 +16,26 @@
   box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.2);
   background-color: #f4f4f4;
 }
+.notification {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  padding: 10px 20px;
+  background-color: rgba(0, 0, 0, 0.8);
+  color: #fff;
+  font-size: 14px;
+  font-weight: bold;
+  animation: fadeOut 2s ease forwards;
+}
+
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
 .AddToCartButton {
   display: flex;
   width: 100%;

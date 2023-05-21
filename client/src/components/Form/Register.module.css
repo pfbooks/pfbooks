@@ -2,11 +2,6 @@ body {
   background-color: #fff;
 }
 
-.background {
-  background-color: #fff;
-  height: 100%;
-}
-
 .container {
   display: flex;
   align-items: center;
@@ -33,20 +28,6 @@ body {
   margin: 0 auto;
   padding: 20px;
   background-color: rgba(244, 244, 244, 0.9); /* Transparencia añadida */
-}
-.container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
-  overflow: hidden;
-  background-image: url("https://cdn.pixabay.com/photo/2017/08/06/22/01/books-2596809_1280.jpg");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  font-family: "Roboto", sans-serif; /* Cambia la fuente a Roboto o a la que prefieras */
-  margin: 0;
-  padding: 0;
 }
 
 
@@ -116,33 +97,4 @@ body {
 .home-icon:hover {
   transform: scale(1.2);
   color: #117253;
-}
-.loginPrompt {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 40px;
-  background-color: #f5f5f5;
-  border-top: 1px solid #e5e5e5;
-  margin-top: 20px;
-  font-size: 14px;
-  color: #333;
-}
-
-.loginPrompt p {
-  margin-right: 10px;
-}
-
-.loginPrompt button {
-  padding: 6px 12px;
-  border-radius: 4px;
-  background-color: #04ab77;
-  color: #fff;
-  border: none;
-  cursor: pointer;
-  transition: all 0.2s ease-in-out;
-}
-
-.loginPrompt button:hover {
-  background-color: #008752;
 }
