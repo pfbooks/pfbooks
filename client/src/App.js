@@ -1,9 +1,6 @@
-// import { Route, Routes } from "react-router-dom";
-import { Route } from "react-router-dom/cjs/react-router-dom.min";
-import Home  from './components/Home/Home';
+import { Route, Switch } from "react-router-dom";
+import Home from './components/Home/Home';
 import Detail from "./components/Detail/Detail";
-// import ButtonMP from "./components/Payment/ButtonMP";
-// import landing from './components/landing/landing';
 import { ToastProvider } from 'react-toast-notifications';
 import 'react-toastify/dist/ReactToastify.css';
 import Register from "./components/Form/Register";
@@ -18,35 +15,37 @@ import Chart from "./components/Chart/Chart";
 import NotFound from "./components/NotFound/NotFound";
 
 function App() {
-  const ENDPOINT_USER= "http://localhost:3001/user";
-  const dispatch = useDispatch()
-  useEffect(() =>{
+  const ENDPOINT_USER = "http://localhost:3001/user";
+  const dispatch = useDispatch();
+
+  useEffect(() => {
     const user = JSON.parse(localStorage.getItem('user'));
-    if(user && user.token) {
+    if (user && user.token) {
       axios
-        .get(`${ENDPOINT_USER}`, { headers: {Authorization: `Bearer ${user.token}`}},{withCredentials: true})
-        .then((response) =>{
+        .get(`${ENDPOINT_USER}`, { headers: { Authorization: `Bearer ${user.token}` } }, { withCredentials: true })
+        .then((response) => {
           dispatch(getUserData(response.data.user));
         })
-        .catch((error) =>{
+        .catch((error) => {
           console.log(error);
-        })
+        });
     }
-  }, [])
+  }, []);
 
   return (
     <ToastProvider>
       <div>
-          <NavBar />
-          <Route exact path = '/' render = {() =><Home /> } />
-          {/* <Route path = '/login' render = {() => <Form /> } /> */}
-          <Route path = '/detail/:id' render = {() =>  <Detail/>} />
-          <Route path = '/chart' render = {() => <Chart />} />
-          <Route exact path="/login" render = {() =>  <LoginForm />} />
-          <Route path = '/register' render = {() => <Register />} />
-          <Route path = '/profile' render = {() => <Profile />} />
-          <Route render = {() => <NotFound />} />
-          
+        <NavBar />
+        <Switch>
+          <Route exact path="/" component={Home} />
+          {/* <Route path="/login" component={Form} /> */}
+          <Route path="/detail/:id" component={Detail} />
+          <Route path="/chart" component={Chart} />
+          <Route exact path="/login" component={LoginForm} />
+          <Route path="/register" component={Register} />
+          <Route path="/profile" component={Profile} />
+          <Route component={NotFound} />
+        </Switch>
       </div>
     </ToastProvider>
   );
