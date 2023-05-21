@@ -14,6 +14,7 @@ import {
   FILTER_BOOKS,
   SORT_PRICE,
   GET_USER_BY_ID,
+  PUT_PROFILE_IMAGE,
 } from "../actions/actions";
 import { CREATE_USER, LOGIN_FAILURE, LOGIN_SUCCESS, LOGOUT_USER, GET_USER_DATA_FAILURE, GET_USER_DATA_SUCCESS } from "../actions/actions";
 
@@ -73,6 +74,12 @@ const rootReducer = (state = initialState, action) => {
           ...state,
           user: action.payload
         }
+
+      case PUT_PROFILE_IMAGE:
+        return {
+          ...state,
+          user: action.payload
+        } 
 
     case CREATE_REVIEW:
       return {

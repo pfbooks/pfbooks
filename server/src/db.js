@@ -9,6 +9,7 @@ const UserModel = require("./models/User");
 
 const sequelize = new Sequelize(
   `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/books_ecommerce`,
+    //'postgresql://postgres:k6EeWA2l16yqsRgAaYwR@containers-us-west-74.railway.app:7826/railway',
   {
     logging: false,
     native: false,
