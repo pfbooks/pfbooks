@@ -7,16 +7,14 @@
   transition: transform 0.2s;
   box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.2);
   background-color: #f4f4f4;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
 }
+
 .cardContainer > * {
   width: 100%;
   padding: 0 10px;
   box-sizing: border-box;
 }
+
 .cardContainer2 {
   width: auto;
   margin-bottom: 0px;
@@ -27,6 +25,7 @@
   box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.2);
   background-color: #f4f4f4;
 }
+
 .notification {
   position: absolute;
   bottom: 0;
@@ -47,12 +46,13 @@
     opacity: 0;
   }
 }
+
 .AddToCartButton {
   display: flex;
   width: 100%;
   align-items: center;
   justify-content: center;
-  background-color: #186571;
+  background-color: #04ab77;
   color: white;
   padding: 10px;
   border: none;
@@ -60,16 +60,21 @@
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
+
 .ButtonText {
   margin-left: 8px;
 }
+
 .CartIcon {
   width: 15%;
   height: 7%;
+  transition: transform 0.3s ease;
 }
-.AddToCartButton:hover{
-  background-color: #3f7d86;
+
+.CartIcon:hover {
+  transform: scale(1.2); /* Agranda el icono en un 20% */
 }
+
 .cardContainer:hover {
   transform: translateY(-5px);
   box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.3);
@@ -77,20 +82,21 @@
 
 .cardContainer img {
   max-width: 90%;
-    height: auto;
-    margin-top: 10px;
-    margin-left: 25px;
-    margin-right: 10px;
-    margin-bottom: 10px;
-    width: 200px;
-    height: 280px;
-    border-radius: 5px;
+  height: auto;
+  margin-top: 10px;
+  margin-left: 25px;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  width: 200px;
+  height: 280px;
+  border-radius: 5px;
 }
 
 .textContainer {
   text-align: center;
   margin-top: 10px;
 }
+
 .textContainer p {
   font-size: 1.2rem;
   font-weight: bold;
@@ -100,19 +106,13 @@
   text-overflow: ellipsis;
 }
 
-
-.cardContainer p {
-  font-size: 1.2rem;
-  font-weight: bold;
-  margin-bottom: 5px;
-}
-
 .ratingContainer {
   display: flex;
   justify-content: center;
   align-items: center;
   margin-top: 10px;
 }
+
 .ratingContainer span {
   font-size: 1.5rem;
   margin-right: 5px;
@@ -122,23 +122,24 @@
   display: inline-flex;
 }
 
-.star{
-    display: inline-block;
-    width: 20px;
-    height: 20px;
-    margin-right: 5px;
-    font-family: "star";
-    color: black;
-  }
+.star {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  margin-right: 5px;
+  font-family: "star";
+  color: black;
+}
 
-  .fullStar {
-    display: inline-block;
-    width: 20px;
-    height: 20px;
-    margin-right: 5px;
-    font-family: "star";
-    color: #fa9703;
-  }
+.fullStar {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  margin-right: 5px;
+  font-family: "star";
+  color: #fa9703;
+}
+
 .star:before {
   content: "★";
 }
@@ -147,45 +148,6 @@
   content: "★";
 }
 
-.cardContainer {
-  position: relative;
-  width: 250px;
-  margin: 1rem;
-  border-radius: 5px;
-  overflow: hidden;
-  transition: transform 0.2s;
-  box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.2);
-  background-color: #f4f4f4;
-}
-
-.AddToCartButton {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  display: flex;
-  width: 100%;
-  align-items: center;
-  height: 30px;
-  justify-content: center;
-  background-color: #186571;
-  color: white;
-  padding: 10px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.ButtonText {
-  margin-left: 8px;
-  font-size: small;
-}
-
-.CartIcon {
-  width: 15%;
-  height: 7%;
-}
-
 .AddToCartButton:hover {
-  background-color: #3f7d86;
+  background-color: #117253;
 }
