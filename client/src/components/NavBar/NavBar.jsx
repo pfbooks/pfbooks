@@ -12,11 +12,14 @@ import { FaUser,  } from "react-icons/fa";
 import { FiLogOut } from "react-icons/fi";
 import { AiOutlineUserAdd, AiOutlineLogin } from "react-icons/ai";
 import { RiShoppingCartLine } from "react-icons/ri";
+import { useCart } from "../../hooks/useCart";
+import { CartContext } from "../../context/cart";
 
 
 const NavBar = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const history = useHistory()
+  const { cart } = useCart(CartContext);
   const [showMenu, setShowMenu] = useState(false);
   const handleMouseEnter = () => {
     setShowMenu(true);
@@ -61,7 +64,10 @@ const NavBar = () => {
 
      
       <div className={styles.cartButton} onClick={handleChart}>
-          <RiShoppingCartLine size={20} onClick={handleChart}/>
+          <RiShoppingCartLine size={30} />
+          {cart.length > 0 && (
+          <span className={styles.cartItemCount}>{cart.length}</span>
+        )}
       </div>
         <div
           className={styles.dropdown}

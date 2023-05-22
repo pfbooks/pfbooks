@@ -13,6 +13,7 @@ import NavBar from "./components/NavBar/NavBar";
 import Profile from "./components/Profile/Profile";
 import Chart from "./components/Chart/Chart";
 import NotFound from "./components/NotFound/NotFound";
+import { Success } from "./components/Payment/Success";
 
 function App() {
   const ENDPOINT_USER = "http://localhost:3001/user";
@@ -44,6 +45,7 @@ function App() {
           <Route exact path="/login" component={LoginForm} />
           <Route path="/register" component={Register} />
           <Route path="/profile" component={Profile} />
+          <Route path="/success" component={Success} />
           <Route component={NotFound} />
         </Switch>
       </div>
