@@ -1,11 +1,11 @@
-const {Router} = require("express");
-const {User} = require('../db')
+const { Router } = require("express");
+const { User } = require('../db')
 const {validateJWT} = require("../tokenvalidation/tokenValidation");
 const sendEmail = require("../emailNotifications/emailNotification");
 const path = require("path");
 const fs = require("fs");
 const USERNAME_PLACEHOLDER = "${userName}";
-
+const getUserById = require('../controllers/getUserById');
 
 const router = Router();
 
@@ -40,37 +40,59 @@ router.post('/', async (req, res) => {
     } catch (error) {
         res.status(400).json({error: error.message});
     }
-});
+  });
 
-router.get('/:id', async (req, res) => {
+router.get('/:id', async(req, res) =>{
     try {
-        const userId = req.params.id;
-        const user = await User.findByPk(userId)
-        if (!user) {
-            return res.status(404).json({error: 'User not found'})
-        }
-        res.status(200).json(user)
-    } catch (error) {
-        console.log('Error retrieving user', error);
-        res.status(500).json({error: 'Server error'})
+        validateJWT(req)
+        const { id } = req.params;
+        const userById = await getUserById(id);
+
+        res.status(200).json(userById);
     }
-})
+    catch (error) {
+        console.log('')
+        res.status(400).json({ err : error.message });
+    }
+});
 
 //PUT
 router.put('/:id', async (req, res) => {
-    const {id} = req.params;
-    const {name, lastName, email, password, adminRole} = req.body;
-    const user = await User.findOne({where: {id}});
+    const { id } = req.params;
+    const { name, lastName, email, password, adminRole, image } = req.body;
+    const user = await User.findOne({ where: { id } });
     if (user) {
         user.name = name;
         user.lastName = lastName;
         user.email = email;
         user.password = password;
         user.adminRole = adminRole;
+        user.image = image;
         await user.save();
         res.json(user);
     } else {
-        res.status(404).json({message: 'User not found'});
+        res.status(404).json({ message: 'User not found' });
     }
+});
+// put of a profileImage
+router.put('/image/:id', async (req, res) => {
+  const { id } = req.params;
+  const { imageUrl } = req.body; // Extrae imageUrl del cuerpo de la solicitud
+
+  try {
+    const user = await User.findOne({ where: { id } });
+    if (user) {
+      user.image = imageUrl;
+      await user.save();
+      const cleanUser = user.dataValues
+      delete cleanUser.password
+      res.json(cleanUser);
+    } else {
+      res.status(404).json({ message: 'Usuario no encontrado' });
+    }
+  } catch (error) {
+    console.error('Error al guardar la imagen del usuario:', error);
+    res.status(500).json({ message: 'Error interno del servidor' });
+  }
 });
 module.exports = router;
