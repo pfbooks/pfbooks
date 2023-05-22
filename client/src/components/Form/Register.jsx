@@ -7,8 +7,6 @@ import * as yup from "yup";
 import { useToasts } from "react-toast-notifications";
 import { Link, useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import { FaHome } from "react-icons/fa";
-import NavBar from "../NavBar/NavBar";
-
 
 const Register = () => {
   const schema = yup.object().shape({
