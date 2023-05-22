@@ -52,6 +52,9 @@ const NavBar = ({ handlePageChange }) => {
       )}
 
       <div className={styles.divSerchBar}>
+      <div className={styles.cartButton} onClick={handleChart}>
+  <RiShoppingCartLine size={20} />
+</div>
         <div
           className={styles.dropdown}
           onMouseEnter={handleMouseEnter}
@@ -82,10 +85,6 @@ const NavBar = ({ handlePageChange }) => {
                     <span className={styles.dropdownLink}>Profile</span>
                   </li>
                   <br />
-                  <li className={styles.dropdownItem} onClick={handleChart}>
-                    <RiShoppingCartLine size={20} />
-                    <span className={styles.dropdownLink}>Shopping Chart</span>
-                  </li>
                   </div>
                 ) : (
                   <>
