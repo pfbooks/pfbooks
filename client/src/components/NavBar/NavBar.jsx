@@ -8,25 +8,24 @@ import { useLocation } from "react-router-dom";
 import { logoutUser } from "../../redux/actions/actions";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { FaUser,  } from "react-icons/fa";
+import { FaUser } from "react-icons/fa";
 import { FiLogOut } from "react-icons/fi";
 import { AiOutlineUserAdd, AiOutlineLogin } from "react-icons/ai";
 import { RiShoppingCartLine } from "react-icons/ri";
 
-
 const NavBar = ({ handlePageChange }) => {
-  const history = useHistory()
+  const history = useHistory();
   const [showMenu, setShowMenu] = useState(false);
   const handleMouseEnter = () => {
     setShowMenu(true);
   };
 
   const handleProfile = () => {
-    history.push('/profile')
+    history.push("/profile");
   };
   const handleChart = () => {
-    history.push('/chart')
-  }
+    history.push("/chart");
+  };
 
   const handleMouseLeave = () => {
     setShowMenu(false);
@@ -44,17 +43,17 @@ const NavBar = ({ handlePageChange }) => {
 
   return (
     <nav className={styles.nav}>
-      <Link to= "/">
+      <div className={styles.divSerchBar}>
+      <Link to="/">
         <img className={styles.logoImg} src={logo} alt="Logo" />
       </Link>
       {location.pathname === "/" && (
         <Search handlePageChange={handlePageChange} />
       )}
-
-      <div className={styles.divSerchBar}>
-      <div className={styles.cartButton} onClick={handleChart}>
-  <RiShoppingCartLine size={20} />
-</div>
+      </div>
+        <div className={styles.cartButton} onClick={handleChart}>
+          <RiShoppingCartLine size={20} />
+        </div>
         <div
           className={styles.dropdown}
           onMouseEnter={handleMouseEnter}
@@ -75,16 +74,16 @@ const NavBar = ({ handlePageChange }) => {
               <ul className={styles.dropdownList}>
                 {user ? (
                   <div>
-                  <li className={styles.dropdownItem} onClick={handleLogout}>
-                    <FiLogOut size={20} />
-                    <span className={styles.dropdownLink}>Logout</span>
-                  </li>
-                  <br/>
-                  <li className={styles.dropdownItem} onClick={handleProfile}>
-                    <FaUser size={20} />
-                    <span className={styles.dropdownLink}>Profile</span>
-                  </li>
-                  <br />
+                    <li className={styles.dropdownItem} onClick={handleLogout}>
+                      <FiLogOut size={20} />
+                      <span className={styles.dropdownLink}>Logout</span>
+                    </li>
+                    <br />
+                    <li className={styles.dropdownItem} onClick={handleProfile}>
+                      <FaUser size={20} />
+                      <span className={styles.dropdownLink}>Profile</span>
+                    </li>
+                    <br />
                   </div>
                 ) : (
                   <>
@@ -106,8 +105,7 @@ const NavBar = ({ handlePageChange }) => {
             </div>
           )}
         </div>
-      </div>
-    </nav>
+      </nav>
   );
 };
 
