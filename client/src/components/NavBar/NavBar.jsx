@@ -45,6 +45,7 @@ const NavBar = () => {
 
   const handleLogout = () => {
     dispatch(logoutUser());
+    history.push('/')
   };
 
   return (
