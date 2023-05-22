@@ -49,7 +49,6 @@ const Home = () => {
 
     return (
         <div className={styles.homeContainer}>
-            {/* <NavBar handlePageChange={handlePageChange} /> */}
             <br />
             <Filters handlePageChange={handlePageChange} />
             <br />

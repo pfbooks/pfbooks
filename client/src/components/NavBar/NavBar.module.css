@@ -12,6 +12,8 @@
 .divSerchBar {
   display: flex;
   align-items: center;
+  justify-content: center;
+  margin-left: 170px;
 }
 
 .logoImg {
@@ -167,9 +169,10 @@
 
 .cartButton {
   display: flex;
-  align-items: center;
+  flex-direction: row;
   cursor: pointer;
-  margin-left: 10px;
+  margin-right: 0;
+  margin-left: auto;
 }
 
 
