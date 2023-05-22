@@ -1,7 +1,14 @@
 .Container {
-    display: flex;
+    /* display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: space-between; */
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    justify-content: center;
+    margin-left: 3%;
+    /* margin-right: 2%; */ 
+    gap: 50px;
+    margin-bottom: 30px;
   }
 
   

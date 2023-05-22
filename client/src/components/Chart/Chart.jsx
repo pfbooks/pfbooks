@@ -77,7 +77,7 @@ const Chart = () => {
               </div>
             ))}
           </div>
-          <button onClick={handleClearCart}>Limpiar carrito</button>
+          <button className={styles.cleanButton} onClick={handleClearCart}>Limpiar carrito</button>
           <div className={styles.totalContainer}>
             <FontAwesomeIcon icon={faDollarSign} />
             <p>Total gastado: ${calculateTotal()}</p>
