@@ -19,6 +19,7 @@ const  sendEmail = (destinationEmail, emailSubject, emailBody) => {
     const message = [
         `To: ${destinationEmail}`,
         "From: pfbooks25@gmail.com",
+        "Content-Type: text/html; charset=utf-8",
         `Subject: ${emailSubject}`,
         "",
         emailBody].join('\n');
