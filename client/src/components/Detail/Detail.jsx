@@ -3,10 +3,7 @@ import {useDispatch, useSelector} from 'react-redux'
 import {useEffect} from "react";
 import {useParams} from "react-router-dom"
 import {bookById} from "../../redux/actions/actions";
-import {Link} from "react-router-dom";
 import styles from './Detail.module.css'
-import {FaHome} from "react-icons/fa";
-
 
 
 const Detail = () => {
@@ -50,15 +47,15 @@ const Detail = () => {
                     <hr/>
                     <p className={styles.genre}>Genres: {detail.genre}</p>
                     <hr/>
-                    <p>Description: </p>
-                    <p className={styles.description}>{detail.description}</p>
+                    {/* <p>Description: </p> */}
+                    <p className={styles.description}>Description:  {detail.description}</p>
                     <div className={styles.ratingContainer}>
                         <div className={styles.starContainer}>{stars}</div>
                     </div>
                     <p className={styles.price}>$ {detail.price}</p>
-                    <Link to="/">
+                    {/* <Link to="/">
                         <FaHome className={styles["home-icon"]} style={{color: "#04ab77"}}/>
-                    </Link>
+                    </Link> */}
                 </div>
             </div>
         </div>

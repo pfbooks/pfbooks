@@ -1,4 +1,5 @@
 .cardContainer {
+  position: relative;
   width: 250px;
   margin: 1rem;
   border-radius: 5px;
@@ -7,8 +8,16 @@
   box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.2);
   background-color: #f4f4f4;
 }
+
+.cardContainer > * {
+  width: 100%;
+  padding: 0 10px;
+  box-sizing: border-box;
+}
+
 .cardContainer2 {
   width: auto;
+  margin-bottom: 0px;
   margin: 1rem;
   border-radius: 5px;
   overflow: hidden;
@@ -16,12 +25,34 @@
   box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.2);
   background-color: #f4f4f4;
 }
+
+.notification {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  padding: 10px 20px;
+  background-color: rgba(0, 0, 0, 0.8);
+  color: #fff;
+  font-size: 14px;
+  font-weight: bold;
+  animation: fadeOut 2s ease forwards;
+}
+
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
 .AddToCartButton {
   display: flex;
   width: 100%;
   align-items: center;
   justify-content: center;
-  background-color: #186571;
+  background-color: #04ab77;
   color: white;
   padding: 10px;
   border: none;
@@ -29,16 +60,21 @@
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
+
 .ButtonText {
   margin-left: 8px;
 }
+
 .CartIcon {
   width: 15%;
   height: 7%;
+  transition: transform 0.3s ease;
 }
-.AddToCartButton:hover{
-  background-color: #3f7d86;
+
+.CartIcon:hover {
+  transform: scale(1.2); /* Agranda el icono en un 20% */
 }
+
 .cardContainer:hover {
   transform: translateY(-5px);
   box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.3);
@@ -46,14 +82,14 @@
 
 .cardContainer img {
   max-width: 90%;
-    height: auto;
-    margin-top: 10px;
-    margin-left: 25px;
-    margin-right: 10px;
-    margin-bottom: 10px;
-    width: 200px;
-    height: 280px;
-    border-radius: 5px;
+  height: auto;
+  margin-top: 10px;
+  margin-left: 25px;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  width: 200px;
+  height: 280px;
+  border-radius: 5px;
 }
 
 .textContainer {
@@ -61,10 +97,13 @@
   margin-top: 10px;
 }
 
-.cardContainer p {
+.textContainer p {
   font-size: 1.2rem;
   font-weight: bold;
   margin-bottom: 5px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .ratingContainer {
@@ -83,14 +122,14 @@
   display: inline-flex;
 }
 
-.star{
-    display: inline-block;
-    width: 20px;
-    height: 20px;
-    margin-right: 5px;
-    font-family: "star";
-    color: black;
-  }
+.star {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  margin-right: 5px;
+  font-family: "star";
+  color: black;
+}
 
 .fullStar {
   display: inline-block;
@@ -107,4 +146,8 @@
 
 .fullStar:before {
   content: "★";
+}
+
+.AddToCartButton:hover {
+  background-color: #117253;
 }

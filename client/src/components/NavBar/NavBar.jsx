@@ -14,7 +14,8 @@ import { AiOutlineUserAdd, AiOutlineLogin } from "react-icons/ai";
 import { RiShoppingCartLine } from "react-icons/ri";
 
 
-const NavBar = ({ handlePageChange }) => {
+const NavBar = () => {
+  const [currentPage, setCurrentPage] = useState(1);
   const history = useHistory()
   const [showMenu, setShowMenu] = useState(false);
   const handleMouseEnter = () => {
@@ -38,20 +39,30 @@ const NavBar = ({ handlePageChange }) => {
   const user = JSON.parse(localStorage.getItem("user"));
   const userName = user ? user.name : "";
 
+  const handlePageChange = (number)=> {
+    setCurrentPage(number)
+}
+
   const handleLogout = () => {
     dispatch(logoutUser());
+    history.push('/')
   };
 
   return (
     <nav className={styles.nav}>
-      <div>
+      <Link to= "/">
         <img className={styles.logoImg} src={logo} alt="Logo" />
-      </div>
+      </Link>
       {location.pathname === "/" && (
+      <div className={styles.divSerchBar}>
         <Search handlePageChange={handlePageChange} />
+      </div>
       )}
 
-      <div className={styles.divSerchBar}>
+     
+      <div className={styles.cartButton} onClick={handleChart}>
+          <RiShoppingCartLine size={20} onClick={handleChart}/>
+      </div>
         <div
           className={styles.dropdown}
           onMouseEnter={handleMouseEnter}
@@ -82,10 +93,6 @@ const NavBar = ({ handlePageChange }) => {
                     <span className={styles.dropdownLink}>Profile</span>
                   </li>
                   <br />
-                  <li className={styles.dropdownItem} onClick={handleChart}>
-                    <RiShoppingCartLine size={20} />
-                    <span className={styles.dropdownLink}>Shopping Chart</span>
-                  </li>
                   </div>
                 ) : (
                   <>
@@ -107,7 +114,7 @@ const NavBar = ({ handlePageChange }) => {
             </div>
           )}
         </div>
-      </div>
+      
     </nav>
   );
 };

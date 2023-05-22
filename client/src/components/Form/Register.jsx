@@ -7,8 +7,6 @@ import * as yup from "yup";
 import { useToasts } from "react-toast-notifications";
 import { Link, useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import { FaHome } from "react-icons/fa";
-import NavBar from "../NavBar/NavBar";
-
 
 const Register = () => {
   const schema = yup.object().shape({
@@ -57,8 +55,7 @@ const Register = () => {
   };
 
   return (
-    <div>
-      <div className={styles["background"]}>
+    <div className={styles["container"]}>
         <form
           onSubmit={handleSubmit(onSubmit)}
           className={styles["form-container"]}
@@ -146,7 +143,6 @@ const Register = () => {
           </a>
         </p>
         </form>
-      </div>
     </div>
   );
 };

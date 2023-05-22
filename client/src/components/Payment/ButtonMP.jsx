@@ -27,7 +27,7 @@ const endpoint= "http://localhost:3001"
 
 const ButtonMP = () => {
     const [prefrenceId, setPreference] = useState('')
-    const { cart, removeFromCart } = useCart();
+    const { cart } = useCart();
     const obj = {
         user: {
             name: 'Jorge',
@@ -58,8 +58,8 @@ const ButtonMP = () => {
 
     return (
 
-        <div>
-          <Wallet initialization={{ preferenceId: prefrenceId, redirectMode: 'modal' }} customization={customization}  />
+        <div id='button-mp'>
+          <Wallet id='button-mp' initialization={{ preferenceId: prefrenceId, redirectMode: 'modal' }} customization={customization}  />
 
         </div>   
     )

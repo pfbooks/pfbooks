@@ -9,10 +9,14 @@ body {
 }
 
 .image {
-  width: 50%;
-  height: auto;
-  margin: 50px;
-  border-radius: 15px;
+  max-width: 90%;
+  margin-top: 100px;
+  margin-left: 25px;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  width: 300px;
+  height: 280px;
+  border-radius: 5px;
 }
 
 .details {
@@ -22,27 +26,28 @@ body {
 
 .title {
   font-size: 36px;
-  margin-top: 50px;
+  margin-top: 40px;
   margin-right: 150px;
 }
 
 .author {
-  font-size: 24px;
-  margin-top: 0;
+  font-size: 20px;
+  margin-top: 10px;
   margin-right: 150px;
 }
 
 .genre {
-  font-size: 18px;
-  margin-top: 0;
+  font-size: 15px;
+  margin-top: 10px;
   margin-bottom: 20px;
   margin-right: 150px;
 }
 
 .description {
-  font-size: 18px;
+  font-size: 15px;
   line-height: 1.5;
   margin-right: 150px;
+  margin-top: 10;
 }
 
 .price {
