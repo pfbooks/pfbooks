@@ -1,7 +1,7 @@
 import React from "react";
 import { useCart } from "../../hooks/useCart";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPlus, faMinus, faTrash } from "@fortawesome/free-solid-svg-icons";
+import { faPlus, faMinus, faTrash, faDollarSign } from "@fortawesome/free-solid-svg-icons";
 
 import styles from "./Chart.module.css";
 import ButtonMP from "../Payment/ButtonMP";
@@ -31,7 +31,6 @@ const Chart = () => {
       decreaseQuantity({ id: productId });
     }
   };
-  
 
   const handleClearCart = () => {
     clearCart();
@@ -79,7 +78,10 @@ const Chart = () => {
             ))}
           </div>
           <button onClick={handleClearCart}>Limpiar carrito</button>
-          <p>Total gastado: ${calculateTotal()}</p>
+          <div className={styles.totalContainer}>
+            <FontAwesomeIcon icon={faDollarSign} />
+            <p>Total gastado: ${calculateTotal()}</p>
+          </div>
           <div>
             <ButtonMP />
           </div>
