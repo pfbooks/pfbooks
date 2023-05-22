@@ -5,6 +5,7 @@ import { faPlus, faMinus, faTrash, faDollarSign } from "@fortawesome/free-solid-
 
 import styles from "./Chart.module.css";
 import ButtonMP from "../Payment/ButtonMP";
+import { CartContext } from "../../context/cart";
 
 const Chart = () => {
   const {
@@ -13,7 +14,7 @@ const Chart = () => {
     increaseQuantity,
     decreaseQuantity,
     clearCart,
-  } = useCart();
+  } = useCart(CartContext);
 
   const handleRemoveFromCart = (productId) => {
     removeFromCart({ id: productId });
