@@ -168,6 +168,7 @@
 }
 
 .cartButton {
+  position: relative;
   display: flex;
   flex-direction: row;
   cursor: pointer;
@@ -177,8 +178,19 @@
 
 
 .cartButton:hover {
-  transform: scale(1.5); 
+  transform: scale(1.2); 
   transition: transform 0.3s ease; 
+}
+.cartItemCount {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background-color: #f4f4f4;
+  color: black;
+  font-size: 10px;
+  font-weight: bold;
+  padding: 2px 6px;
+  border-radius: 50%;
 }
 .userNameContainer {
   display: flex;
