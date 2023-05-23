@@ -39,13 +39,13 @@ const Card = (props) => {
         <p className={styles.priceText}>${props.price}</p>
       </div>
       <button className={styles.AddToCartButton} onClick={handleAddToCart}>
-        <span className={styles.ButtonText}>Agregar al carrito </span>
+        <span className={styles.ButtonText}>Add to chart </span>
         <span>&nbsp;</span>
         <RiShoppingCartLine className={styles.CartIcon} />
       </button>
       {showNotification && (
         <div className={styles.notification}>
-          Producto agregado al carrito
+          Product added successfully
         </div>
       )}
     </div>

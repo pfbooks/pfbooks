@@ -60,21 +60,21 @@ const Register = () => {
           onSubmit={handleSubmit(onSubmit)}
           className={styles["form-container"]}
         >
-          <Link to="/">
+          {/* <Link to="/">
             <FaHome
               className={styles["home-icon"]}
               style={{ color: "#04ab77" }}
             />
-          </Link>
-          <h2 className={styles["form-title"]}>Crea tu usuario</h2>
+          </Link> */}
+          <h2 className={styles["form-title"]}>Register</h2>
           <label htmlFor="name" className={styles["form-label"]}>
-            Nombre:
+            Name:
           </label>
           <div className={styles["input-container"]}>
             <input
               {...register("name", { onBlur: handleBlur })}
               type="text"
-              placeholder="Nombre"
+              placeholder="Name"
               className={styles["form-input"]}
             />
             {errors.name && (
@@ -82,13 +82,13 @@ const Register = () => {
             )}
           </div>
           <label htmlFor="lastName" className={styles["form-label"]}>
-            Apellido:
+            Last name:
           </label>
           <div className={styles["input-container"]}>
             <input
               {...register("lastName", { onBlur: handleBlur })}
               type="text"
-              placeholder="Apellido"
+              placeholder="Last name"
               className={styles["form-input"]}
               style={{ width: "100%" }}
             />
@@ -99,13 +99,13 @@ const Register = () => {
             )}
           </div>
           <label htmlFor="email" className={styles["form-label"]}>
-            Correo electrónico:
+            Email:
           </label>
           <div className={styles["input-container"]}>
             <input
               {...register("email", { onBlur: handleBlur })}
               type="email"
-              placeholder="Correo electrónico"
+              placeholder="Email"
               className={styles["form-input"]}
             />
             {errors.email && (
@@ -116,13 +116,13 @@ const Register = () => {
           </div>
 
           <label htmlFor="password" className={styles["form-label"]}>
-            Contraseña:
+            Password:
           </label>
           <div className={styles["input-container"]}>
             <input
               {...register("password", { onBlur: handleBlur })}
               type="password"
-              placeholder="Contraseña"
+              placeholder="Password"
               className={styles["form-input"]}
             />
             {errors.password && (
@@ -133,13 +133,13 @@ const Register = () => {
           </div>
 
           <button type="submit" className={styles["form-button"]}>
-            Enviar
+            Send
           </button>
 
           <p>
-          Ya tienes una cuenta? {" "}
+          Already have an acount? {" "}
           <a href="/login" className={styles.link}>
-            Inicia sesion
+            Login
           </a>
         </p>
         </form>
