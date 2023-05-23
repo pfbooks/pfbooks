@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { useCart } from '../../hooks/useCart'
-
+import styles from "./Success.module.css"
 
 
 export const Success = () => {
@@ -10,7 +10,7 @@ export const Success = () => {
         
     }, [clearCart]);
   return (
-    <div>
+    <div className={styles.div-success}>
         <h1>Payment successfull</h1>
     </div>
   )
