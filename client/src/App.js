@@ -14,6 +14,7 @@ import Profile from "./components/Profile/Profile";
 import Chart from "./components/Chart/Chart";
 import NotFound from "./components/NotFound/NotFound";
 import { Success } from "./components/Payment/Success";
+import BooksTable from "./components/BooksTable/BooksTable";
 
 function App() {
   const ENDPOINT_USER = "http://localhost:3001/user";
@@ -38,6 +39,7 @@ function App() {
       <div>
         <NavBar />
         <Switch>
+          <Route path='/table' component={BooksTable} />
           <Route exact path="/" component={Home} />
           {/* <Route path="/login" component={Form} /> */}
           <Route path="/detail/:id" component={Detail} />
