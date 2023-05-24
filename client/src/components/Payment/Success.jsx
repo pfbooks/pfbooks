@@ -1,17 +1,20 @@
-import React, { useEffect } from 'react'
-import { useCart } from '../../hooks/useCart'
+import React, { useEffect } from "react";
+import { FaCheckCircle } from "react-icons/fa";
+import styles from "./Success.module.css";
+import { useCart } from "../../hooks/useCart"
 
-
-
-export const Success = () => {
-    const { clearCart } = useCart();
-    useEffect(() => {
-        clearCart()
-        
-    }, [clearCart]);
+const Success = () => {
+  const { cart, clearCart } = useCart();
+  useEffect(() => {
+      clearCart()
+      
+  }, [clearCart]);
   return (
-    <div>
-        <h1>Payment successfull</h1>
+    <div className={styles.container}>
+      <FaCheckCircle className={styles.icon} />
+      <h1 className={styles.title}>¡Pago Exitoso!</h1>
     </div>
-  )
-}
+  );
+};
+
+export default Success;

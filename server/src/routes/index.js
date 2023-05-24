@@ -6,7 +6,9 @@ const authorRouter = require('./authorRouter');
 const paymentRouter = require('./paymentRouter')
 const userRouter = require("./userRouter");
 const authRouter = require('./authRouter');
+const reviewRouter = require("./postReviewRouter")
 const adminRouter = require('./adminRouter');
+
 const router = Router();
 
 router.use("/books", bookRouter);
@@ -15,6 +17,7 @@ router.use("/authors", authorRouter);
 router.use("/user", userRouter);
 router.use("/payment", paymentRouter);
 router.use("/login", authRouter);
+router.use("/reviews", reviewRouter);
 router.use("/admin", adminRouter);
 
 module.exports = router;

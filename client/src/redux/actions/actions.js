@@ -32,6 +32,7 @@ const ENDPOINT_USER = "http://localhost:3001/user";
 const ENDPOINT_LOGIN = "http://localhost:3001/login";
 const ENDPOINT_LOGIN_WHIT_GOOGLE = "http://localhost:3001/login/google"
 const API_URL = ''
+const ENDPOINT_REVIEW = "http://localhost:3001/reviews";
 
 
 export function allBooks() {
@@ -160,7 +161,7 @@ export function bookById(id) {
 export function createReview(review) {
     console.log(review);
     return async (dispatch) => {
-        await axios.post(`${API_URL}/reviews`, review).then((result) => {
+        await axios.post(`${ENDPOINT_REVIEW}`, review).then((result) => {
             return dispatch({
                 type: CREATE_REVIEW,
                 payload: result,
