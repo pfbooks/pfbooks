@@ -9,10 +9,10 @@ const getUserById = require('../controllers/getUserById');
 
 const router = Router();
 
-// GET 
+// GET ALL USER
 router.get('/', async (req, res) => {
     try {
-        validateJWT(req)
+        validateJWT(req, true)
         const users = await User.findAll();
         res.json(users);
     } catch (error) {
@@ -20,7 +20,7 @@ router.get('/', async (req, res) => {
     }
 });
 
-// POST 
+// POST NEW USER
 router.post('/', async (req, res) => {
     try {
         const {name, lastName, email, password} = req.body;
@@ -74,6 +74,7 @@ router.put('/:id', async (req, res) => {
         res.status(404).json({ message: 'User not found' });
     }
 });
+
 // put of a profileImage
 router.put('/image/:id', async (req, res) => {
   const { id } = req.params;
@@ -95,4 +96,7 @@ router.put('/image/:id', async (req, res) => {
     res.status(500).json({ message: 'Error interno del servidor' });
   }
 });
+
+
+
 module.exports = router;
