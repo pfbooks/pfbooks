@@ -2,6 +2,8 @@ const { Router } = require('express');
 const getAllBooks = require('../controllers/getAllBooks');
 const getBookDetailById = require('../controllers/getBookDetailById');
 const getBooksByCombinedFilters = require('../controllers/getBooksByCombinedFilters');
+const updateBookById = require("../controllers/updateBookById");
+const addNewBook = require("../controllers/addNewBook");
 
 
 const bookRouter = Router();
@@ -38,6 +40,31 @@ bookRouter.get("/:bookId",async (req, res) => {
         res.status(400).json({ err : error.message });
     }
 });
+
+/// RUTA UPDATE BOOK
+bookRouter.put('/update',async (req, res) => {
+    const { id, title, author, price, image, genre, rating, stock, description } = req.body;
+    try {
+        const enablementUser = ( await updateBookById(id, title, author, price, image, genre, rating, stock, description) );
+        res.status(200).json( enablementUser );
+    }
+    catch (error){
+        res.status(500).json({err: error.message});
+    }
+});
+
+//RUTA POST NEW BOOK
+bookRouter.post('/addBook',async (req, res) => {
+    const { title, author, price, image, genre, rating, stock, description } = req.body;
+    try {
+        const newBook = ( await addNewBook( title, author, price, image, genre, rating ,stock, description) );
+        res.status(200).json( newBook );
+    }
+    catch (error){
+        res.status(500).json({err: error.message});
+    }
+});
+
 
 
 module.exports = bookRouter;

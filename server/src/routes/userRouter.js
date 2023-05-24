@@ -9,7 +9,7 @@ const getUserById = require('../controllers/getUserById');
 
 const router = Router();
 
-// GET 
+// GET ALL USER
 router.get('/', async (req, res) => {
     try {
         validateJWT(req)
@@ -20,7 +20,7 @@ router.get('/', async (req, res) => {
     }
 });
 
-// POST 
+// POST NEW USER
 router.post('/', async (req, res) => {
     try {
         const {name, lastName, email, password} = req.body;
@@ -95,4 +95,7 @@ router.put('/image/:id', async (req, res) => {
     res.status(500).json({ message: 'Error interno del servidor' });
   }
 });
+
+
+
 module.exports = router;
