@@ -12,7 +12,7 @@ const router = Router();
 // GET ALL USER
 router.get('/', async (req, res) => {
     try {
-        validateJWT(req)
+        validateJWT(req, true)
         const users = await User.findAll();
         res.json(users);
     } catch (error) {
@@ -74,6 +74,7 @@ router.put('/:id', async (req, res) => {
         res.status(404).json({ message: 'User not found' });
     }
 });
+
 // put of a profileImage
 router.put('/image/:id', async (req, res) => {
   const { id } = req.params;

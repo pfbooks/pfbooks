@@ -4,6 +4,7 @@ const getBookDetailById = require('../controllers/getBookDetailById');
 const getBooksByCombinedFilters = require('../controllers/getBooksByCombinedFilters');
 const updateBookById = require("../controllers/updateBookById");
 const addNewBook = require("../controllers/addNewBook");
+const {validateJWT} = require("../tokenvalidation/tokenValidation");
 
 
 const bookRouter = Router();
@@ -27,7 +28,7 @@ bookRouter.get("/", async (req, res) => {
     }
 });
 
-/// RUTA  GET BOOK BY ID
+/// RUTA GET BOOK BY ID
 bookRouter.get("/:bookId",async (req, res) => {
     try {
         const { bookId } = req.params;
@@ -43,6 +44,7 @@ bookRouter.get("/:bookId",async (req, res) => {
 
 /// RUTA UPDATE BOOK
 bookRouter.put('/update',async (req, res) => {
+    validateJWT(req, true);
     const { id, title, author, price, image, genre, rating, stock, description } = req.body;
     try {
         const enablementUser = ( await updateBookById(id, title, author, price, image, genre, rating, stock, description) );
@@ -55,6 +57,7 @@ bookRouter.put('/update',async (req, res) => {
 
 //RUTA POST NEW BOOK
 bookRouter.post('/addBook',async (req, res) => {
+    validateJWT(req, true);
     const { title, author, price, image, genre, rating, stock, description } = req.body;
     try {
         const newBook = ( await addNewBook( title, author, price, image, genre, rating ,stock, description) );
