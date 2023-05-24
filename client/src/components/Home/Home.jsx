@@ -5,6 +5,7 @@ import { useState } from "react";
 import Paginado from "../Paginado/Paginado";
 import Filters from "../Filters/Filters";
 import styles from './Home.module.css'
+import AdminBar from "../AdminBar/AdminBar";
 
 const Home = () => {
 
@@ -49,6 +50,7 @@ const Home = () => {
 
     return (
         <div className={styles.homeContainer}>
+            <AdminBar />
             <br />
             <Filters handlePageChange={handlePageChange} />
             <br />

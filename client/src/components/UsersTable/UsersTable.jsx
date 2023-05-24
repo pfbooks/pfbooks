@@ -22,13 +22,13 @@ const columns = [
   ];
 
 const UsersTable = () => {
-    const users = useSelector((state) => state.users)
     const dispatch = useDispatch()
-
+    
     useEffect(()=>{
         dispatch(getAllUser())
     }, [dispatch])
-
+    
+    const users = useSelector((state) => state.users)
     const getRowHeight = (params) => {
         
         const imageHeight = 50; 

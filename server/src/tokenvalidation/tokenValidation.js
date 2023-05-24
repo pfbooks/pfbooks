@@ -5,6 +5,7 @@ const jwt = require('jsonwebtoken');
 const validateJWT = (request, requiresAdmin) =>  {
     let jwtObject;
     try{
+        // const authorization = request.header('authorization').replace('Bearer ', '')
         const authorization = request.header('authorization')
         jwtObject = jwt.verify(authorization, JWT_KEY);
     } catch (error) {

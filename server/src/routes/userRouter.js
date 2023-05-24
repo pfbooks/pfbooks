@@ -12,7 +12,7 @@ const router = Router();
 // GET ALL USER
 router.get('/', async (req, res) => {
     try {
-        // // validateJWT(req, true)
+        validateJWT(req, true)
         const users = await User.findAll();
         res.json(users);
     } catch (error) {

@@ -25,7 +25,7 @@ export const GET_USER_BY_ID = "GET_USER_BY_ID"
 export const PUT_PROFILE_IMAGE = "PUT_PROFILE_IMAGE"
 export const GET_USERS = "GET_USERS"
 
-const ENDPOINT_GET_USERS = "http://localhost:3001/user"
+
 const ENDPOINT_BOOKS = "http://localhost:3001/books";
 const ENDPOINT_GENRE = "http://localhost:3001/genre";
 const ENDPOINT_AUTHORS = "http://localhost:3001/authors";
@@ -291,11 +291,12 @@ export const logoutUser = () => (dispatch) => {
 
 export const getAllUser = () => async (dispatch) =>{
     try {
-        // const user = JSON.parse(localStorage.getItem('user'))
-        const res = await axios.get(ENDPOINT_GET_USERS)
-            // headers: {
-            //     Authorization: `Bearer ${user.token}`
-            // }
+        const user = JSON.parse(localStorage.getItem('user'));
+        const res = await axios.get(`${ENDPOINT_USER}`, {
+            headers: {
+                Authorization: `${user.token}`,
+            },
+        });
         const UsersData = res.data
 
         dispatch({
