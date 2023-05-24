@@ -25,6 +25,8 @@ module.exports = (sequelize) => {
         userName: {
             type: DataTypes.STRING,
             allowNull:false,
+            defaultValue: 'Anónimo'
+
         },
     },
     { timestamps: false });

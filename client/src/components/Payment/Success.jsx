@@ -4,7 +4,7 @@ import styles from "./Success.module.css";
 import { useCart } from "../../hooks/useCart"
 
 const Success = () => {
-  const { clearCart } = useCart();
+  const { cart, clearCart } = useCart();
   useEffect(() => {
       clearCart()
       
