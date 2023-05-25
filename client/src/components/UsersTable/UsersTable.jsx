@@ -1,8 +1,7 @@
 import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { allBooks } from "../../redux/actions/actions";
-import { DataGrid } from '@mui/x-data-grid';
-
+import { getAllUser } from "../../redux/actions/actions"
+import { DataGrid } from "@mui/x-data-grid"
 
 const columns = [
     {
@@ -16,30 +15,20 @@ const columns = [
         width: 100,
     },
     { field: 'id', headerName: 'ID', width: 70 },
-    { field: 'title', headerName: 'Title', width: 300 },
-    { field: 'author', headerName: 'Author', editable: true , width: 240 },
-    {
-        field: 'price',
-        headerName: 'Price',
-        type: 'number',
-        width: 90,
-        renderCell: (params) => (
-          <div>
-            $ {params.value}
-          </div>
-        ),
-      },
-    { field: 'rating', headerName: 'Rating', type: 'number', width: 160 },
-    { field: 'genre', headerName: 'Genre', width: 200}
+    { field: 'name', headerName: 'Name', width: 200 },
+    { field: 'lastName', headerName: 'LastName', editable: true , width: 240 },
+    { field: 'email', headerName: 'Email', type: 'number', width: 160 },
+    { field: 'adminRole', headerName: 'Admin', width: 100}
   ];
 
-const BooksTable = (props) => {
-    const books = useSelector((state) => state.books);
+const UsersTable = () => {
     const dispatch = useDispatch()
+    
     useEffect(()=>{
-        dispatch(allBooks())
+        dispatch(getAllUser())
     }, [dispatch])
-
+    
+    const users = useSelector((state) => state.users)
     const getRowHeight = (params) => {
         
         const imageHeight = 50; 
@@ -48,9 +37,9 @@ const BooksTable = (props) => {
       };
 
     return(
-        <div style={{ height: '100%', width: '100%' }}>
+        <div>
             <DataGrid 
-                rows={books}
+                rows={users}
                 columns={columns}
                 getRowHeight={getRowHeight}
                 initialState={{
@@ -65,4 +54,4 @@ const BooksTable = (props) => {
     )
 }
 
-export default BooksTable
+export default UsersTable

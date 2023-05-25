@@ -8,6 +8,13 @@ body {
   height: 100%;
 }
 
+.containerAdmin {
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+  margin-left: 64px;
+}
+
 .image {
   max-width: 90%;
   margin-top: 100px;
