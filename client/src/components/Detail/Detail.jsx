@@ -1,9 +1,13 @@
 import React from "react";
 import {useDispatch, useSelector} from 'react-redux'
-import {useEffect} from "react";
+import {useEffect, useState} from "react";
 import {useParams} from "react-router-dom"
 import {bookById} from "../../redux/actions/actions";
 import styles from './Detail.module.css'
+import Reviews from "../Reviews/Reviews";
+import Stars from "../Reviews/Stars";
+import { useCart } from "../../hooks/useCart";
+import { RiShoppingCartLine } from "react-icons/ri";
 
 
 const Detail = () => {
@@ -16,25 +20,33 @@ const Detail = () => {
         dispatch(bookById(id))
     }, [dispatch, id])
 
-    const stars = [];
+    const { addToCart } = useCart()
+    const [showNotification, setShowNotification] = useState(false);
 
-    for (let i = 1; i <= 5; i++) {
-        if (i <= detail.rating) {
-            stars.push(
-                <div
-                    key={i}
-                    className={styles.fullStar}
-                />
-            );
-        } else {
-            stars.push(
-                <div
-                    key={i}
-                    className={styles.star}
-                />
-            );
-        }
+  
+    const handleAddToCart = ()=>{
+      addToCart({
+        image: detail.image,
+        id: detail.id,
+        title: detail.title,
+        unit_price: detail.price,
+      })
+      setShowNotification(true);
     }
+    useEffect(() => {
+        let timeoutId;
+    
+        if (showNotification) {
+          timeoutId = setTimeout(() => {
+            setShowNotification(false);
+          }, 3000); // Duración de la animación o tiempo que deseas mostrar el cartelito
+        }
+    
+        return () => {
+          clearTimeout(timeoutId);
+        };
+      }, [showNotification]);
+
 
     return (
 
@@ -47,16 +59,28 @@ const Detail = () => {
                     <hr/>
                     <p className={styles.genre}>Genres: {detail.genre}</p>
                     <hr/>
-                    {/* <p>Description: </p> */}
+                    
                     <p className={styles.description}>Description:  {detail.description}</p>
-                    <div className={styles.ratingContainer}>
-                        <div className={styles.starContainer}>{stars}</div>
-                    </div>
+
+                    <Stars rating={detail.rating}/>
+                    <span> Rating: {detail.rating}</span>
+                    <br />
+
                     <p className={styles.price}>$ {detail.price}</p>
-                    {/* <Link to="/">
-                        <FaHome className={styles["home-icon"]} style={{color: "#04ab77"}}/>
-                    </Link> */}
+                    <button className={styles.AddToCartButton} onClick={handleAddToCart}>
+                        <span className={styles.ButtonText}>ADD TO CART </span>
+                        <span>&nbsp;</span>
+                        <RiShoppingCartLine className={styles.CartIcon} />
+                    </button>
+                    {showNotification && (
+                       <div className={styles.notification}>
+                        Product added successfully
+                       </div>
+                    )}
                 </div>
+            </div>
+            <div>
+                <Reviews Reviews={detail.Reviews}/> 
             </div>
         </div>
     )

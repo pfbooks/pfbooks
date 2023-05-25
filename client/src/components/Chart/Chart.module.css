@@ -2,7 +2,30 @@
     display: flex;
     flex-wrap: wrap;
   }
+  .container {
+    display: flex;
+    width: 15%;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+    background-color: #f5f5f5;
+    padding: 10px;
+    border-radius: 20px;
+    border: 2px solid #04ab77; /* Agrega el borde */
+  }
   
+  .icon {
+    font-size: 24px;
+    color: #555555;
+    margin-right: 8px;
+  }
+  
+  .total {
+    font-size: 18px;
+  }
+  
+  
+    
   .productContainer {
     width: 300px;
     margin: 10px;

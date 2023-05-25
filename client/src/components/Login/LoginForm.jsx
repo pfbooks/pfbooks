@@ -150,6 +150,11 @@ const LoginForm = () => {
     onChange={(e) => setPassword(e.target.value)}
     required
   />
+            {errors.password && (
+            <div className={styles["error-message"]}>
+              {errors.password.message}
+            </div>
+          )}
   {showPassword ? (
     <FaEyeSlash
       className={styles["show-password-button"]}
