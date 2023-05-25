@@ -17,6 +17,7 @@ import { CartContext } from "../../context/cart";
 
 
 const NavBar = () => {
+
   const [currentPage, setCurrentPage] = useState(1);
   const history = useHistory()
   const { cart } = useCart(CartContext);
@@ -24,27 +25,30 @@ const NavBar = () => {
   const handleMouseEnter = () => {
     setShowMenu(true);
   };
-
+  
   const handleProfile = () => {
     history.push('/profile')
   };
   const handleChart = () => {
     history.push('/chart')
   }
-
+  
   const handleMouseLeave = () => {
     setShowMenu(false);
   };
-
+  
   const dispatch = useDispatch();
   const location = useLocation();
-
+  
   const user = JSON.parse(localStorage.getItem("user"));
   const userName = user ? user.name : "";
-
+  const isAdmin = user && user.adminRole;
+  const navClass = isAdmin ? styles.navAdmin : styles.nav;
+  
+  
   const handlePageChange = (number)=> {
     setCurrentPage(number)
-}
+  }
 
   const handleLogout = () => {
     dispatch(logoutUser());
@@ -52,7 +56,7 @@ const NavBar = () => {
   };
 
   return (
-    <nav className={styles.nav}>
+    <nav className={navClass}>
       <Link to= "/">
         <img className={styles.logoImg} src={logo} alt="Logo" />
       </Link>
