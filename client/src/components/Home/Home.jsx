@@ -5,7 +5,7 @@ import { useState } from "react";
 import Paginado from "../Paginado/Paginado";
 import Filters from "../Filters/Filters";
 import styles from './Home.module.css'
-import AdminBar from "../AdminBar/AdminBar";
+// import AdminBar from "../AdminBar/AdminBar";
 
 const Home = () => {
 
@@ -19,6 +19,9 @@ const Home = () => {
     const size = books.length / booksPerPage
 
     const currentBooks = books.slice(firstIndex, lastIndex);
+    const user = JSON.parse(localStorage.getItem("user"));
+    const isAdmin = user && user.adminRole;
+    const containerClass = isAdmin ? styles.homeContainerAdmin : styles.homeContainer;
 
 
 
@@ -49,8 +52,7 @@ const Home = () => {
 
 
     return (
-        <div className={styles.homeContainer}>
-            <AdminBar />
+        <div className={containerClass}>
             <br />
             <Filters handlePageChange={handlePageChange} />
             <br />

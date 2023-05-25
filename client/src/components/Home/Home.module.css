@@ -2,6 +2,11 @@
     background-color: #fff;
 }
 
+.homeContainerAdmin{
+  background-color: #fff;
+  margin-left: 64px;
+}
+
 .selectHome {
     font-size: 16px;
     padding: 8px;
