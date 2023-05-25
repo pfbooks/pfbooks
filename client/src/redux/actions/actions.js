@@ -117,11 +117,18 @@ export function bookByTitle(title) {
 export function userById(id){
     return async (dispatch) => {
         try {
-            const response = await axios.get(`${ENDPOINT_USER}/${id}`)
-            const data = response.data
+            const localStorageUser = JSON.parse(localStorage.getItem('user'))
+            const response = await axios.get(`${ENDPOINT_USER}/${id}`, {
+                headers: {
+                    Authorization: `${localStorageUser.token}`,
+                },
+            })
+            let updatedUser = response.data
+            updatedUser.token = localStorageUser.token
+            localStorage.setItem('user', JSON.stringify(updatedUser))
             dispatch({
                 type: GET_USER_BY_ID,
-                payload: data,
+                payload: updatedUser,
             })
         } catch (error) {
             console.log("User info error:", error)
