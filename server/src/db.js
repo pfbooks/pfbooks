@@ -1,8 +1,8 @@
 require("dotenv").config();
 
-const { Sequelize } = require("sequelize");
+const {Sequelize} = require("sequelize");
 
-const { DB_USER, DB_PASSWORD, DB_HOST } = process.env;
+const {DB_USER, DB_PASSWORD, DB_HOST} = process.env;
 
 
 const OrderModel = require("./models/Order")
@@ -12,16 +12,16 @@ const ReviewModel = require("./models/Reviews");
 const BookOrderModel = require("./models/BookOrder")
 
 const sequelize = new Sequelize(
-  `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/books_ecommerce`,
+    `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/books_ecommerce`,
     //'postgresql://postgres:k6EeWA2l16yqsRgAaYwR@containers-us-west-74.railway.app:7826/railway',
-  {
-    logging: false,
-    native: false,
-    dialectOptions: {
-      charset: "utf8mb4",
-      collate: "utf8mb4_general_ci",
-    },
-  }
+    {
+        logging: false,
+        native: false,
+        dialectOptions: {
+            charset: "utf8mb4",
+            collate: "utf8mb4_general_ci",
+        },
+    }
 );
 BookOrderModel(sequelize)
 OrderModel(sequelize);
@@ -29,7 +29,7 @@ BookModel(sequelize);
 UserModel(sequelize);
 ReviewModel(sequelize);
 
-const { Book, User, Reviews, Order, BookOrder } = sequelize.models;
+const {Book, User, Reviews, Order, BookOrder} = sequelize.models;
 
 //relacion entre usuario y login
 // User.belongsTo(Person, {
@@ -42,25 +42,24 @@ const { Book, User, Reviews, Order, BookOrder } = sequelize.models;
 //   onDelete: "CASCADE",
 // });
 
-  Book.belongsToMany(User, { through: "UsersBooks" });
-  User.belongsToMany(Book, { through: "UsersBooks" });
+Book.belongsToMany(User, {through: "UsersBooks"});
+User.belongsToMany(Book, {through: "UsersBooks"});
 
-  User.belongsToMany(Order, {through: "UserOrder"});
-  Order.belongsToMany(User, {through: "UserOrder"});
+User.hasMany(Order, {foreignKey: {name: 'id'}});
+Order.belongsTo(User);
 
-  Book.belongsToMany(Order, {through: "BookOrder"});
-  Order.belongsToMany(Book, {through: "BookOrder"});
+Book.belongsToMany(Order, {through: "BookOrder"});
+Order.belongsToMany(Book, {through: "BookOrder"});
 
-
-  //relaciones review-book
-  Book.belongsToMany(Reviews, {through: "BookReviews"});
-  Reviews.belongsToMany(Book, {through: "BookReviews"});
+//relaciones review-book
+Book.belongsToMany(Reviews, {through: "BookReviews"});
+Reviews.belongsToMany(Book, {through: "BookReviews"});
 
 module.exports = {
-  Book,
-  User,
-  Reviews,
-  Order,
-  BookOrder,
-  conn: sequelize,
+    Book,
+    User,
+    Reviews,
+    Order,
+    BookOrder,
+    conn: sequelize,
 };

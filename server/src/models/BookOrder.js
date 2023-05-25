@@ -5,6 +5,7 @@ module.exports = (sequelize) => {
     sequelize.define('BookOrder', {
         id:{
             type: DataTypes.INTEGER,
+            autoincrement: true,
             allowNull: false,
             primaryKey: true
         },

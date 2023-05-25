@@ -1,7 +1,12 @@
 const { Order, User, Book, BookOrder } = require('../db');
 
-const getOrderById = async (id) => {
-    const order = await Order.findByPk(id, {
+const getOrdersByUserId = async (userId) => {
+    const order = await Order.findAll({
+
+        where: {
+            UserId: userId
+        },
+
         include: [
             {
                 model: User,
@@ -14,4 +19,4 @@ const getOrderById = async (id) => {
     return order;
 };
 
-module.exports = getOrderById;
+module.exports = getOrdersByUserId;

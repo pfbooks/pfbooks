@@ -4,14 +4,6 @@ const { QueryTypes } = require("sequelize");
 
 const addNewOrder = async (amount, quantity, books, user) => {
   try {
-    const maxId = await conn.query(
-      'SELECT max(id) AS id FROM "Orders"',
-      {
-        type: QueryTypes.SELECT
-      }
-    );
-    const id = maxId[0].id + 1;
-
     // Crear una nueva orden
     const newOrder = await Order.create({
       id,
