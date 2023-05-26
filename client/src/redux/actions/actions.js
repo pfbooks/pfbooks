@@ -140,7 +140,7 @@ export function userById(id){
 export const userDisablement = (id, isActive) => {
     return async (dispatch) => {
       try {
-        const response = await axios.put(`${ENDPOINT_ADMIN}$/enablementUser`, { isActive: !isActive, id });
+        const response = await axios.put(`${ENDPOINT_ADMIN}/enablementUser`, { isActive: !isActive, id });
         const data = response.data;
         dispatch({
           type: USER_DISABLED,
