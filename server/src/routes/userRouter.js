@@ -56,10 +56,10 @@ router.get('/:id', async(req, res) =>{
     }
 });
 
-//PUT
+//PUT USER
 router.put('/:id', async (req, res) => {
     const { id } = req.params;
-    const { name, lastName, email, password, adminRole, image } = req.body;
+    const { name, lastName, email, password, adminRole, image, isActive } = req.body;
     const user = await User.findOne({ where: { id } });
     if (user) {
         user.name = name;
@@ -68,12 +68,33 @@ router.put('/:id', async (req, res) => {
         user.password = password;
         user.adminRole = adminRole;
         user.image = image;
+        user.isActive = isActive;
         await user.save();
         res.json(user);
     } else {
         res.status(404).json({ message: 'User not found' });
     }
 });
+
+//PUT USER PARA DESHABILITAR/HABILITAR
+router.put('/disable/:id', async (req, res) => {
+    const { id } = req.params;
+    const { isActive } = req.body;
+  
+    try {
+      const user = await User.findOne({ where: { id } });
+  
+      if (user) {
+        user.isActive = isActive;
+        await user.save();
+        res.json(user);
+      } else {
+        res.status(404).json({ message: 'User not found' });
+      }
+    } catch (error) {
+      res.status(500).json({ message: 'Internal server error' });
+    }
+  });
 
 // put of a profileImage
 router.put('/image/:id', async (req, res) => {
