@@ -6,6 +6,13 @@
   padding: 20px;
 }
 
+.containerAdmin {
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+  margin-left: 64px;
+}
+
 .image {
   width: 200px;
   height: auto;

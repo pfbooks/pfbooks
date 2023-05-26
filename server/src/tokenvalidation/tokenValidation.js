@@ -5,7 +5,7 @@ const jwt = require('jsonwebtoken');
 const validateJWT = (request, requiresAdmin) =>  {
     let jwtObject;
     try{
-        const authorization = request.header('authorization')
+        const authorization = request.header('authorization').replace('Bearer ', '')
         jwtObject = jwt.verify(authorization, JWT_KEY);
     } catch (error) {
         throw new Error("invalid JWT credentials")
