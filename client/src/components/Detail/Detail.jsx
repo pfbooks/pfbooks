@@ -1,9 +1,9 @@
 import React from "react";
-import {  useDispatch, useSelector  } from "react-redux";;
+import {  useDispatch, useSelector  } from "react-redux";
 import {  useEffect, useState  } from "react";
-import {  useParams  } from "react-router-dom";;
+import {  useParams  } from "react-router-dom";
 import {  bookById  } from "../../redux/actions/actions";
-import styles from "./Detail.module.css";;
+import styles from "./Detail.module.css";
 import Reviews from "../Reviews/Reviews";
 import Stars from "../Reviews/Stars";
 import { useCart } from "../../hooks/useCart";
@@ -23,8 +23,8 @@ const Detail = () => {
 
   const { addToCart } = useCart();
   const [showNotification, setShowNotification] = useState(false);
-  const { addToCart } = useCart();
-  const [showNotification, setShowNotification] = useState(false);
+  // const { addToCart } = useCart();
+  // const [showNotification, setShowNotification] = useState(false);
 
   const handleAddToCart = () => {
     addToCart({
