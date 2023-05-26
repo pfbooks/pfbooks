@@ -13,8 +13,10 @@ import Chart from "./components/Chart/Chart";
 import NotFound from "./components/NotFound/NotFound";
 import Success from "./components/Payment/Success";
 import BooksTable from "./components/BooksTable/BooksTable";
+import About from "./components/AboutUs/About";
 import UsersTable from "./components/UsersTable/UsersTable";
 import { useSelector } from "react-redux";
+
 
 function App() {
   const user = useSelector((state)=> state.user)
@@ -47,6 +49,7 @@ function App() {
           <Route path="/profile" component={Profile} />
           <Route path="/chart" component={Chart} />
           <Route path="/success" component={Success} />
+          <Route path="/about" component={About} />
           <Route component={NotFound} />
         </Switch>
       </div>

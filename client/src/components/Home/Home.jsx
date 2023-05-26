@@ -4,8 +4,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
 import Paginado from "../Paginado/Paginado";
 import Filters from "../Filters/Filters";
+
 import styles from './Home.module.css'
 // import AdminBar from "../AdminBar/AdminBar";
+
 
 const Home = () => {
 
@@ -74,6 +76,7 @@ const Home = () => {
                 <option value="asc">Higher price</option>
                 <option value="dsc">Lower price</option>
             </select>
+            
 
 
             <CardsContainer

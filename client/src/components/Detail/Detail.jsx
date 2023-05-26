@@ -1,9 +1,9 @@
 import React from "react";
-import { useDispatch, useSelector } from 'react-redux';
-import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import { bookById } from "../../redux/actions/actions";
-import styles from './Detail.module.css';
+import {  useDispatch, useSelector  } from "react-redux";
+import {  useEffect, useState  } from "react";
+import {  useParams  } from "react-router-dom";
+import {  bookById  } from "../../redux/actions/actions";
+import styles from "./Detail.module.css";
 import Reviews from "../Reviews/Reviews";
 import Stars from "../Reviews/Stars";
 import { useCart } from "../../hooks/useCart";
@@ -11,15 +11,20 @@ import { RiShoppingCartLine } from "react-icons/ri";
 
 const Detail = () => {
   const { id } = useParams();
-  const detail = useSelector(state => state.detail);
+  const detail = useSelector((state) => state.detail);
   const dispatch = useDispatch();
 
+  useEffect(() => {
+    dispatch(bookById(id));
+  }, [dispatch, id]);
   useEffect(() => {
     dispatch(bookById(id));
   }, [dispatch, id]);
 
   const { addToCart } = useCart();
   const [showNotification, setShowNotification] = useState(false);
+  // const { addToCart } = useCart();
+  // const [showNotification, setShowNotification] = useState(false);
 
   const handleAddToCart = () => {
     addToCart({
@@ -37,7 +42,7 @@ const Detail = () => {
     if (showNotification) {
       timeoutId = setTimeout(() => {
         setShowNotification(false);
-      }, 3000); // Duración de la animación o tiempo que deseas mostrar el cartelito
+      }, 3000);
     }
 
     return () => {
