@@ -15,6 +15,7 @@ import {
   SORT_PRICE,
   GET_USER_BY_ID,
   PUT_PROFILE_IMAGE,
+  GET_USERS,
 } from "../actions/actions";
 import { CREATE_USER, LOGIN_FAILURE, LOGIN_SUCCESS, LOGOUT_USER, GET_USER_DATA_FAILURE, GET_USER_DATA_SUCCESS } from "../actions/actions";
 
@@ -26,6 +27,7 @@ const initialState = {
   copyBooks: [],
   allReviews: [],
   user: {},
+  users:[],
   isLoading: false,
   error: null,
 };
@@ -225,6 +227,11 @@ const rootReducer = (state = initialState, action) => {
         user: null,
         error: action.payload,
       };
+    case GET_USERS:
+      return {
+        ...state,
+        users: action.payload
+      }
     default:
       return { ...state };
   }

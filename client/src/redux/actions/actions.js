@@ -23,6 +23,7 @@ export const GET_USER_DATA_SUCCESS = "GET_USER_DATA_SUCCESS"
 export const SET_USER = 'SET_USER';
 export const GET_USER_BY_ID = "GET_USER_BY_ID"
 export const PUT_PROFILE_IMAGE = "PUT_PROFILE_IMAGE"
+export const GET_USERS = "GET_USERS"
 
 
 const ENDPOINT_BOOKS = "http://localhost:3001/books";
@@ -32,6 +33,7 @@ const ENDPOINT_USER = "http://localhost:3001/user";
 const ENDPOINT_LOGIN = "http://localhost:3001/login";
 const ENDPOINT_LOGIN_WHIT_GOOGLE = "http://localhost:3001/login/google"
 const API_URL = ''
+const ENDPOINT_REVIEW = "http://localhost:3001/reviews";
 
 
 export function allBooks() {
@@ -115,11 +117,18 @@ export function bookByTitle(title) {
 export function userById(id){
     return async (dispatch) => {
         try {
-            const response = await axios.get(`${ENDPOINT_USER}/${id}`)
-            const data = response.data
+            const localStorageUser = JSON.parse(localStorage.getItem('user'))
+            const response = await axios.get(`${ENDPOINT_USER}/${id}`, {
+                headers: {
+                    Authorization: `${localStorageUser.token}`,
+                },
+            })
+            let updatedUser = response.data
+            updatedUser.token = localStorageUser.token
+            localStorage.setItem('user', JSON.stringify(updatedUser))
             dispatch({
                 type: GET_USER_BY_ID,
-                payload: data,
+                payload: updatedUser,
             })
         } catch (error) {
             console.log("User info error:", error)
@@ -160,7 +169,7 @@ export function bookById(id) {
 export function createReview(review) {
     console.log(review);
     return async (dispatch) => {
-        await axios.post(`${API_URL}/reviews`, review).then((result) => {
+        await axios.post(`${ENDPOINT_REVIEW}`, review).then((result) => {
             return dispatch({
                 type: CREATE_REVIEW,
                 payload: result,
@@ -287,6 +296,25 @@ export const logoutUser = () => (dispatch) => {
         type: LOGOUT_USER,
     });
 };
+
+export const getAllUser = () => async (dispatch) =>{
+    try {
+        const user = JSON.parse(localStorage.getItem('user'));
+        const res = await axios.get(`${ENDPOINT_USER}`, {
+            headers: {
+                Authorization: `${user.token}`,
+            },
+        });
+        const UsersData = res.data
+
+        dispatch({
+            type: GET_USERS,
+            payload: UsersData
+        })
+    } catch (error) {
+        console.log(error.message)
+    }
+}
 
 export const getUserData = () => async (dispatch) => {
     try {

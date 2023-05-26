@@ -1,11 +1,15 @@
-const { Book } = require('../db');
+const { Book, Reviews } = require('../db');
 
 const getBookDetailById = async ( id ) => {
-    const bookDetail = await Book.findOne({
-        where: {
-            id : id
+    const bookDetail = await Book.findByPk(id, {
+        include: {
+            model: Reviews,
+            through: {
+                attributes: [],
+            }
         }
-    });
+    })
+
     return {
         id: bookDetail.id,
         title: bookDetail.title,
@@ -15,11 +19,10 @@ const getBookDetailById = async ( id ) => {
         genre: bookDetail.genre.join(', '),
         rating: bookDetail.rating,
         stock: bookDetail.stock,
-        description: bookDetail.description
-
+        description: bookDetail.description,
+        numReviews: bookDetail.numReviews,
+        Reviews: bookDetail.Reviews
     }
-
-  
 }
 
 module.exports = getBookDetailById;
