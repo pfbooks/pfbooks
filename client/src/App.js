@@ -1,4 +1,4 @@
-import React from "react";
+import {React, useState, useEffect} from "react";
 import { Route, Switch } from "react-router-dom";
 import { ToastProvider } from 'react-toast-notifications';
 import 'react-toastify/dist/ReactToastify.css';
@@ -14,16 +14,28 @@ import NotFound from "./components/NotFound/NotFound";
 import Success from "./components/Payment/Success";
 import BooksTable from "./components/BooksTable/BooksTable";
 import UsersTable from "./components/UsersTable/UsersTable";
+import { useSelector } from "react-redux";
 
 function App() {
-  const user = JSON.parse(localStorage.getItem("user"));
-  const isAdmin = user && user.adminRole;
+  const user = useSelector((state)=> state.user)
+
+  const [admin , setAdmin] = useState(false)
+  useEffect(()=>{
+    if(user){ if(user && user.adminRole){
+      setAdmin(true)
+    }else{
+      setAdmin(false)
+    }
+  }else{
+    setAdmin(false)
+  }
+  },[user])
 
   return (
     <ToastProvider>
       <div>
         <NavBar />
-        {isAdmin && <AdminBar />}
+        {admin && <AdminBar />}
         <Switch>
           <Route path='/users' component={UsersTable} />
           <Route path='/books' component={BooksTable} />
