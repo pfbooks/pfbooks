@@ -20,8 +20,9 @@ const Card = (props) => {
   return (
     <div className={styles.cardContainer}>
       <Link to={`/detail/${props.id}`}>
-        <img src={props.image} alt={props.id} />
+        <img src={props.image} alt={props.id} style={ {"width":"200px","height":"266px"}} />
       </Link>
+    <hr/>
       <div className={styles.textContainer}>
         <p>{props.title}</p>
         <Stars rating={props.rating}/>
