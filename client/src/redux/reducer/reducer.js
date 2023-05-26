@@ -16,6 +16,7 @@ import {
   GET_USER_BY_ID,
   PUT_PROFILE_IMAGE,
   GET_USERS,
+  USER_DISABLED
 } from "../actions/actions";
 import { CREATE_USER, LOGIN_FAILURE, LOGIN_SUCCESS, LOGOUT_USER, GET_USER_DATA_FAILURE, GET_USER_DATA_SUCCESS } from "../actions/actions";
 
@@ -196,6 +197,11 @@ const rootReducer = (state = initialState, action) => {
     case CREATE_USER:
       return {
         ...state,
+      };
+    case USER_DISABLED:
+      return {
+        ...state,
+        user: action.payload,
       };
     case LOGIN_SUCCESS:
         return {

@@ -16,16 +16,17 @@ export const SORT_REVIEW = "SORT_REVIEW";
 export const ALL_REVIEWS = "ALL_REVIEWS";
 export const CREATE_USER = "CREATE_USER";
 export const LOGIN_FAILURE = "LOGIN_FAILURE";
-export const LOGIN_SUCCESS = "LOGIN_SUCCESS"
+export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
 export const LOGOUT_USER = "LOGOUT_USER";
 export const GET_USER_DATA_FAILURE = "GET_USER_DATA_FAILURE";
-export const GET_USER_DATA_SUCCESS = "GET_USER_DATA_SUCCESS"
+export const GET_USER_DATA_SUCCESS = "GET_USER_DATA_SUCCESS";
 export const SET_USER = 'SET_USER';
-export const GET_USER_BY_ID = "GET_USER_BY_ID"
-export const PUT_PROFILE_IMAGE = "PUT_PROFILE_IMAGE"
-export const GET_USERS = "GET_USERS"
+export const GET_USER_BY_ID = "GET_USER_BY_ID";
+export const PUT_PROFILE_IMAGE = "PUT_PROFILE_IMAGE";
+export const GET_USERS = "GET_USERS";
+export const USER_DISABLED = "USER_DISABLED";
 
-
+const ENDPOINT_ADMIN = "http://localhost:3001/admin";
 const ENDPOINT_BOOKS = "http://localhost:3001/books";
 const ENDPOINT_GENRE = "http://localhost:3001/genre";
 const ENDPOINT_AUTHORS = "http://localhost:3001/authors";
@@ -136,6 +137,20 @@ export function userById(id){
     }
 }
 
+export const userDisablement = (id, isActive) => {
+    return async (dispatch) => {
+      try {
+        const response = await axios.put(`${ENDPOINT_ADMIN}/enablementUser`, { isActive: !isActive, id });
+        const data = response.data;
+        dispatch({
+          type: USER_DISABLED,
+          payload: data,
+        })
+      } catch (error) {
+        console.log(error.message)
+      }
+    }
+  }
 export function putProfileImage(id, imageUrl) {
     return async (dispatch) => {
       try {
