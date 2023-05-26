@@ -8,13 +8,13 @@ import { useLocation } from "react-router-dom";
 import { logoutUser } from "../../redux/actions/actions";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { FaUser,  } from "react-icons/fa";
+import { FaUser } from "react-icons/fa";
 import { FiLogOut } from "react-icons/fi";
 import { AiOutlineUserAdd, AiOutlineLogin } from "react-icons/ai";
 import { RiShoppingCartLine } from "react-icons/ri";
 import { useCart } from "../../hooks/useCart";
 import { CartContext } from "../../context/cart";
-
+import About from "../AboutUs/About";
 
 const NavBar = () => {
 
@@ -48,23 +48,32 @@ const NavBar = () => {
   
   const handlePageChange = (number)=> {
     setCurrentPage(number)
-  }
+    }
 
   const handleLogout = () => {
     dispatch(logoutUser());
     history.push('/')
   };
 
+  const showAbout = location.pathname === "/";
+
   return (
     <nav className={navClass}>
       <Link to= "/">
         <img className={styles.logoImg} src={logo} alt="Logo" />
       </Link>
+     
       {location.pathname === "/" && (
       <div className={styles.divSerchBar}>
         <Search handlePageChange={handlePageChange} />
       </div>
       )}
+
+{showAbout && (
+  <Link to="/about" className={styles.aboutLink}>
+    <button className={styles.aboutButton}>About</button>
+  </Link>
+)}
 
      
       <div className={styles.cartButton} onClick={handleChart}>
@@ -72,6 +81,7 @@ const NavBar = () => {
           {cart.length > 0 && (
           <span className={styles.cartItemCount}>{cart.length}</span>
         )}
+        
       </div>
         <div
           className={styles.dropdown}
@@ -103,6 +113,7 @@ const NavBar = () => {
                     <span className={styles.dropdownLink}>Profile</span>
                   </li>
                   <br />
+                  
                   </div>
                 ) : (
                   <>
@@ -128,5 +139,6 @@ const NavBar = () => {
     </nav>
   );
 };
+
 
 export default NavBar;

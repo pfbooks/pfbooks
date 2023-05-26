@@ -1,0 +1,97 @@
+.aboutContainer {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  .bookReviews {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 20px;
+    margin-top: 20px;
+  }
+  
+  .bookReview {
+    border: 1px solid #ccc;
+    padding: 10px;
+  }
+  
+  .bookReview h4 {
+    margin-top: 0;
+  }
+  
+  .bookReview p {
+    margin-bottom: 10px;
+  }
+  
+  .socialMediaLinks {
+    display: flex;
+    justify-content: flex-start;
+    margin-top: 10px;
+  }
+  
+  .socialMediaLinks a {
+    font-size: 24px;
+    margin: 0 10px;
+  }
+  
+  .socialMediaLinks a i {
+    color: #048b61; 
+  }
+
+   a i.fa-whatsapp, .socialMediaLinks a i.fa-phone {
+    color: #04ab77;
+  }
+  
+  .contactInfo {
+    margin-top: 20px;
+    padding: 10px;
+    border: 1px solid #ccc;
+  }
+  
+  .contactInfo p {
+    margin-bottom: 10px;
+  }
+  
+  .opinionBox {
+    margin-top: 30px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  .opinionBox textarea {
+    width: 100%;
+    height: 300px;
+    margin-bottom: 10px;
+  }
+  
+  .opinionButton {
+    display: block;
+    margin-top: 10px;
+    background-color: #04ab77;
+    border: none;
+    color: white;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+  }
+  
+  .opinionButton:hover {
+    background-color: #048b61;
+  }
+  
+  .opinionLabel {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  
+  .opinionIcon {
+    margin-right: 5px;
+    color: #04ab77;
+    border-radius: 10px;
+  }
+  
