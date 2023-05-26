@@ -12,7 +12,7 @@ const router = Router();
 // GET ALL USER
 router.get('/', async (req, res) => {
     try {
-        validateJWT(req, true)
+        // validateJWT(req, true)
         const users = await User.findAll();
         res.json(users);
     } catch (error) {
@@ -56,10 +56,10 @@ router.get('/:id', async(req, res) =>{
     }
 });
 
-//PUT
+//PUT USER
 router.put('/:id', async (req, res) => {
     const { id } = req.params;
-    const { name, lastName, email, password, adminRole, image } = req.body;
+    const { name, lastName, email, password, adminRole, image, isActive } = req.body;
     const user = await User.findOne({ where: { id } });
     if (user) {
         user.name = name;
@@ -68,6 +68,7 @@ router.put('/:id', async (req, res) => {
         user.password = password;
         user.adminRole = adminRole;
         user.image = image;
+        user.isActive = isActive;
         await user.save();
         res.json(user);
     } else {
