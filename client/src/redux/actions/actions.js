@@ -26,7 +26,7 @@ export const PUT_PROFILE_IMAGE = "PUT_PROFILE_IMAGE";
 export const GET_USERS = "GET_USERS";
 export const USER_DISABLED = "USER_DISABLED";
 
-
+const ENDPOINT_ADMIN = "http://localhost:3001/admin";
 const ENDPOINT_BOOKS = "http://localhost:3001/books";
 const ENDPOINT_GENRE = "http://localhost:3001/genre";
 const ENDPOINT_AUTHORS = "http://localhost:3001/authors";
@@ -137,10 +137,10 @@ export function userById(id){
     }
 }
 
-export const userDisablement = (id) => {
+export const userDisablement = (id, isActive) => {
     return async (dispatch) => {
       try {
-        const response = await axios.put(`${ENDPOINT_USER}/disable/${id}`, { isActive: false });
+        const response = await axios.put(`${ENDPOINT_ADMIN}$/enablementUser`, { isActive: !isActive, id });
         const data = response.data;
         dispatch({
           type: USER_DISABLED,
