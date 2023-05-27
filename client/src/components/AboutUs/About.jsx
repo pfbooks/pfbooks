@@ -59,8 +59,8 @@ const About = () => {
     },
 
     {
-      name: 'Jorge Jimenez',
-      lastName: 'Soto',
+      name: 'Jorge',
+      lastName: 'Jimenez',
       photo: require('./profile4.jpg').default,
       github: 'https://github.com/JorgeJ97',
       linkedin: 'https://www.linkedin.com/in/lautarosoto'
@@ -69,7 +69,7 @@ const About = () => {
     {
       name: 'Marcos ',
       lastName: 'Novella',
-      photo: require('./profile6.jpg').default,
+      photo: require('./profile1.jpg').default,
       github: 'https://github.com/MarcosNovella',
       linkedin: 'https://www.linkedin.com/in/lautarosoto'
     },
@@ -77,7 +77,7 @@ const About = () => {
     {
       name: 'Gaston ',
       lastName: 'Garcia Juri',
-      photo: require('./profile2.jpg').default,
+      photo: require('./profile6.jpg').default,
       github: 'https://github.com/gastigarciajuri',
       linkedin: 'https://www.linkedin.com/in/lautarosoto'
     },
