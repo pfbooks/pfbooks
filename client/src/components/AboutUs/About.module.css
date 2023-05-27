@@ -1,97 +1,118 @@
 .aboutContainer {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 20px;
-  }
-  
-  .bookReviews {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-gap: 20px;
-    margin-top: 20px;
-  }
-  
-  .bookReview {
-    border: 1px solid #ccc;
-    padding: 10px;
-  }
-  
-  .bookReview h4 {
-    margin-top: 0;
-  }
-  
-  .bookReview p {
-    margin-bottom: 10px;
-  }
-  
-  .socialMediaLinks {
-    display: flex;
-    justify-content: flex-start;
-    margin-top: 10px;
-  }
-  
-  .socialMediaLinks a {
-    font-size: 24px;
-    margin: 0 10px;
-  }
-  
-  .socialMediaLinks a i {
-    color: #048b61; 
-  }
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
 
-   a i.fa-whatsapp, .socialMediaLinks a i.fa-phone {
-    color: #04ab77;
-  }
+.teamContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.card {
+  width: 200px;
+  padding: 20px;
+  margin: 10px;
+  border-radius: 10px;
+  background-color: #f7f7f7;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.card img {
+  width: 100%;
+  border-radius: 50%;
+  margin-bottom: 10px;
+}
+
+.card h3 {
+  margin-top: 0;
+}
+
+.socialLinks {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.socialLinks a {
+  color: #048b61;
+  margin-right: 10px;
+  transition: color 0.3s ease;
+}
+
+.socialLinks a i {
+  color: #048b61;
+}
+
+.socialLinks a i.fa-github {
+  color: #048b61;
+  font-size: 28px;
+}
+
+.socialLinks a i.fa-linkedin {
+  color:#048b61;
+  font-size: 28px;
+}
+
+
+.opinionBox {
+  width: 100%;
+  height: 150px;
+  resize: vertical;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+/* Estilos para las redes sociales */
+.socialMediaLinks {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+  text-decoration: none;
+  color: #048b61;
   
-  .contactInfo {
-    margin-top: 20px;
-    padding: 10px;
-    border: 1px solid #ccc;
-  }
-  
-  .contactInfo p {
-    margin-bottom: 10px;
-  }
-  
-  .opinionBox {
-    margin-top: 30px;
-    padding: 10px;
-    border: 1px solid #ccc;
-    width: 50%;
-    margin-left: auto;
-    margin-right: auto;
-  }
-  
-  .opinionBox textarea {
-    width: 100%;
-    height: 300px;
-    margin-bottom: 10px;
-  }
-  
-  .opinionButton {
-    display: block;
-    margin-top: 10px;
-    background-color: #04ab77;
-    border: none;
-    color: white;
-    border-radius: 5px;
-    padding: 10px 20px;
-    cursor: pointer;
-  }
-  
-  .opinionButton:hover {
-    background-color: #048b61;
-  }
-  
-  .opinionLabel {
-    display: flex;
-    align-items: center;
-    margin-bottom: 10px;
-  }
-  
-  .opinionIcon {
-    margin-right: 5px;
-    color: #04ab77;
-    border-radius: 10px;
-  }
-  
+}
+
+.socialMediaLinks a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  background-color: wheat;
+  border-radius: 50%;
+  transition: background-color 0.3s ease;
+  text-decoration: none;
+}
+
+.socialMediaLinks a:hover {
+  background-color: #e0e0e0;
+  text-decoration: none;
+}
+
+.socialMediaLinks .socialIcon {
+  font-size: 24px;
+  margin: 0 5px;
+}
+
+.socialMediaLinks .socialLink {
+  color: #048b61;
+}
+
+/* Estilos para el botón de enviar opinión */
+.opinionButton {
+  background-color: #048b61;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+/* Estilos para el icono de lápiz */
+.opinionIcon {
+  margin-right: 5px;
+}
