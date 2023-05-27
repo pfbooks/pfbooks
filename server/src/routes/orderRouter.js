@@ -23,7 +23,7 @@ orderRouter.get("/", async (req, res) => {
 /// RUTA GET ORDER BY ID
 orderRouter.get("/:orderId",async (req, res) => {
     try {
-        validateJWT(req, true);
+        // validateJWT(req, true);
         const { orderId } = req.params;
         const orderById = await getOrderById(orderId);
 
@@ -58,7 +58,7 @@ orderRouter.post('/add',async (req, res) => {
         res.status(200).json( newOrder );
     }
     catch (error){
-        res.status(500).json({error: error.message});
+        res.status(400).json({error: error.message});
     }
 });
 

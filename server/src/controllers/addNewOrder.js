@@ -6,24 +6,34 @@ const addNewOrder = async ( books, userId) => {
 
   
   try {
-    console.log(books)
-    console.log(userId)
+    // console.log(books)
+    // console.log(userId)
 
 
     const quantity = books.reduce((acc, book) => acc + book.quantity, 0)
-    console.log(typeof quantity)
+    // console.log(typeof quantity)
     let monto = 0
     books.forEach(book => {
       monto += book.quantity * book.unit_price;
     })
 
-    console.log(typeof monto)
+    // console.log(typeof monto)
     // Crear una nueva orden
     const user = await User.findByPk(userId)
-    await user.setOrders({
+    console.log(user.id)
+    const newOrder = await Order.create({
       amount: monto,
-      quantity: quantity
-    })
+      quantity: quantity,
+    });
+
+    // // Crear los registros en la tabla intermedia BookOrder
+    // for (let i = 0; i < books.length; i++) {
+    //   await BookOrder.create({
+    //     orderId: newOrder.id,
+    //     bookId: books[i].id,
+    //     quantity: books[i].quantity,
+    //   });
+    // }
     // await user.createOrder({
     //   amount: monto,
     //   quantity: quantity,

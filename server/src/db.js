@@ -9,7 +9,7 @@ const OrderModel = require("./models/Order")
 const BookModel = require("./models/Book");
 const UserModel = require("./models/User");
 const ReviewModel = require("./models/Reviews");
-const BookOrderModel = require("./models/BookOrder")
+// const BookOrderModel = require("./models/BookOrder")
 
 const sequelize = new Sequelize(
     `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/books_ecommerce`,
@@ -23,7 +23,7 @@ const sequelize = new Sequelize(
         },
     }
 );
-BookOrderModel(sequelize)
+// BookOrderModel(sequelize)
 OrderModel(sequelize);
 BookModel(sequelize);
 UserModel(sequelize);
@@ -48,8 +48,8 @@ User.belongsToMany(Book, {through: "UsersBooks"});
 User.hasMany(Order, {foreignKey: 'UserId'});
 Order.belongsTo(User);
 
-Book.belongsToMany(Order, {through: "BookOrder"});
-Order.belongsToMany(Book, {through: "BookOrder"});
+// Book.belongsToMany(Order, {through: "BookOrder"});
+// Order.belongsToMany(Book, {through: "BookOrder"});
 
 //relaciones review-book
 Book.belongsToMany(Reviews, {through: "BookReviews"});
