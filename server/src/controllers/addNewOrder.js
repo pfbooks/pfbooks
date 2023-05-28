@@ -3,7 +3,7 @@ const { Order, User, BookOrder } = require("../db");
 const addNewOrder = async (books, userId) => {
   try {
     console.log(books);
-    console.log(userId)
+    console.log(userId);
 
     const quantity = books.reduce((acc, book) => acc + book.quantity, 0);
     console.log(`la cantidad es de ${quantity}`);
@@ -18,7 +18,7 @@ const addNewOrder = async (books, userId) => {
     console.log(user);
     
     const newOrder = await Order.create({
-      id,
+      id:322,
       amount: monto,
       quantity: quantity,
     });
@@ -26,11 +26,12 @@ const addNewOrder = async (books, userId) => {
     await user.addOrder(newOrder);
 
     for (let i = 0; i < books.length; i++) {
+      let num = 1
       const book = books[i];
-      await BookOrder.create({
-        id,
-        orderId: newOrder.id,
-        bookId: book.id,
+      await BookOrder.create({ 
+        id: 52 + num,
+        OrderId: newOrder.id,
+        BookId: book.id,
         quantity: book.quantity,
       });
     }
