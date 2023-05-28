@@ -15,6 +15,7 @@ import Chart from "./components/Chart/Chart";
 import NotFound from "./components/NotFound/NotFound";
 import Success from "./components/Payment/Success";
 import BooksTable from "./components/BooksTable/BooksTable";
+import ReviewForm from "./components/Reviews/ReviewForm"
 
 
 function App() {
@@ -49,6 +50,7 @@ function App() {
           <Route path="/register" component={Register} />
           <Route path="/profile" component={Profile} />
           <Route path="/success" component={Success} />
+          <Route path="/addreview" component={ReviewForm} />
           <Route component={NotFound} />
         </Switch>
       </div>

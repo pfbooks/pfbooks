@@ -8,6 +8,7 @@ import Reviews from "../Reviews/Reviews";
 import Stars from "../Reviews/Stars";
 import { useCart } from "../../hooks/useCart";
 import { RiShoppingCartLine } from "react-icons/ri";
+import ReviewForm from "../Reviews/ReviewForm";
 
 
 const Detail = () => {
@@ -49,7 +50,6 @@ const Detail = () => {
 
 
     return (
-
         <div>
             <div className={styles.container}>
                 <img src={detail.image} alt={id} className={styles.image}/>
@@ -81,6 +81,10 @@ const Detail = () => {
             </div>
             <div>
                 <Reviews Reviews={detail.Reviews}/> 
+            </div>
+            <div>
+              <h3>Add a new review</h3>
+              <ReviewForm />
             </div>
         </div>
     )
