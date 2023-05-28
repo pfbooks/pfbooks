@@ -16,15 +16,18 @@ export const SORT_REVIEW = "SORT_REVIEW";
 export const ALL_REVIEWS = "ALL_REVIEWS";
 export const CREATE_USER = "CREATE_USER";
 export const LOGIN_FAILURE = "LOGIN_FAILURE";
-export const LOGIN_SUCCESS = "LOGIN_SUCCESS"
+export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
 export const LOGOUT_USER = "LOGOUT_USER";
 export const GET_USER_DATA_FAILURE = "GET_USER_DATA_FAILURE";
-export const GET_USER_DATA_SUCCESS = "GET_USER_DATA_SUCCESS"
+export const GET_USER_DATA_SUCCESS = "GET_USER_DATA_SUCCESS";
 export const SET_USER = 'SET_USER';
-export const GET_USER_BY_ID = "GET_USER_BY_ID"
-export const PUT_PROFILE_IMAGE = "PUT_PROFILE_IMAGE"
+export const GET_USER_BY_ID = "GET_USER_BY_ID";
+export const PUT_PROFILE_IMAGE = "PUT_PROFILE_IMAGE";
+export const GET_USERS = "GET_USERS";
+export const USER_DISABLED = "USER_DISABLED";
+export const UPDATE_USER_DATA = "UPDATE_USER_DATA";
 
-
+const ENDPOINT_ADMIN = "http://localhost:3001/admin";
 const ENDPOINT_BOOKS = "http://localhost:3001/books";
 const ENDPOINT_GENRE = "http://localhost:3001/genre";
 const ENDPOINT_AUTHORS = "http://localhost:3001/authors";
@@ -116,17 +119,39 @@ export function bookByTitle(title) {
 export function userById(id){
     return async (dispatch) => {
         try {
-            const response = await axios.get(`${ENDPOINT_USER}/${id}`)
-            const data = response.data
+            const localStorageUser = JSON.parse(localStorage.getItem('user'))
+            const response = await axios.get(`${ENDPOINT_USER}/${id}`, {
+                headers: {
+                    Authorization: `${localStorageUser.token}`,
+                },
+            })
+            let updatedUser = response.data
+            updatedUser.token = localStorageUser.token
+            localStorage.setItem('user', JSON.stringify(updatedUser))
             dispatch({
                 type: GET_USER_BY_ID,
-                payload: data,
+                payload: updatedUser,
             })
         } catch (error) {
             console.log("User info error:", error)
         }
     }
 }
+
+export const userDisablement = (id, isActive) => {
+    return async (dispatch) => {
+      try {
+        const response = await axios.put(`${ENDPOINT_ADMIN}/enablementUser`, { isActive: !isActive, id });
+        const data = response.data;
+        dispatch({
+          type: USER_DISABLED,
+          payload: data,
+        })
+      } catch (error) {
+        console.log(error.message)
+      }
+    }
+  }
 
 export function putProfileImage(id, imageUrl) {
     return async (dispatch) => {
@@ -289,6 +314,25 @@ export const logoutUser = () => (dispatch) => {
     });
 };
 
+export const getAllUser = () => async (dispatch) =>{
+    try {
+        const user = JSON.parse(localStorage.getItem('user'));
+        const res = await axios.get(`${ENDPOINT_USER}`, {
+            headers: {
+                Authorization: `${user.token}`,
+            },
+        });
+        const UsersData = res.data
+
+        dispatch({
+            type: GET_USERS,
+            payload: UsersData
+        })
+    } catch (error) {
+        console.log(error.message)
+    }
+}
+
 export const getUserData = () => async (dispatch) => {
     try {
         const user = JSON.parse(localStorage.getItem('user'));
@@ -311,6 +355,29 @@ export const getUserData = () => async (dispatch) => {
         });
     }
 };
+
+
+export const updateUserDataById = ( name, lastName, email) => async (dispatch) =>{
+    try {
+        const localStorageUser = JSON.parse(localStorage.getItem("user"));
+        const id = localStorageUser.id;
+        const data = { id, name, lastName, email}
+        console.log("data", data)
+        const res = await axios.put(`${ENDPOINT_USER}/${id}`, data );
+        if (res.status === 200) {
+            const userData = res.data.user;
+            userData.token = localStorageUser.token
+            console.log(userData)
+            localStorage.setItem('user', JSON.stringify(userData))
+            return dispatch({
+                type: UPDATE_USER_DATA,
+                payload: userData,
+            });
+        }
+    } catch (error) {
+            console.log(error.message)
+    }
+}
 
 
 export const loginWhitGoogle = (credential) => async (dispatch) => {

@@ -6,13 +6,14 @@ const path = require("path");
 const fs = require("fs");
 const USERNAME_PLACEHOLDER = "${userName}";
 const getUserById = require('../controllers/getUserById');
+const updateUserById = require("../controllers/updateUserById");
 
 const router = Router();
 
 // GET ALL USER
 router.get('/', async (req, res) => {
     try {
-        validateJWT(req, true)
+        // validateJWT(req, true)
         const users = await User.findAll();
         res.json(users);
     } catch (error) {
@@ -42,6 +43,7 @@ router.post('/', async (req, res) => {
     }
   });
 
+// GET USER BY ID
 router.get('/:id', async(req, res) =>{
     try {
         validateJWT(req)
@@ -56,22 +58,16 @@ router.get('/:id', async(req, res) =>{
     }
 });
 
-//PUT
+//PUT - UPDATE USER BY ID
 router.put('/:id', async (req, res) => {
-    const { id } = req.params;
-    const { name, lastName, email, password, adminRole, image } = req.body;
-    const user = await User.findOne({ where: { id } });
-    if (user) {
-        user.name = name;
-        user.lastName = lastName;
-        user.email = email;
-        user.password = password;
-        user.adminRole = adminRole;
-        user.image = image;
-        await user.save();
-        res.json(user);
-    } else {
-        res.status(404).json({ message: 'User not found' });
+    try {
+        validateJWT(req);
+        const { id, name, lastName, email, password, adminRole, image, isActive } = req.body;
+        const updatedUser = await updateUserById( id, name, lastName, email, password, adminRole, image, isActive)
+        res.status(200).json( updatedUser );
+    }
+    catch (error){
+        res.status(500).json({err: error.message});
     }
 });
 

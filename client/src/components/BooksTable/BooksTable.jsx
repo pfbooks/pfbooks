@@ -38,7 +38,7 @@ const BooksTable = (props) => {
     const dispatch = useDispatch()
     useEffect(()=>{
         dispatch(allBooks())
-    }, [allBooks])
+    }, [dispatch])
 
     const getRowHeight = (params) => {
         

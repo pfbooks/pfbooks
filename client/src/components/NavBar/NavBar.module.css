@@ -2,11 +2,22 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  background-color: #04ab77;
+  height: 80px;
+  padding: 0 20px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+.navAdmin {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   background-color: #ffffff;
   height: 80px;
   padding: 0 20px;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
   background-color: #04ab77;
+  margin-left: 64px;
 }
 
 .divSerchBar {
@@ -14,7 +25,15 @@
   align-items: center;
   justify-content: center;
   margin-left: 170px;
+  margin-right: 20px;
+  border-bottom: none; /* Eliminar el borde inferior */
 }
+
+.divSerchBar a {
+  text-decoration: none;
+  font-size: 50px; /* Ajustar el tamaño de fuente */
+}
+
 
 .logoImg {
   height: fit-content;
@@ -69,7 +88,6 @@
   transform: translateY(0); /* Volver a la posición normal */
 }
 
-
 .dropdownList {
   list-style-type: none;
   margin-top: 10px;
@@ -105,7 +123,6 @@
   margin-left: 10px;
 }
 
-
 .dropdownContent ul {
   list-style: none;
   padding: 0;
@@ -135,6 +152,7 @@
   color: #000;
 }
 
+
 @media screen and (max-width: 767px) {
   .logoImg {
     height: 40px;
@@ -159,6 +177,48 @@
     font-size: 14px;
   }
 }
+/* .aboutButton {
+  display: flex;
+  align-items: center;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  padding: 10px;
+  margin-left: 20px;
+  text-decoration: none !important; /* Asegura que el subrayado se elimine */
+
+
+.aboutButton {
+  color: rgb(15, 15, 15); font-size: 17px; 
+  line-height: 17px; 
+  padding: 7px; 
+  border-radius: 9px; 
+  font-weight: bold;
+  text-decoration: none; 
+  font-variant: normal; 
+  text-transform: none; 
+  border: 2px solid rgb(255, 255, 255); display: inline-block;}
+
+  .aboutButton:hover {
+  background: #c4c5c5; }
+  .aboutButoon:active {
+  background: #c6c8c9; }
+
+.aboutButton span {
+  font-weight: bold; /* Aplica la negrita a las letras dentro del botón */
+}
+
+.aboutButton:hover,
+.aboutButton:focus {
+  text-decoration: none !important; /* Asegura que el subrayado se elimine en el hover y el foco */
+}
+
+
+.aboutLink {
+  text-decoration: none;
+}
+
+
 
 .userContainer {
   display: flex;

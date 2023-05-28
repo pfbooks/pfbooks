@@ -2,8 +2,8 @@ import { storage } from "../../Firebase/firebase";
 import { useState, useRef, useEffect } from "react";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { useDispatch } from "react-redux";
-import { userById, putProfileImage } from "../../redux/actions/actions";
-import { AiOutlineUser, AiOutlineMail } from "react-icons/ai";
+import {userById, putProfileImage, updateUserDataById} from "../../redux/actions/actions";
+import { AiOutlineUser, AiOutlineMail, AiTwotoneEdit, AiOutlineSave } from "react-icons/ai";
 import styles from "./Profile.module.css";
 
 const Profile = () => {
@@ -56,6 +56,24 @@ const Profile = () => {
     setLoading(false);
   };
 
+  const onClickEditUser = (event) =>{
+    const userEmailField = document.getElementById("userProfileEmail");
+    userEmailField.setAttribute("contentEditable", "true");
+    const userFirstnameField = document.getElementById("userProfileFirstName");
+    userFirstnameField.setAttribute("contentEditable", "true");
+    const userLastname= document.getElementById("userProfileLastname");
+    userLastname.setAttribute("contentEditable", "true");
+    document.getElementById("saveUserProfileButton").style.visibility = 'visible'
+  }
+
+  const onClickSave = (event) =>{
+    const userEmailField = document.getElementById("userProfileEmail").innerHTML;
+    const userFirstnameField = document.getElementById("userProfileFirstName").innerHTML;
+    const userLastname= document.getElementById("userProfileLastname").innerHTML;
+    dispatch(updateUserDataById(userFirstnameField,userLastname,userEmailField));
+    alert("Cambios guardados correctamente");
+  }
+
   return (
     <div className={styles.profile}>
       {user ? (
@@ -79,22 +97,45 @@ const Profile = () => {
               Seleccionar foto de perfil
             </button>
           </div>
+
           <div className={styles.userInfoContainer}>
-            <div className={styles.userInfoItem}>
-              <span className={styles.icon}><AiOutlineUser /></span>
-              <p className={styles.userInfoLabel}>Nombre:</p>
-              <p className={styles.userInfoValue}><span>&nbsp;</span>{user.name}</p>
+
+            <div className={styles.divName}>
+              <div className={styles.userInfoItem}>
+                <span className={styles.icon}><AiOutlineUser /></span>
+                <p className={styles.userInfoLabel}>Nombre:</p>
+                <span>&nbsp;</span>
+                <p id="userProfileFirstName" className={styles.userInfoValue}>{user.name}</p>
+              </div>
             </div>
+
+            <div className={styles.divName}>
             <div className={styles.userInfoItem}>
               <span className={styles.icon}><AiOutlineUser /></span>
               <p className={styles.userInfoLabel}>Apellido: </p>
-              <p className={styles.userInfoValue}><span>&nbsp;</span>{user.lastName}</p>
+              <span>&nbsp;</span>
+              <p id="userProfileLastname" className={styles.userInfoValue}>{user.lastName}</p>
             </div>
+            </div>
+
+            <div className={styles.divName}>
             <div className={styles.userInfoItem}>
               <span className={styles.icon}><AiOutlineMail /></span>
               <p className={styles.userInfoLabel}>Email: </p>
-              <p className={styles.userInfoValue}><span>&nbsp;</span>{user.email}</p>
+              <span>&nbsp;</span>
+              <p id="userProfileEmail" className={styles.userInfoValue}>{user.email}</p>
             </div>
+            </div>
+
+            <div className={styles.divButtons}>
+              <button className={styles.editButton} placeholder={"edit"} onClick={onClickEditUser}>
+                <AiTwotoneEdit/> Editar
+              </button>
+              <button id="saveUserProfileButton" className={styles.saveButton} placeholder={"Guardar"} onClick={onClickSave}>
+                <AiOutlineSave/> Guardar Cambios
+              </button>
+            </div>
+
           </div>
         </>
       ) : (
