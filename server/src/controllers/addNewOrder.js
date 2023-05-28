@@ -1,101 +1,91 @@
 const { Order, User, BookOrder } = require("../db");
-const { conn } = require('../db.js');
-const { QueryTypes } = require("sequelize");
 
-const addNewOrder = async (amount, quantity, books, user) => {
+const addNewOrder = async (books, userId) => {
   try {
-    // Crear una nueva orden
+    console.log(books);
+    console.log(userId)
+
+    const quantity = books.reduce((acc, book) => acc + book.quantity, 0);
+    console.log(`la cantidad es de ${quantity}`);
+    let monto = 0;
+
+    books.forEach((book) => {
+      monto += book.quantity * book.unit_price;
+    });
+    console.log(`el monto es de ${monto}`);
+    
+    const user = await User.findByPk(userId);
+    console.log(user);
+    
     const newOrder = await Order.create({
       id,
-      amount,
-      quantity,
+      amount: monto,
+      quantity: quantity,
     });
 
-    // Asociar el usuario a la orden
-    await newOrder.addUser(user);
+    await user.addOrder(newOrder);
 
-    // Verificar si hay libros repetidos en la orden
-    const bookCounts = {};
-    books.forEach((book) => {
-      const bookId = book.id;
-      bookCounts[bookId] = bookCounts[bookId] ? bookCounts[bookId] + 1 : 1;
-    });
-
-    // Asociar los libros a la orden o incrementar la cantidad si ya existen
     for (let i = 0; i < books.length; i++) {
       const book = books[i];
-      const bookId = book.id;
-
-      if (bookCounts[bookId] > 1) {
-        // Incrementar la cantidad del libro en la orden existente
-        await BookOrder.increment(
-          { quantity: bookCounts[bookId] },
-          {
-            where: {
-              orderId: newOrder.id,
-              bookId: bookId,
-            },
-          }
-        );
-      } else {
-        // Crear una nueva entrada en BookOrder para el libro
-        await BookOrder.create({
-          orderId: newOrder.id,
-          bookId: bookId,
-          quantity: 1,
-        });
-      }
+      await BookOrder.create({
+        id,
+        orderId: newOrder.id,
+        bookId: book.id,
+        quantity: book.quantity,
+      });
     }
 
     return newOrder;
   } catch (error) {
-    throw new Error("No se pudo crear correctamente la orden");
+    console.log(error);
   }
 };
 
 module.exports = addNewOrder;
 
 // const { Order, User, BookOrder } = require("../db");
-// const { conn } = require('../db.js')
-// const {QueryTypes} = require("sequelize");
 
-// const addNewOrder = async ( amount, quantity, book, user) => {
+// const addNewOrder = async ( books, userId) => {
 
-//     const addBooks = (book) => {
-//         const orderBooks = [];
-//         const aux = 0;
+//   try {
+//     console.log(books)
+//     console.log(userId)
 
-//         for(let i = book[0].id ; i = book.length; i++) {
-//             aux = book.id;
-//             if()
-//             orderBooks.push(book[i])
+//     const quantity = books.reduce((acc, book) => acc + book.quantity, 0)
+//     console.log(`la cantidad es de ${quantity}`);
+//     let monto = 0
+//     books.forEach(book => {
+//       monto += book.quantity * book.unit_price;
+//     })
+
+//     console.log(`el monto es de ${monto}`)
+//     // Crear una nueva orden
+//     const user = await User.findByPk(userId)
+//     console.log(user);
+
+//     await user.createOrder({
+//           amount: monto,
+//           quantity: quantity,
+//         });
+
+//         const newOrder = await user.getOrder()
+//         console.log(newOrder)
+
+//         // Asociar el usuario a la orden
+//         await newOrder.addUser(user)
+//         for( let book of books){
+//           await BookOrder.create({
+//             OrderId: newOrder.id,
+//             BookId: book.id,
+//             quantity: book.quantity,
+//           });
+
 //         }
-//     } ;
 
-//     try {
-//         const maxId = await conn.query(
-//             'SELECT max(id) AS id FROM "Orders"',
-//             {
-//                 type: QueryTypes.SELECT
-//             })
-//         const id = maxId[0].id + 1
-//         const newOrder = await Order.create({
-//             id,
-//             amount, 
-//             quantity,
-//             user: [{id: user.id}],
-//             orderBooks: [] 
-//         }, {
-//             include: "users",
-//             include: "bookOrders"
-//         }
-//         );
-//         return newOrder
-//     }
-//     catch (error){
-//         throw new Error("No se pudo crear correctamente")
-
-//     }
+//     return newOrder;
+//   } catch (error) {
+//     throw new Error(error.message);
+//   }
 // };
 
 // module.exports = addNewOrder;
