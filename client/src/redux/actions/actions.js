@@ -25,6 +25,7 @@ export const GET_USER_BY_ID = "GET_USER_BY_ID";
 export const PUT_PROFILE_IMAGE = "PUT_PROFILE_IMAGE";
 export const GET_USERS = "GET_USERS";
 export const USER_DISABLED = "USER_DISABLED";
+export const UPDATE_USER_DATA = "UPDATE_USER_DATA";
 
 const ENDPOINT_ADMIN = "http://localhost:3001/admin";
 const ENDPOINT_BOOKS = "http://localhost:3001/books";
@@ -151,6 +152,7 @@ export const userDisablement = (id, isActive) => {
       }
     }
   }
+
 export function putProfileImage(id, imageUrl) {
     return async (dispatch) => {
       try {
@@ -353,6 +355,29 @@ export const getUserData = () => async (dispatch) => {
         });
     }
 };
+
+
+export const updateUserDataById = ( name, lastName, email) => async (dispatch) =>{
+    try {
+        const localStorageUser = JSON.parse(localStorage.getItem("user"));
+        const id = localStorageUser.id;
+        const data = { id, name, lastName, email}
+        console.log("data", data)
+        const res = await axios.put(`${ENDPOINT_USER}/${id}`, data );
+        if (res.status === 200) {
+            const userData = res.data.user;
+            userData.token = localStorageUser.token
+            console.log(userData)
+            localStorage.setItem('user', JSON.stringify(userData))
+            return dispatch({
+                type: UPDATE_USER_DATA,
+                payload: userData,
+            });
+        }
+    } catch (error) {
+            console.log(error.message)
+    }
+}
 
 
 export const loginWhitGoogle = (credential) => async (dispatch) => {

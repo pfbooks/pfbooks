@@ -79,9 +79,9 @@ const Home = () => {
                 </select>
             </div>
 
-            <CardsContainer
-                books={currentBooks}
-            />
+            {currentBooks.length > 0 ?
+                <CardsContainer books={currentBooks}/> :
+                <div className={styles.divNoMach}> No se encontraron resultados para tu búsqueda </div>}
             <Paginado size={size} handlePageChange={handlePageChange} currentPage={currentPage}/>
 
             </div>

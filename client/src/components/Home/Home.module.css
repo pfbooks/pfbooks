@@ -31,6 +31,20 @@
     margin-bottom: 2rem;
 }
 
+.divNoMach {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    /*font-weight: bold;*/
+    margin-left: 40rem;
+    margin-top: 4rem;
+    margin-bottom: 4rem;
+    padding: 1rem;
+    background-color: whitesmoke;
+    width: 30%;
+}
+
 /* .home-container {
     margin: 0 auto;
     padding: 40px;
