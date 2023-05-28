@@ -9,34 +9,35 @@ const Success = () => {
   const user = JSON.parse(window.localStorage.getItem("user"))
   const obj = {
     userId: user.id,
-    // books: cart
-    books: [
-      {
-        image:
-          "https://www.gutenberg.org/cache/epub/394/pg394.cover.medium.jpg",
-        id: 394,
-        title: "Cranford",
-        unit_price: 60,
-        quantity: 2,
-      },
-      {
-        image:
-          "https://www.gutenberg.org/cache/epub/6761/pg6761.cover.medium.jpg",
-        id: 6761,
-        title: "The Adventures of Ferdinand Count Fathom — Complete",
-        unit_price: 187,
-        quantity: 3,
-      },
-      {
-        image:
-          "https://www.gutenberg.org/cache/epub/2160/pg2160.cover.medium.jpg",
-        id: 2160,
-        title: "The Expedition of Humphry Clinker",
-        unit_price: 136,
-        quantity: 1,
-      },
-    ],
+    books: cart
   };
+  //   books: [
+  //     {
+  //       image:
+  //         "https://www.gutenberg.org/cache/epub/394/pg394.cover.medium.jpg",
+  //       id: 394,
+  //       title: "Cranford",
+  //       unit_price: 60,
+  //       quantity: 2,
+  //     },
+  //     {
+  //       image:
+  //         "https://www.gutenberg.org/cache/epub/6761/pg6761.cover.medium.jpg",
+  //       id: 6761,
+  //       title: "The Adventures of Ferdinand Count Fathom — Complete",
+  //       unit_price: 187,
+  //       quantity: 3,
+  //     },
+  //     {
+  //       image:
+  //         "https://www.gutenberg.org/cache/epub/2160/pg2160.cover.medium.jpg",
+  //       id: 2160,
+  //       title: "The Expedition of Humphry Clinker",
+  //       unit_price: 136,
+  //       quantity: 1,
+  //     },
+  //   ],
+  // };
   useEffect(() => {
     const axiosFunc = async() =>{
       await axios.post('http://localhost:3001/order/add', obj)

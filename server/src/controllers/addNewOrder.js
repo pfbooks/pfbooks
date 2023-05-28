@@ -18,7 +18,6 @@ const addNewOrder = async (books, userId) => {
     console.log(user);
     
     const newOrder = await Order.create({
-      id:322,
       amount: monto,
       quantity: quantity,
     });
@@ -26,10 +25,8 @@ const addNewOrder = async (books, userId) => {
     await user.addOrder(newOrder);
 
     for (let i = 0; i < books.length; i++) {
-      let num = 1
       const book = books[i];
-      await BookOrder.create({ 
-        id: 52 + num,
+      await BookOrder.create({
         OrderId: newOrder.id,
         BookId: book.id,
         quantity: book.quantity,
