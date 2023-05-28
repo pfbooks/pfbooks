@@ -5,7 +5,7 @@ import login from "./login.png";
 import Search from "../Search/Search";
 import { Link, useHistory } from "react-router-dom";
 import { useLocation } from "react-router-dom";
-import { logoutUser } from "../../redux/actions/actions";
+import {allBooks, logoutUser} from "../../redux/actions/actions";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { FaUser } from "react-icons/fa";
@@ -55,11 +55,15 @@ const NavBar = () => {
     history.push('/')
   };
 
+  const refreshBooks = (event) => {
+    dispatch(allBooks());
+  }
+
   const showAbout = location.pathname === "/";
 
   return (
     <nav className={navClass}>
-      <Link to= "/">
+      <Link to= "/" onClick={refreshBooks}>
         <img className={styles.logoImg} src={logo} alt="Logo" />
       </Link>
      
