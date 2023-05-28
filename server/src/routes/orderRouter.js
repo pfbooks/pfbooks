@@ -23,7 +23,7 @@ orderRouter.get("/", async (req, res) => {
 /// RUTA GET ORDER BY ID
 orderRouter.get("/:orderId",async (req, res) => {
     try {
-        validateJWT(req, true);
+        // validateJWT(req, true);
         const { orderId } = req.params;
         const orderById = await getOrderById(orderId);
 
