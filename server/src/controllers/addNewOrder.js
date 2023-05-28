@@ -29,8 +29,8 @@ const addNewOrder = async (books, userId) => {
       const book = books[i];
       await BookOrder.create({
         id,
-        OrderId: newOrder.id,
-        BookId: book.id,
+        orderId: newOrder.id,
+        bookId: book.id,
         quantity: book.quantity,
       });
     }
