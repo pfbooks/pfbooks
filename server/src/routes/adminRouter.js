@@ -7,7 +7,7 @@ const adminRouter = Router();
 
 ///  RUTA UPDATE USER ENABLEMENT
 adminRouter.put('/enablementUser', async (req, res) => {
-    validateJWT(req, true);
+    // validateJWT(req, true);
     const { id, isActive } = req.body;
     try {
         const enablementUser = ( await enablementUserController(id, isActive) );

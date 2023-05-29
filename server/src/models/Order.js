@@ -5,14 +5,13 @@ module.exports = (sequelize) => {
     sequelize.define('Order', {
             id: {
                 type: DataTypes.INTEGER,
-                autoincrement: true,
+                autoIncrement: true,
                 allowNull: false,
                 primaryKey: true,
 
             },
-
             amount: {
-                type: DataTypes.REAL,
+                type: DataTypes.INTEGER,
                 allowNull: false
             },
 

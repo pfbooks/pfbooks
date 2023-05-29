@@ -59,6 +59,8 @@
   border-radius: 4px;
   cursor: pointer;
   transition: background-color 0.3s ease;
+  position: absolute;
+  bottom: 0;
 }
 
 .ButtonText {
@@ -81,73 +83,81 @@
 }
 
 .cardContainer img {
-  max-width: 90%;
-  height: auto;
-  margin-top: 10px;
-  margin-left: 25px;
-  margin-right: 10px;
-  margin-bottom: 10px;
-  width: 200px;
-  height: 280px;
+
+  /*max-width: 266px;*/
+  /*min-width: 200px;*/
+  /*width:266px;*/
+  /*height:200px;*/
+  /*align-content: center;*/
+  /*border-radius: 5px;*/
+  /*margin: 2rem 1rem 2rem 1rem;*/
+  /*image-rendering: -webkit-optimize-contrast;*/
+  max-height: 300px;
+  align-content: center;
   border-radius: 5px;
+  /* padding: 1rem; */
+  margin: 1rem;
+  image-rendering: -webkit-optimize-contrast;
+
 }
 
 .textContainer {
   text-align: center;
   margin-top: 10px;
+  margin-bottom: 5rem;
 }
 
 .textContainer p {
-  font-size: 1.2rem;
-  font-weight: bold;
-  margin-bottom: 5px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+font-size: 1.2rem;
+font-weight: bold;
+margin-bottom: 5px;
+white-space: nowrap;
+overflow: hidden;
+text-overflow: ellipsis;
 }
 
 .ratingContainer {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 10px;
+display: flex;
+justify-content: center;
+align-items: center;
+margin-top: 10px;
 }
 
 .ratingContainer span {
-  font-size: 1.5rem;
-  margin-right: 5px;
+font-size: 1.5rem;
+margin-right: 5px;
 }
 
 .starContainer {
-  display: inline-flex;
+display: inline-flex;
 }
 
 .star {
-  display: inline-block;
-  width: 20px;
-  height: 20px;
-  margin-right: 5px;
-  font-family: "star";
-  color: black;
+display: inline-block;
+width: 20px;
+height: 20px;
+margin-right: 5px;
+font-family: "star";
+color: black;
 }
 
 .fullStar {
-  display: inline-block;
-  width: 20px;
-  height: 20px;
-  margin-right: 5px;
-  font-family: "star";
-  color: #fa9703;
+display: inline-block;
+width: 20px;
+height: 20px;
+margin-right: 5px;
+font-family: "star";
+color: #fa9703;
 }
 
 .star:before {
-  content: "★";
+content: "★";
 }
 
 .fullStar:before {
-  content: "★";
+content: "★";
 }
 
 .AddToCartButton:hover {
-  background-color: #117253;
+background-color: #117253;
 }

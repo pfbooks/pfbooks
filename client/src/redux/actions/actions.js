@@ -25,8 +25,11 @@ export const GET_USER_BY_ID = "GET_USER_BY_ID";
 export const PUT_PROFILE_IMAGE = "PUT_PROFILE_IMAGE";
 export const GET_USERS = "GET_USERS";
 export const USER_DISABLED = "USER_DISABLED";
+export const UPDATE_USER_DATA = "UPDATE_USER_DATA";
+export const UPDATE_BOOK = "UPDATE_BOOK"
 
 
+const ENDPOINT_ADMIN = "http://localhost:3001/admin";
 const ENDPOINT_BOOKS = "http://localhost:3001/books";
 const ENDPOINT_GENRE = "http://localhost:3001/genre";
 const ENDPOINT_AUTHORS = "http://localhost:3001/authors";
@@ -137,10 +140,10 @@ export function userById(id){
     }
 }
 
-export const userDisablement = (id) => {
+export const userDisablement = (id, isActive) => {
     return async (dispatch) => {
       try {
-        const response = await axios.put(`${ENDPOINT_USER}/disable/${id}`, { isActive: false });
+        const response = await axios.put(`${ENDPOINT_ADMIN}/enablementUser`, { isActive: !isActive, id });
         const data = response.data;
         dispatch({
           type: USER_DISABLED,
@@ -151,6 +154,18 @@ export const userDisablement = (id) => {
       }
     }
   }
+
+export function updateBook(book) {
+    return async (dispatch) => {
+        await axios.put(`${ENDPOINT_BOOKS}/update`, book).then(result  => {
+            return dispatch({
+                type: UPDATE_BOOK,
+                payload: result.data
+            })
+        })
+    }
+}
+
 export function putProfileImage(id, imageUrl) {
     return async (dispatch) => {
       try {
@@ -353,6 +368,29 @@ export const getUserData = () => async (dispatch) => {
         });
     }
 };
+
+
+export const updateUserDataById = ( name, lastName, email) => async (dispatch) =>{
+    try {
+        const localStorageUser = JSON.parse(localStorage.getItem("user"));
+        const id = localStorageUser.id;
+        const data = { id, name, lastName, email}
+        console.log("data", data)
+        const res = await axios.put(`${ENDPOINT_USER}/${id}`, data );
+        if (res.status === 200) {
+            const userData = res.data.user;
+            userData.token = localStorageUser.token
+            console.log(userData)
+            localStorage.setItem('user', JSON.stringify(userData))
+            return dispatch({
+                type: UPDATE_USER_DATA,
+                payload: userData,
+            });
+        }
+    } catch (error) {
+            console.log(error.message)
+    }
+}
 
 
 export const loginWhitGoogle = (credential) => async (dispatch) => {

@@ -1,4 +1,4 @@
-import { useEffect } from "react"
+import { useEffect, } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { getAllUser, userDisablement } from "../../redux/actions/actions"
 import { DataGrid } from "@mui/x-data-grid"
@@ -6,6 +6,19 @@ import { DataGrid } from "@mui/x-data-grid"
 
 const UsersTable = () => {
     const dispatch = useDispatch()
+
+    const handleCheckbox = (event, user) => {
+        console.log(event.target.checked)
+        console.log(user)
+        console.log(event.target.value)
+
+        let value;
+        if(event.target.checked) value = false
+        else value = true
+        dispatch(userDisablement(user.id, value))
+        dispatch(getAllUser())
+
+    }
     
     useEffect(()=>{
         dispatch(getAllUser())
@@ -28,8 +41,8 @@ const UsersTable = () => {
         { field: 'lastName', headerName: 'LastName', width: 240 },
         { field: 'email', headerName: 'Email', width: 160 },
         { field: 'adminRole', headerName: 'Admin', width: 100},
-        { field: 'isActive', headerName: 'IsActive', type: "boolean", width: 100, renderCell: () => (
-            <input type='checkbox'/>
+        { field: 'isActive', headerName: 'IsActive', type: "boolean", width: 100, renderCell: (params) => (
+            <input type='checkbox' checked={params.row.isActive} onChange={(event) => handleCheckbox(event, params.row)} value={params.row.name}/>
         ) }
       ];
     

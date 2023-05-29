@@ -44,7 +44,7 @@ bookRouter.get("/:bookId",async (req, res) => {
 
 /// RUTA UPDATE BOOK
 bookRouter.put('/update',async (req, res) => {
-    validateJWT(req, true);
+    // validateJWT(req, true);
     const { id, title, author, price, image, genre, rating, stock, description } = req.body;
     try {
         const enablementUser = ( await updateBookById(id, title, author, price, image, genre, rating, stock, description) );
