@@ -24,9 +24,12 @@ const Filters = ({ handlePageChange }) => {
   const handleFilter = (event) => {
     if (event.target.name === 'genre' && event.target.value !== 'All') {
       setGenre(event.target.value);
+      dispatch(allAuthors(event.target.value));
+      //setAuthor('');
     }
     if (event.target.name === 'author' && event.target.value !== 'All') {
       setAuthor(event.target.value);
+      dispatch(allGenre(event.target.value))
     }
     setOrder(event.target.value + order);
     handlePageChange(1);
@@ -34,6 +37,8 @@ const Filters = ({ handlePageChange }) => {
 
   const handleAllBooks = () => {
     dispatch(allBooks());
+    dispatch(allGenre());
+    dispatch(allAuthors());
     setGenre('');
     setAuthor('');
   };
