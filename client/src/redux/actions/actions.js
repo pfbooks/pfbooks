@@ -363,7 +363,12 @@ export const updateUserDataById = ( name, lastName, email) => async (dispatch) =
         const id = localStorageUser.id;
         const data = { id, name, lastName, email}
         console.log("data", data)
-        const res = await axios.put(`${ENDPOINT_USER}/${id}`, data );
+        const res = await axios.put(`${ENDPOINT_USER}/${id}`, data,{
+            headers: {
+                Authorization: localStorageUser.token,
+            },
+        });
+
         if (res.status === 200) {
             const userData = res.data.user;
             userData.token = localStorageUser.token

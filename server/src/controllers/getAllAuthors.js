@@ -2,9 +2,13 @@ const { QueryTypes } = require('sequelize');
 const { conn } = require('../db.js')
 
 
-const getAllAuthors =  async ()  => {
+const getAllAuthors =  async (genre)  => {
+    let query = 'SELECT distinct author FROM "Books"'
+    if(genre) {
+        query += ` WHERE genre @> '{"${genre}"}'`;
+    }
     const authors = await conn.query(
-        'SELECT distinct author FROM "Books"',
+        query ,
         {
             type: QueryTypes.SELECT
         }
