@@ -1,17 +1,31 @@
 import React, { useState } from "react";
 import { FaStar } from "react-icons/fa";
 import styles from "./ReviewForm.module.css";
+import { createReview } from "../../redux/actions/actions";
+import { useDispatch } from "react-redux";
+import Stars from "./Stars";
 
-const ReviewForm = () => {
+const ReviewForm = ({ bookId, user }) => {
   const [rating, setRating] = useState(0);
   const [comment, setComment] = useState("");
+  const dispatch = useDispatch();
 
   const handleStarHover = (star) => {
-    setRating(star);
+    const rat = star !== 0 ? star : 0; // Si star es 0, establece el rating en 0, de lo contrario, usa el valor de star
+    const stars = document.getElementsByClassName(styles["star-icon"]);
+  
+    for (let i = 0; i < stars.length; i++) {
+      if (i < rat) {
+        stars[i].classList.add(styles["star-icon-filled"]);
+      } else {
+        stars[i].classList.remove(styles["star-icon-filled"]);
+      }
+    }
   };
 
   const handleStarClick = (star) => {
     setRating(star);
+    console.log("Rating", star)
   };
 
   const handleCommentChange = (event) => {
@@ -20,8 +34,15 @@ const ReviewForm = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    // Lógica para enviar la review al servidor
-    // Aquí puedes utilizar el estado 'rating' y 'comment' para enviar los datos correspondientes
+    console.log(rating)
+    const reviewData = {
+      bookId: bookId,
+      rating: rating,
+      comment: comment,
+      userName: user.name,
+    };
+     console.log(reviewData)
+    dispatch(createReview(reviewData));
   };
 
   return (
@@ -29,19 +50,19 @@ const ReviewForm = () => {
       <h2 className={styles["form-title"]}>Deja tu review</h2>
 
       <div className={styles["rating-section"]}>
-        {[1, 2, 3, 4, 5].map((star) => (
+        {[1, 2, 3, 4, 5].map((star, index) => (
           <FaStar
-            key={star}
+            key={index}
             className={
-              star <= rating
-                ? styles["star-icon-filled"]
-                : styles["star-icon"]
+              star <= rating ? styles["star-icon-filled"] : styles["star-icon"]
             }
+            value={star}
             onMouseEnter={() => handleStarHover(star)}
             onMouseLeave={() => handleStarHover(0)}
             onClick={() => handleStarClick(star)}
           />
         ))}
+      
       </div>
 
       <div className={styles["comment-section"]}>

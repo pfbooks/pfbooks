@@ -21,7 +21,6 @@ const StyledFaStar = styled(FaStar)`
 const Stars = ({ rating }) => {
   const ratingStars = Array.from({ length: 5 }, (elem, index) => {
     let number = index + 0.5;
-
     return (
       <span key={index}>
         {rating >= index + 1 ? (
@@ -34,7 +33,6 @@ const Stars = ({ rating }) => {
       </span>
     );
   });
-
   return <div>{ratingStars}</div>;
 };
 

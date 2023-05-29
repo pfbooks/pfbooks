@@ -18,7 +18,7 @@ import UsersTable from "./components/UsersTable/UsersTable";
 import OrdersTable from "./components/OrdersTable/OrdersTable";
 import { useSelector } from "react-redux";
 import ReviewForm from "./components/Reviews/ReviewForm"
-
+import  ShopList  from "./components/ShopList/ShopList";
 
 function App() {
   const user = useSelector((state)=> state.user)
@@ -46,6 +46,7 @@ function App() {
           <Route path='/orders' component={OrdersTable} />
           <Route exact path="/" component={Home} />
           {/* <Route path="/login" component={Form} /> */}
+          <Route path="/shop/:userId" component={ShopList} />
           <Route path="/detail/:id" component={Detail} />
           <Route path="/register" component={Register} />
           <Route path="/login" component={LoginForm} />
