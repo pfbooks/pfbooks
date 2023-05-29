@@ -18,3 +18,9 @@
     margin-bottom: 10px;
     margin-left: 1200px;
 }
+
+.container {
+    height: 100%; 
+    width: 100%; 
+    margin-left: 64px;
+}

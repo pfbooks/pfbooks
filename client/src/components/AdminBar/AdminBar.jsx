@@ -1,11 +1,6 @@
-import React, { useState } from "react";
+import * as React from "react";
 import { Link } from "react-router-dom";
-import {
-  styled,
-  useTheme,
-  ThemeProvider,
-  createTheme,
-} from "@mui/material/styles";
+import { styled, useTheme } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import MuiDrawer from "@mui/material/Drawer";
 import Toolbar from "@mui/material/Toolbar";
@@ -24,6 +19,27 @@ import MenuBookIcon from "@mui/icons-material/MenuBook";
 
 const drawerWidth = 180;
 
+const openedMixin = (theme) => ({
+  width: drawerWidth,
+  transition: theme.transitions.create("width", {
+    easing: theme.transitions.easing.sharp,
+    duration: theme.transitions.duration.enteringScreen,
+  }),
+  overflowX: "hidden",
+});
+
+const closedMixin = (theme) => ({
+  transition: theme.transitions.create("width", {
+    easing: theme.transitions.easing.sharp,
+    duration: theme.transitions.duration.leavingScreen,
+  }),
+  overflowX: "hidden",
+  width: `calc(${theme.spacing(7)} + 1px)`,
+  [theme.breakpoints.up("sm")]: {
+    width: `calc(${theme.spacing(8)} + 1px)`,
+  },
+});
+
 const DrawerHeader = styled("div")(({ theme }) => ({
   display: "flex",
   alignItems: "center",
@@ -40,128 +56,98 @@ const Drawer = styled(MuiDrawer, {
   flexShrink: 0,
   whiteSpace: "nowrap",
   boxSizing: "border-box",
-  transition: theme.transitions.create("width", {
-    easing: theme.transitions.easing.sharp,
-    duration: theme.transitions.duration.leavingScreen,
-  }),
   ...(open && {
-    width: "100%",
-    transition: theme.transitions.create("width", {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.enteringScreen,
-    }),
+    ...openedMixin(theme),
+    "& .MuiDrawer-paper": openedMixin(theme),
+  }),
+  ...(!open && {
+    ...closedMixin(theme),
+    "& .MuiDrawer-paper": closedMixin(theme),
   }),
 }));
 
-const theme = createTheme({
-  components: {
-    MuiBox: {
-      styleOverrides: {
-        root: {
-          marginLeft: drawerWidth,
-        },
-      },
-    },
-  },
-});
-
 const AdminBar = () => {
   const theme = useTheme();
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = React.useState(false);
 
-  const handleMouseEnter = () => {
-    setOpen(true);
-  };
-
-  const handleMouseLeave = () => {
-    setOpen(false);
+  const handleDrawerOpen = () => {
+    setOpen(!open);
   };
 
   return (
-    <ThemeProvider theme={theme}>
-      <Box sx={{ display: "flex" }}>
-        <CssBaseline />
-        <Toolbar>
-          <IconButton
-            color="inherit"
-            aria-label="open drawer"
-            onMouseEnter={handleMouseEnter}
-            onMouseLeave={handleMouseLeave}
-            sx={{
-              marginRight: 5,
-              ...(open && { display: "none" }),
-            }}
-          >
-            <MenuIcon />
-          </IconButton>
-        </Toolbar>
-        <Drawer
-          variant="permanent"
-          open={open}
-          onMouseEnter={handleMouseEnter}
-          onMouseLeave={handleMouseLeave}
+    <Box sx={{ display: "flex" }}>
+      <CssBaseline />
+      <Toolbar>
+        <IconButton
+          color="inherit"
+          aria-label="open drawer"
+          onClick={handleDrawerOpen}
+          edge="start"
+          sx={{
+            marginRight: 5,
+            ...(open && { display: "none" }),
+          }}
         >
-          <DrawerHeader>
-            <IconButton onClick={handleMouseLeave}>
-              {theme.direction === "rtl" ? (
-                <ChevronRightIcon />
-              ) : (
-                <ChevronLeftIcon />
-              )}
-            </IconButton>
-          </DrawerHeader>
-          <List>
-            {[
-              {
-                text: "Users",
-                color: "green",
-                icon: <PersonIcon />,
-                path: "/users",
-              },
-              { text: "Books", icon: <MenuBookIcon />, path: "/books" },
-              { text: "Orders", icon: <ReceiptLongIcon />, path: "/orders" },
-            ].map((item, index) => (
-              <ListItem
-                key={item.text}
-                disablePadding
-                sx={{ display: "block" }}
+          <MenuIcon />
+        </IconButton>
+      </Toolbar>
+      <Drawer variant="permanent" open={open}>
+        <DrawerHeader>
+          <IconButton onClick={handleDrawerOpen}>
+            {theme.direction === "rtl" ? (
+              <ChevronRightIcon />
+            ) : (
+              <ChevronLeftIcon />
+            )}
+          </IconButton>
+        </DrawerHeader>
+        <List>
+          {[
+            {
+              text: "Users",
+              color: "green",
+              icon: <PersonIcon />,
+              path: "/users",
+            },
+            { text: "Books", icon: <MenuBookIcon />, path: "/books" },
+            { text: "Orders", icon: <ReceiptLongIcon />, path: "/orders" },
+          ].map((item, index) => (
+            <ListItem key={item.text} disablePadding sx={{ display: "block" }}>
+              <Link
+                to={item.path}
+                style={{ textDecoration: "none", color: "inherit" }}
               >
-                <Link
-                  to={item.path}
-                  style={{ textDecoration: "none", color: "inherit" }}
+                <ListItem
+                  button
+                  sx={{
+                    minHeight: 48,
+                    justifyContent: open ? "initial" : "center",
+                    px: 2.5,
+                  }}
                 >
-                  <ListItem
-                    button
+                  <ListItemIcon
                     sx={{
-                      minHeight: 48,
-                      justifyContent: open ? "initial" : "center",
-                      px: 2.5,
+                      minWidth: 0,
+                      mr: open ? 3 : "auto",
+                      justifyContent: "center",
                     }}
                   >
-                    <ListItemIcon
-                      sx={{
-                        minWidth: 0,
-                        mr: open ? 3 : "auto",
-                        justifyContent: "center",
-                      }}
-                    >
-                      {item.icon}
-                    </ListItemIcon>
-                    <ListItemText
-                      primary={item.text}
-                      sx={{ opacity: open ? 1 : 0 }}
-                    />
-                  </ListItem>
-                </Link>
-              </ListItem>
-            ))}
-          </List>
-        </Drawer>
-        <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
-          <DrawerHeader />
-        </Box>
+                    {item.icon}
+                  </ListItemIcon>
+                  <ListItemText
+                    primary={item.text}
+                    sx={{ opacity: open ? 1 : 0 }}
+                  />
+                </ListItem>
+              </Link>
+            </ListItem>
+          ))}
+        </List>
+      </Drawer>
+      <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
+        <DrawerHeader />
       </Box>
-    </ThemeProvider>
+    </Box>
   );
 };
 
