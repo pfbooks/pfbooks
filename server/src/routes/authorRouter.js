@@ -6,7 +6,8 @@ const authorRouter = Router();
 /// RUTA GET ALL AUTHORS
 authorRouter.get("/", async (req, res) => {
     try {
-        const authors = (await getAllAuthors()).map(author => author.author);
+        const {genre} = req.query;
+        const authors = (await getAllAuthors(genre)).map(author => author.author);
         res.status(200).json(authors);
     }
 
