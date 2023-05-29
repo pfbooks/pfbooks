@@ -17,7 +17,8 @@ import {
     PUT_PROFILE_IMAGE,
     GET_USERS,
     USER_DISABLED,
-    UPDATE_USER_DATA
+    UPDATE_USER_DATA,
+    ORDER_BY_USER
 } from "../actions/actions";
 import {
     CREATE_USER,
@@ -39,6 +40,7 @@ const initialState = {
     users: [],
     isLoading: false,
     error: null,
+    orderByUser: []
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -257,6 +259,11 @@ const rootReducer = (state = initialState, action) => {
             return {
                 ...state,
                 users: action.payload
+            }
+        case ORDER_BY_USER:
+            return {
+                ...state,
+                orderByUser: action.payload
             }
 
         default:

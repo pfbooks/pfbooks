@@ -26,6 +26,8 @@ export const PUT_PROFILE_IMAGE = "PUT_PROFILE_IMAGE";
 export const GET_USERS = "GET_USERS";
 export const USER_DISABLED = "USER_DISABLED";
 export const UPDATE_USER_DATA = "UPDATE_USER_DATA";
+export const ORDER_BY_USER = "ORDER_BY_USER";
+
 
 const ENDPOINT_ADMIN = "http://localhost:3001/admin";
 const ENDPOINT_BOOKS = "http://localhost:3001/books";
@@ -36,6 +38,7 @@ const ENDPOINT_LOGIN = "http://localhost:3001/login";
 const ENDPOINT_LOGIN_WHIT_GOOGLE = "http://localhost:3001/login/google"
 const API_URL = ''
 const ENDPOINT_REVIEW = "http://localhost:3001/reviews";
+const ENDPOINT_ORDER_BY_USER = "http://localhost:3001/order/by-user-id/";
 
 
 export function allBooks() {
@@ -404,3 +407,20 @@ export const loginWhitGoogle = (credential) => async (dispatch) => {
         });
     }
 };
+
+
+export function orderByIdUser(userId) {
+    return async (dispatch) => {
+        try {
+            const response = await axios.get(`${ENDPOINT_ORDER_BY_USER}/by-user-id/${userId}`);
+            const data = response.data;
+            dispatch({
+                type: ORDER_BY_USER,
+                payload: data,
+            });
+        } catch (error) {
+            console.log("orderByUser:", error);
+        }
+    };
+}
+
