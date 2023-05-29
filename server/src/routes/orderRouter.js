@@ -51,8 +51,6 @@ orderRouter.get("/by-user-id/:userId",async (req, res) => {
 
 //RUTA POST NEW ORDER
 orderRouter.post('/add',async (req, res) => {
-    // validateJWT(req, true);
-    console.log("El Body que llega al post es:", JSON.stringify(req.body));
 
     const { books, userId } = req.body;
     try {
@@ -60,7 +58,7 @@ orderRouter.post('/add',async (req, res) => {
         res.status(201).json(newOrder);
     }
     catch (error) {
-        console.log(error)
+        res.status(500).json({ error: error.message });
     }
 });
 
