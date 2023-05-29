@@ -26,6 +26,8 @@ export const PUT_PROFILE_IMAGE = "PUT_PROFILE_IMAGE";
 export const GET_USERS = "GET_USERS";
 export const USER_DISABLED = "USER_DISABLED";
 export const UPDATE_USER_DATA = "UPDATE_USER_DATA";
+export const UPDATE_BOOK = "UPDATE_BOOK"
+
 
 const ENDPOINT_ADMIN = "http://localhost:3001/admin";
 const ENDPOINT_BOOKS = "http://localhost:3001/books";
@@ -152,6 +154,17 @@ export const userDisablement = (id, isActive) => {
       }
     }
   }
+
+export function updateBook(book) {
+    return async (dispatch) => {
+        await axios.put(`${ENDPOINT_BOOKS}/update`, book).then(result  => {
+            return dispatch({
+                type: UPDATE_BOOK,
+                payload: result.data
+            })
+        })
+    }
+}
 
 export function putProfileImage(id, imageUrl) {
     return async (dispatch) => {
