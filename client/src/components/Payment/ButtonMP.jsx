@@ -53,8 +53,8 @@ const ButtonMP = () => {
     // },
     checkout: {
       theme: {
-        elementsColor: "#ff0000",
-        headerColor: "#ff0000",
+        elementsColor: "#04ab77",
+        headerColor: "#04ab77",
       },
     },
   };

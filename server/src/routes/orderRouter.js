@@ -23,7 +23,7 @@ orderRouter.get("/", async (req, res) => {
 /// RUTA GET ORDER BY ID
 orderRouter.get("/:orderId",async (req, res) => {
     try {
-        validateJWT(req, true);
+        // validateJWT(req, true);
         const { orderId } = req.params;
         const orderById = await getOrderById(orderId);
 
@@ -52,13 +52,15 @@ orderRouter.get("/by-user-id/:userId",async (req, res) => {
 //RUTA POST NEW ORDER
 orderRouter.post('/add',async (req, res) => {
     // validateJWT(req, true);
+    console.log("El Body que llega al post es:", JSON.stringify(req.body));
+
     const { books, userId } = req.body;
     try {
-        const newOrder = ( await addNewOrder( books, userId ) );
-        res.status(200).json( newOrder );
+        const newOrder = await addNewOrder(books, userId);
+        res.status(201).json(newOrder);
     }
-    catch (error){
-        res.status(500).json({error: error.message});
+    catch (error) {
+        console.log(error)
     }
 });
 

@@ -1,81 +1,91 @@
 const { Order, User, BookOrder } = require("../db");
-const { conn } = require('../db.js');
-const { QueryTypes } = require("sequelize");
 
-const addNewOrder = async ( books, userId) => {
-
-  
+const addNewOrder = async (books, userId) => {
   try {
-    console.log(books)
+    console.log(books);
     console.log(userId)
 
+    const quantity = books.reduce((acc, book) => acc + book.quantity, 0);
+    console.log(`la cantidad es de ${quantity}`);
+    let monto = 0;
 
-    const quantity = books.reduce((acc, book) => acc + book.quantity, 0)
-    console.log(typeof quantity)
-    let monto = 0
-    books.forEach(book => {
+    books.forEach((book) => {
       monto += book.quantity * book.unit_price;
-    })
-
-    console.log(typeof monto)
-    // Crear una nueva orden
-    const user = await User.findByPk(userId)
-    await user.setOrders({
-      amount: monto,
-      quantity: quantity
-    })
-    // await user.createOrder({
-    //   amount: monto,
-    //   quantity: quantity,
-    // });
-
-    // const newOrder = await user.getOrder()
-    // console.log(newOrder)
-
-
-    // Asociar el usuario a la orden
-    // await newOrder.addUser(user)
-    // for( let book in books){
-    //   await BookOrder.create({
-    //     OrderId: newOrder.id,
-    //     BookId: book.id,
-    //     quantity: book.quantity,
-    //   });
-      
-    // }
+    });
+    console.log(`el monto es de ${monto}`);
     
-    return 'Hecho';
+    const user = await User.findByPk(userId);
+    console.log(user);
+    
+    const newOrder = await Order.create({
+      id,
+      amount: monto,
+      quantity: quantity,
+    });
+
+    await user.addOrder(newOrder);
+
+    for (let i = 0; i < books.length; i++) {
+      const book = books[i];
+      await BookOrder.create({
+        id,
+        orderId: newOrder.id,
+        bookId: book.id,
+        quantity: book.quantity,
+      });
+    }
+
+    return newOrder;
   } catch (error) {
-    throw new Error(error.message);
+    console.log(error);
   }
 };
 
 module.exports = addNewOrder;
 
-// Verificar si hay libros repetidos en la orden
-// const bookCounts = {};
-// books.forEach((book) => {
-//   const bookId = book.id;
-//   bookCounts[bookId] = bookCounts[bookId] ? bookCounts[bookId] + 1 : 1;
-// });
+// const { Order, User, BookOrder } = require("../db");
 
-// Asociar los libros a la orden o incrementar la cantidad si ya existen
-// for (let i = 0; i < books.length; i++) {
-//   const book = books[i];
-//   const bookId = book.id;
+// const addNewOrder = async ( books, userId) => {
 
-//   if (bookCounts[bookId] > 1) {
-//     // Incrementar la cantidad del libro en la orden existente
-//     await BookOrder.increment(
-//       { quantity: bookCounts[bookId] },
-//       {
-//         where: {
-//           orderId: newOrder.id,
-//           bookId: bookId,
-//         },
-//       }
-//     );
-//   } else {
-//     // Crear una nueva entrada en BookOrder para el libro
+//   try {
+//     console.log(books)
+//     console.log(userId)
+
+//     const quantity = books.reduce((acc, book) => acc + book.quantity, 0)
+//     console.log(`la cantidad es de ${quantity}`);
+//     let monto = 0
+//     books.forEach(book => {
+//       monto += book.quantity * book.unit_price;
+//     })
+
+//     console.log(`el monto es de ${monto}`)
+//     // Crear una nueva orden
+//     const user = await User.findByPk(userId)
+//     console.log(user);
+
+//     await user.createOrder({
+//           amount: monto,
+//           quantity: quantity,
+//         });
+
+//         const newOrder = await user.getOrder()
+//         console.log(newOrder)
+
+//         // Asociar el usuario a la orden
+//         await newOrder.addUser(user)
+//         for( let book of books){
+//           await BookOrder.create({
+//             OrderId: newOrder.id,
+//             BookId: book.id,
+//             quantity: book.quantity,
+//           });
+
+//         }
+
+//     return newOrder;
+//   } catch (error) {
+//     throw new Error(error.message);
 //   }
-// }
+// };
+
+// module.exports = addNewOrder;
