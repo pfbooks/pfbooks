@@ -72,7 +72,7 @@ const Detail = () => {
           </div>
           <button className={styles.addToCartButton} onClick={handleAddToCart}>
             ADD TO CART
-            <RiShoppingCartLine className={styles.cartIcon} />
+            <RiShoppingCartLine className={styles.CartIcon} />
           </button>
           {showNotification && (
             <div className={styles.notification}>

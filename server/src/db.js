@@ -45,7 +45,7 @@ const {Book, User, Reviews, Order, BookOrder} = sequelize.models;
 Book.belongsToMany(User, {through: "UsersBooks"});
 User.belongsToMany(Book, {through: "UsersBooks"});
 
-User.hasMany(Order, {foreignKey: {name: 'id'}});
+User.hasMany(Order);
 Order.belongsTo(User);
 
 Book.belongsToMany(Order, {through: "BookOrder"});
