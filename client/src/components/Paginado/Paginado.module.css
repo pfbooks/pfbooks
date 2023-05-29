@@ -50,8 +50,10 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 20px;
+  /*margin: 30px;*/
+  margin-left: 1rem;
   padding-bottom: 2rem;
+  margin-top: 2rem;
   
 }
 .pageOf {
