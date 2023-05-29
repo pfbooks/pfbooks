@@ -17,7 +17,8 @@ import {
     PUT_PROFILE_IMAGE,
     GET_USERS,
     USER_DISABLED,
-    UPDATE_USER_DATA
+    UPDATE_USER_DATA,
+    ALL_ORDERS
 } from "../actions/actions";
 import {
     CREATE_USER,
@@ -39,6 +40,7 @@ const initialState = {
     users: [],
     isLoading: false,
     error: null,
+    orders: [],
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -66,6 +68,12 @@ const rootReducer = (state = initialState, action) => {
                 ...state,
                 books: action.payload,
                 copyBooks: action.payload,
+            };
+            
+        case ALL_ORDERS:
+            return {
+                ...state,
+                orders: action.payload,
             };
 
         case GET_BOOK_TITLE:
