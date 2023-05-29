@@ -87,6 +87,7 @@ const BooksTable = () => {
         }}
         pageSizeOptions={[5, 10]}
         checkboxSelection
+        disableRowSelectionOnClick
       />
     </div>
   );

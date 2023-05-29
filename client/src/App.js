@@ -15,6 +15,7 @@ import Success from "./components/Payment/Success";
 import BooksTable from "./components/BooksTable/BooksTable";
 import About from "./components/AboutUs/About";
 import UsersTable from "./components/UsersTable/UsersTable";
+import OrdersTable from "./components/OrdersTable/OrdersTable";
 import { useSelector } from "react-redux";
 
 
@@ -41,6 +42,7 @@ function App() {
         <Switch>
           <Route path='/users' component={UsersTable} />
           <Route path='/books' component={BooksTable} />
+          <Route path='/orders' component={OrdersTable} />
           <Route exact path="/" component={Home} />
           {/* <Route path="/login" component={Form} /> */}
           <Route path="/detail/:id" component={Detail} />
