@@ -18,7 +18,8 @@ import {
     GET_USERS,
     USER_DISABLED,
     UPDATE_USER_DATA,
-    ALL_ORDERS
+    ALL_ORDERS,
+    CREATE_BOOK
 } from "../actions/actions";
 import {
     CREATE_USER,
@@ -211,6 +212,10 @@ const rootReducer = (state = initialState, action) => {
             };
         //REDUCERS USER
         case CREATE_USER:
+            return {
+                ...state,
+            };
+        case CREATE_BOOK:
             return {
                 ...state,
             };
