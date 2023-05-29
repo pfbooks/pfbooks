@@ -60,15 +60,7 @@ const OrdersTable = () => {
           {getBooksData(params.row)}
         </Box>
       ),
-    },
-    {
-      field: "action",
-      headerName: "Action",
-      width: 100,
-      renderCell: (params) => (
-        <button onClick={() => handleClick(params.row)}>data</button>
-      ),
-    },
+    }
   ];
 
   return (
