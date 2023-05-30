@@ -11,6 +11,7 @@ import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import styles from "./Chart.module.css";
 import ButtonMP from "../Payment/ButtonMP";
 import { CartContext } from "../../context/cart";
+import { Link } from "react-router-dom/cjs/react-router-dom.min";
 
 const Chart = () => {
   const {

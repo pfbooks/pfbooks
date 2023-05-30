@@ -26,9 +26,9 @@ const Stars = ({ rating }) => {
         {rating >= index + 1 ? (
           <StyledFaStar />
         ) : rating >= number ? (
-          <FaStarHalfAlt style={{ color: "goldenron" }} />
+          <FaStarHalfAlt style={{ color: "goldenrod" }} />
         ) : (
-          <AiOutlineStar style={{ color: "#04ab77" }} />
+          <AiOutlineStar style={{ color: "goldenrod" }} />
         )}
       </span>
     );

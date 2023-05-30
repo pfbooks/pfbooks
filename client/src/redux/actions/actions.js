@@ -477,7 +477,7 @@ export const loginWhitGoogle = (credential) => async (dispatch) => {
 export function orderByIdUser(userId) {
     return async (dispatch) => {
         try {
-            const response = await axios.get(`http://localhost:3001/order/by-user-id/${userId}` );
+            const response = await axios.get(`${ENDPOINT_ORDER_BY_USER}${userId}` );
             const data = response.data;
             dispatch({
                 type: ORDER_BY_USER,

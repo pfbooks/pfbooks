@@ -14,7 +14,7 @@ import { AiOutlineUserAdd, AiOutlineLogin } from "react-icons/ai";
 import { RiShoppingCartLine } from "react-icons/ri";
 import { useCart } from "../../hooks/useCart";
 import { CartContext } from "../../context/cart";
-import About from "../AboutUs/About";
+// import About from "../AboutUs/About";
 
 const NavBar = () => {
   const [currentPage, setCurrentPage] = useState(1);
