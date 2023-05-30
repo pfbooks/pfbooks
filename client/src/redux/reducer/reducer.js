@@ -19,7 +19,8 @@ import {
   USER_DISABLED,
   UPDATE_USER_DATA,
   ALL_ORDERS,
-  ORDER_BY_USER
+  ORDER_BY_USER,
+  CREATE_BOOK
 } from "../actions/actions";
 import {
   CREATE_USER,
@@ -205,6 +206,22 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         allReviews: action.payload,
       };
+
+        case CLEAR:
+            return {
+                ...state,
+                detail: action.payload,
+            };
+        //REDUCERS USER
+        case CREATE_USER:
+            return {
+                ...state,
+            };
+        case CREATE_BOOK:
+            return {
+                ...state,
+            };
+
 
     case CLEAR:
       return {

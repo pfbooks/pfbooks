@@ -58,9 +58,14 @@ const Chart = () => {
 
   return (
     <div>
-      <h2>Shopping Chart</h2>
-      {cart.length === 0 ? (
+    <h2 className={styles.title}>Shopping Cart</h2>
+    {cart.length === 0 ? (
+      <div className={styles.emptyCartContainer}>
         <p>No products yet</p>
+        <Link to="/">
+          <button className={styles.buttonEmptyCart}>Go Shopping</button>
+        </Link>
+      </div>
       ) : (
         <div>
           <div className={styles.container}>

@@ -1,10 +1,8 @@
-import {React, useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import { Route, Switch } from "react-router-dom";
-import { ToastProvider } from 'react-toast-notifications';
-import 'react-toastify/dist/ReactToastify.css';
 import NavBar from "./components/NavBar/NavBar";
 import AdminBar from "./components/AdminBar/AdminBar";
-import Home from './components/Home/Home';
+import Home from "./components/Home/Home";
 import Detail from "./components/Detail/Detail";
 import Register from "./components/Form/Register";
 import LoginForm from "./components/Login/LoginForm";
@@ -19,31 +17,41 @@ import OrdersTable from "./components/OrdersTable/OrdersTable";
 import { useSelector } from "react-redux";
 import ReviewForm from "./components/Reviews/ReviewForm"
 import  ShopList  from "./components/ShopList/ShopList";
+import { useLocation } from "react-router-dom";
+
 
 function App() {
-  const user = useSelector((state)=> state.user)
+  const user = useSelector((state) => state.user);
+  const location = useLocation();
 
-  const [admin , setAdmin] = useState(false)
-  useEffect(()=>{
-    if(user){ if(user && user.adminRole){
-      setAdmin(true)
-    }else{
-      setAdmin(false)
+  const [admin, setAdmin] = useState(false);
+  useEffect(() => {
+    if (user) {
+      if (user && user.adminRole) {
+        setAdmin(true);
+      } else {
+        setAdmin(false);
+      }
+    } else {
+      setAdmin(false);
     }
-  }else{
-    setAdmin(false)
-  }
-  },[user])
+  }, [user]);
+
+  // const isProfileView = location.pathname === "/profile";
 
   return (
-    <ToastProvider>
       <div>
         <NavBar />
-        {admin && <AdminBar />}
+        {admin && (
+          location.pathname.includes("profile") ||
+          location.pathname.includes("/users") ||
+          location.pathname.includes("/books") ||
+          location.pathname.includes("/orders")) &&
+        <AdminBar />}
         <Switch>
-          <Route path='/users' component={UsersTable} />
-          <Route path='/books' component={BooksTable} />
-          <Route path='/orders' component={OrdersTable} />
+          <Route path="/users" component={UsersTable} />
+          <Route path="/books" component={BooksTable} />
+          <Route path="/orders" component={OrdersTable} />
           <Route exact path="/" component={Home} />
           {/* <Route path="/login" component={Form} /> */}
           <Route path="/shop/:userId" component={ShopList} />
@@ -58,7 +66,6 @@ function App() {
           <Route component={NotFound} />
         </Switch>
       </div>
-    </ToastProvider>
   );
 }
 

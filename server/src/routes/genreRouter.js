@@ -6,7 +6,8 @@ const genreRouter = Router();
 /// RUTA GET ALL GENRES
 genreRouter.get("/", async (req, res) => {
     try {
-        const genres = (await getAllGenres()).map(genre => genre.genre);
+        const {author} = req.query;
+        const genres = (await getAllGenres(author)).map(genre => genre.genre);
         res.status(200).json(genres);
     }
 
