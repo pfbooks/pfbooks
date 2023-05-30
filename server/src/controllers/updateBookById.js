@@ -1,6 +1,6 @@
 const { Book } = require("../db");
 
-const updateBookById = async (id, title, author, price, image, genre, rating, stock, description ) => {
+const updateBookById = async (id, title, author, price, image, genre, rating, stock, description, availability ) => {
     try {
         await Book.update(
             {
@@ -12,6 +12,7 @@ const updateBookById = async (id, title, author, price, image, genre, rating, st
                 rating: rating,
                 stock: stock,
                 description: description,
+                availability: true,
             },
             {
                 where:
