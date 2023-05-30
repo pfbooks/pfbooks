@@ -47,15 +47,15 @@ const About = () => {
       name: 'Nataly',
       lastName: 'Revelo',
       photo: require('./profile2.jpg').default,
-      github: 'https://github.com/nreveloz',
-      linkedin: 'https://www.linkedin.com/in/nataly-revelo'
+      github: ' https://github.com/nreveloz',
+      linkedin: 'https://www.linkedin.com/in/nataly-revelo-zarama-794a4b165/'
     },
     {
       name: 'Lautaro',
       lastName: 'Soto',
       photo: require('./profile3.jpg').default,
       github: 'https://github.com/LautaroUnlp',
-      linkedin: 'https://www.linkedin.com/in/lautarosoto'
+      linkedin: 'https://www.linkedin.com/in/lautarosoto1/'
     },
 
     {
