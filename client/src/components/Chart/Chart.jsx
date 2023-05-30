@@ -7,7 +7,7 @@ import {
   faTrash,
   faDollarSign,
 } from "@fortawesome/free-solid-svg-icons";
-import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import { useHistory, Link } from "react-router-dom";
 import styles from "./Chart.module.css";
 import ButtonMP from "../Payment/ButtonMP";
 import { CartContext } from "../../context/cart";
@@ -27,7 +27,7 @@ const Chart = () => {
   const handleIncreaseQuantity = (productId) => {
     increaseQuantity({ id: productId });
   };
-  
+
   const handleDecreaseQuantity = (productId) => {
     const product = cart.find((item) => item.id === productId);
     if (product && product.quantity === 1) {
@@ -36,16 +36,16 @@ const Chart = () => {
       decreaseQuantity({ id: productId });
     }
   };
-  const [isLogged, setIsLogged] = useState(false)
+  const [isLogged, setIsLogged] = useState(false);
   const handleClearCart = () => {
     clearCart();
   };
   const user = JSON.parse(localStorage.getItem("user"));
   const handleMP = () => {
-    if(!user){
-      history.push("/login")
-    } 
-    setIsLogged(true)
+    if (!user) {
+      history.push("/login");
+    }
+    setIsLogged(true);
   };
 
   const calculateTotal = () => {
@@ -58,9 +58,14 @@ const Chart = () => {
 
   return (
     <div>
-      <h2>Shopping Chart</h2>
+      <h2 className={styles.title}>Shopping Cart</h2>
       {cart.length === 0 ? (
-        <p>No products yet</p>
+        <div className={styles.emptyCartContainer}>
+          <p>No products yet</p>
+          <Link to="/">
+            <button className={styles.buttonEmptyCart}>Go Shopping</button>
+          </Link>
+        </div>
       ) : (
         <div>
           <div className={styles.container}>
@@ -94,14 +99,12 @@ const Chart = () => {
             ))}
           </div>
           <div>
-            {
-              !isLogged &&
+            {!isLogged && (
               <button className={styles.cleanButton} onClick={handleMP}>
-              Go to pay
-            </button>}
-            {
-              isLogged && <ButtonMP />
-            }
+                Go to pay
+              </button>
+            )}
+            {isLogged && <ButtonMP />}
           </div>
           <br />
           <button className={styles.cleanButton} onClick={handleClearCart}>
