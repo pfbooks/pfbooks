@@ -28,6 +28,7 @@ export const USER_DISABLED = "USER_DISABLED";
 export const UPDATE_USER_DATA = "UPDATE_USER_DATA";
 export const UPDATE_BOOK = "UPDATE_BOOK";
 export const ALL_ORDERS = "ALL_ORDERS";
+export const CREATE_BOOK = "CREATE_BOOK";
 
 const ENDPOINT_ORDER = "http://localhost:3001/order";
 const ENDPOINT_ADMIN = "http://localhost:3001/admin";
@@ -63,9 +64,17 @@ export function allOrders() {
     };
 }
 
-export function allAuthors() {
+export function allAuthors(genre) {
     return async (dispatch) => {
-        await axios.get(`${ENDPOINT_AUTHORS}`).then((result) => {
+        let options = null
+        if(genre) {
+            options = {
+                params : {
+                    genre : genre
+                }
+            }
+        }
+        await axios.get(`${ENDPOINT_AUTHORS}`, options).then((result) => {
             return dispatch({
                 type: ALL_AUTHORS,
                 payload: result.data,
@@ -74,9 +83,17 @@ export function allAuthors() {
     };
 }
 
-export function allGenre() {
+export function allGenre(author) {
     return async (dispatch) => {
-        await axios.get(`${ENDPOINT_GENRE}`).then((result) => {
+        let options = null
+        if(author) {
+            options = {
+                params : {
+                    author : author
+                }
+            }
+        }
+        await axios.get(`${ENDPOINT_GENRE}`, options).then((result) => {
             return dispatch({
                 type: ALL_GENRE,
                 payload: result.data,
@@ -104,6 +121,13 @@ export function filterBooks(genre, author) {
             });
         } else if (author && !genre) {
             await axios.get(`${ENDPOINT_BOOKS}?author=${author}`).then((result) => {
+                return dispatch({
+                    type: FILTER_BOOKS,
+                    payload: result.data,
+                });
+            });
+        } else if (!author && !genre) {
+            await axios.get(`${ENDPOINT_BOOKS}`).then((result) => {
                 return dispatch({
                     type: FILTER_BOOKS,
                     payload: result.data,
@@ -294,6 +318,18 @@ export function createUser(user) {
             return dispatch({
                 type: CREATE_USER,
                 payload: result.data,
+            })
+        })
+    }
+}
+
+export function createBook(book){
+    console.log(book);
+    return async (dispatch) => {
+        await axios.post(`${ENDPOINT_BOOKS}/addBook`, book).then((result) => {
+            return dispatch({
+                type: CREATE_BOOK,
+                payload: result.data
             })
         })
     }

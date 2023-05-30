@@ -57,7 +57,7 @@ bookRouter.put('/update',async (req, res) => {
 
 //RUTA POST NEW BOOK
 bookRouter.post('/addBook',async (req, res) => {
-    validateJWT(req, true);
+    // validateJWT(req, true);
     const { title, author, price, image, genre, rating, stock, description } = req.body;
     try {
         const newBook = ( await addNewBook( title, author, price, image, genre, rating ,stock, description) );
