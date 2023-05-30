@@ -1,0 +1,78 @@
+
+/* ------------- */
+
+
+.titleHeading {
+  /* Estilos para el encabezado */
+  /* display: flex; */
+  font-size: 24px;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.cardContainer {
+  /* Estilos para el contenedor de las tarjetas */
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-left: -10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.userCard {
+  /* Estilos para la tarjeta de usuario */
+  padding: 10px;
+  margin: 10px;
+}
+
+.bookList {
+  /* Estilos para la lista de libros */
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.bookCard {
+  /* Estilos para la tarjeta de libro */
+  display: flex;
+  align-items: center;
+  margin: 10px;
+}
+
+.bookImage {
+  /* Estilos para la imagen del libro */
+  width: 100px; 
+  height: 150px; 
+  object-fit: cover;
+  margin-right: 10px;
+}
+
+.bookInfo {
+  /* Estilos para la información del libro */
+  display: flex;
+  flex-direction: column;
+}
+
+.select {
+  /* Estilos para el select */
+  margin-top: 50px;
+  margin-left: 150px;
+  padding: 5px 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  width: 200px;
+}
+/* Estilos para las opciones del select */
+.select option {
+  font-size: 16px;
+}
+
+.spanSelect {
+  margin-left: 150px;
+}
+
+
+
