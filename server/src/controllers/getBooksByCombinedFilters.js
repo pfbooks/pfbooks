@@ -23,6 +23,10 @@ const getBookByCombinedFilters =  async ( title, genre, author) => {
         query += ` author = '${author}' `;
         needsAnd = true;
     }
+
+    //add only active books
+    query += ' AND availability = true';
+
     const booksByCombinedFilters = await conn.query(
         query,
         {
