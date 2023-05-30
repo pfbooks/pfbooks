@@ -4,10 +4,16 @@ import 'react-image-gallery/styles/css/image-gallery.css';
 import styles from './About.module.css';
 import equipoImage from './equipo.png';
 import libroswebImage from './librosweb.jpg';
+import profile1Image from './profile1.jpg';
+import natalyImage from './nataly.jpg';
+import lautaroImage from './lautaro.jpg';
+import profile4Image from './profile4.jpg';
+import marcosImage from './marcos.jpeg';
+import profile6Image from './profile6.jpg';
 import '@fortawesome/fontawesome-free/css/all.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPencilAlt } from '@fortawesome/free-solid-svg-icons';
-import { faGithub, faLinkedin,faFacebook, faInstagram, faTwitter } from '@fortawesome/free-brands-svg-icons';
+import { faGithub, faLinkedin, faFacebook, faInstagram, faTwitter } from '@fortawesome/free-brands-svg-icons';
 
 const About = () => {
   const [opinion, setOpinion] = useState('');
@@ -39,50 +45,45 @@ const About = () => {
     {
       name: 'Gonzalo',
       lastName: 'Calderón',
-      photo: require('./profile1.jpg').default,
+      photo: profile1Image,
       github: 'https://github.com/GonzaJCalderon',
       linkedin: 'https://www.linkedin.com/in/gonzalo-calder%C3%B3n-204218257'
     },
     {
       name: 'Nataly',
       lastName: 'Revelo',
-      photo: require('./profile2.jpg').default,
+      photo: natalyImage,
       github: 'https://github.com/nreveloz',
       linkedin: 'https://www.linkedin.com/in/nataly-revelo'
     },
     {
       name: 'Lautaro',
       lastName: 'Soto',
-      photo: require('./profile3.jpg').default,
+      photo: lautaroImage,
       github: 'https://github.com/LautaroUnlp',
       linkedin: 'https://www.linkedin.com/in/lautarosoto'
     },
-
     {
       name: 'Jorge',
       lastName: 'Jimenez',
-      photo: require('./profile4.jpg').default,
+      photo: profile4Image,
       github: 'https://github.com/JorgeJ97',
       linkedin: 'https://www.linkedin.com/in/lautarosoto'
     },
-
     {
-      name: 'Marcos ',
+      name: 'Marcos',
       lastName: 'Novella',
-      photo: require('./marcos.jpeg').default,
+      photo: marcosImage,
       github: 'https://github.com/MarcosNovella',
       linkedin: 'https://www.linkedin.com/in/marcos-novella-frey/'
     },
-
     {
-      name: 'Gaston ',
+      name: 'Gaston',
       lastName: 'Garcia Juri',
-      photo: require('./profile6.jpg').default,
+      photo: profile6Image,
       github: 'https://github.com/gastigarciajuri',
       linkedin: 'https://www.linkedin.com/in/lautarosoto'
     },
-    
-  
   ];
 
   return (
@@ -117,37 +118,37 @@ const About = () => {
       </div>
 
       <form onSubmit={handleSubmit}>
-  <label htmlFor="opinion" className={styles.opinionLabel}>
-    <FontAwesomeIcon icon={faPencilAlt} className={styles.opinionIcon} />
-    Tu opinión nos interesa, te invitamos a que la dejes aquí:
-  </label>
-  <textarea
-    id="opinion"
-    name="opinion"
-    value={opinion}
-    onChange={handleOpinionChange}
-    className={`${styles.opinionBox} ${styles.opinionTextArea}`} 
-  />
-  <button type="submit" className={`${styles.opinionButton} ${styles.submitButton}`}>
-    Enviar opinión
-  </button>
-</form>
+        <label htmlFor="opinion" className={styles.opinionLabel}>
+          <FontAwesomeIcon icon={faPencilAlt} className={styles.opinionIcon} />
+          Tu opinión nos interesa, te invitamos a que la dejes aquí:
+        </label>
+        <textarea
+          id="opinion"
+          name="opinion"
+          value={opinion}
+          onChange={handleOpinionChange}
+          className={`${styles.opinionBox} ${styles.opinionTextArea}`}
+        />
+        <button type="submit" className={`${styles.opinionButton} ${styles.submitButton}`}>
+          Enviar opinión
+        </button>
+      </form>
+
       <div className={styles.contactInfo}>
         <h3>¡Conéctate con nosotros!</h3>
         <p>Síguenos en nuestras redes sociales:</p>
         <div className={styles.socialMediaLinks}>
-  <a href="https://www.facebook.com/tu-tienda-de-libros" target="_blank" rel="noopener noreferrer" className={styles.socialLink}>
-    <FontAwesomeIcon icon={faFacebook} className={styles.socialIcon} />
-  </a>
-  <a href="https://www.instagram.com/tu-tienda-de-libros" target="_blank" rel="noopener noreferrer" className={styles.socialLink}>
-    <FontAwesomeIcon icon={faInstagram} className={styles.socialIcon} />
-  </a>
-  <a href="https://www.twitter.com/tu-tienda-de-libros" target="_blank" rel="noopener noreferrer" className={styles.socialLink}>
-    <FontAwesomeIcon icon={faTwitter} className={styles.socialIcon} />
-  </a>
-</div>
+          <a href="https://www.facebook.com/tu-tienda-de-libros" target="_blank" rel="noopener noreferrer" className={styles.socialLink}>
+            <FontAwesomeIcon icon={faFacebook} className={styles.socialIcon} />
+          </a>
+          <a href="https://www.instagram.com/tu-tienda-de-libros" target="_blank" rel="noopener noreferrer" className={styles.socialLink}>
+            <FontAwesomeIcon icon={faInstagram} className={styles.socialIcon} />
+          </a>
+          <a href="https://www.twitter.com/tu-tienda-de-libros" target="_blank" rel="noopener noreferrer" className={styles.socialLink}>
+            <FontAwesomeIcon icon={faTwitter} className={styles.socialIcon} />
+          </a>
+        </div>
 
-        
         <p>Contáctanos:</p>
         <p>
           <i className="fas fa-phone"></i> Teléfono: +1 123-456-7890
