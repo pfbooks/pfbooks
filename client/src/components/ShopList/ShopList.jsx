@@ -6,6 +6,8 @@ import { orderByIdUser } from "../../redux/actions/actions";
 import usePagination from "@mui/material/usePagination/usePagination";
 import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 import { useDispatch, useSelector } from "react-redux";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faDollarSign } from "@fortawesome/free-solid-svg-icons";
 import ReviewForm from "../Reviews/ReviewForm";
 
 const ShopList = () => {
@@ -28,14 +30,16 @@ const ShopList = () => {
 
   return (
     <div>
-      <h1 className={styles.titleHeading}> My shopping </h1>
+      <h1 className={styles.titleHeading}>
+        <FontAwesomeIcon icon={FaShoppingCart} className={styles.icon} />
+        My Shopping
+      </h1>
       {order.length === 0 ? (
         <p>No hay compras realizadas.</p>
       ) : (
         <div className={styles.cardContainer}>
           {order.map((o) => (
             <div key={o.id} className={styles.userCard}>
-              {/* <h1>Usuario: {o.User.name}</h1> */}
               <div className={styles.bookList}>
                 {o.Books.map((b) => {
                   return (
@@ -43,7 +47,9 @@ const ShopList = () => {
                       <img src={b.image} alt={b.id} className={styles.bookImage} />
                       <div className={styles.bookInfo}>
                         <p>{b.title}</p>
-                        <p>${b.price}</p>
+                        <div className={styles.price}>
+                          <FontAwesomeIcon icon={faDollarSign} className={styles.icon} /> <p>{b.price}</p>
+                        </div>
                       </div>
                     </div>
                   );
@@ -55,17 +61,19 @@ const ShopList = () => {
       )}
       <br />
       <div>
-      <span className={styles.spanSelect}>Select a book and leave us a review</span>
-      <select className={styles.select} onChange={(event) => handler(event)}>
-        <option value="">Books</option>
-        {arrBooks.map((book) => (
-          <option key={book.id} value={book.id}>
-            {book.title}
-          </option>
-        ))}
-      </select>
-
-      </div>   
+        <span className={styles.spanSelect}>
+          <FontAwesomeIcon icon={FaCalendarAlt} className={styles.icon} />
+          Select a book and leave us a review
+        </span>
+        <select className={styles.select} onChange={(event) => handler(event)}>
+          <option value="">Books</option>
+          {arrBooks.map((book) => (
+            <option key={book.id} value={book.id}>
+              {book.title}
+            </option>
+          ))}
+        </select>
+      </div>
 
       <ReviewForm user={user} bookId={bookId} setBookId={setBookId} />
       <br />
