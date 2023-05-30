@@ -28,6 +28,7 @@ export const USER_DISABLED = "USER_DISABLED";
 export const UPDATE_USER_DATA = "UPDATE_USER_DATA";
 export const UPDATE_BOOK = "UPDATE_BOOK";
 export const ALL_ORDERS = "ALL_ORDERS";
+export const CREATE_BOOK = "CREATE_BOOK";
 
 const ENDPOINT_ORDER = "http://localhost:3001/order";
 const ENDPOINT_ADMIN = "http://localhost:3001/admin";
@@ -294,6 +295,18 @@ export function createUser(user) {
             return dispatch({
                 type: CREATE_USER,
                 payload: result.data,
+            })
+        })
+    }
+}
+
+export function createBook(book){
+    console.log(book);
+    return async (dispatch) => {
+        await axios.post(`${ENDPOINT_BOOKS}/addBook`, book).then((result) => {
+            return dispatch({
+                type: CREATE_BOOK,
+                payload: result.data
             })
         })
     }

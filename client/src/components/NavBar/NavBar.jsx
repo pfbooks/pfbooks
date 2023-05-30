@@ -42,7 +42,11 @@ const NavBar = () => {
   
   const user = JSON.parse(localStorage.getItem("user"));
   const userName = user ? user.name : "";
-  const isAdmin = user && user.adminRole;
+  const isAdmin = user && user.adminRole && (
+          location.pathname.includes("profile") ||
+          location.pathname.includes("/users") ||
+          location.pathname.includes("/books") ||
+          location.pathname.includes("/orders"));
   const navClass = isAdmin ? styles.navAdmin : styles.nav;
   
   
