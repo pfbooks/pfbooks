@@ -7,7 +7,7 @@ import {
   faTrash,
   faDollarSign,
 } from "@fortawesome/free-solid-svg-icons";
-import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import { useHistory, Link } from "react-router-dom/cjs/react-router-dom.min";
 import styles from "./Chart.module.css";
 import ButtonMP from "../Payment/ButtonMP";
 import { CartContext } from "../../context/cart";
