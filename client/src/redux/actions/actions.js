@@ -219,7 +219,7 @@ export function createReview(review) {
             return dispatch({
                 type: CREATE_REVIEW,
                 payload: result,
-            });
+            })
         });
     };
 }

@@ -1,18 +1,18 @@
-.container {
+/* .container {
     margin-top: 20px;
-  }
+  } */
   
-  .title {
+  /* .title {
     font-size: 24px;
     font-weight: bold;
-  }
+  } */
   
   .review {
     margin-top: 10px;
-    width: 30%;
     padding: 10px;
     border: 1px solid black;
     border-radius: 5px;
+    align-content: center;
   }
   
   .username {
@@ -25,19 +25,19 @@
     font-size: 14px;
   }
   
-  .starRating {
+  /* .starRating {
     margin-top: 5px;
     display: flex;
     align-items: center;
-  }
+  } */
   
-  .star-icon {
+  /* .star-icon {
     color: #ffd700;
     font-size: 20px;
-  }
+  } */
   
-  .starLabel {
+  /* .starLabel {
     margin-left: 5px;
     font-size: 16px;
   }
-  
+   */

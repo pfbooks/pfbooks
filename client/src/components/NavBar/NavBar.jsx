@@ -118,7 +118,7 @@ const NavBar = () => {
                   <br />
                   <li className={styles.dropdownItem} onClick={handleShop}>
                     <FaUser size={20} />
-                    <span className={styles.dropdownLink}>Shoping List</span>
+                    <span className={styles.dropdownLink}>My shopping</span>
                   </li>
                 </div>
               ) : (

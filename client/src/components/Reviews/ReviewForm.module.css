@@ -16,11 +16,11 @@
 }
 
 .star-icon:hover {
-  color: #ffd700; /* Cambiar el color al dorado original al hacer hover */
+  color: goldenrod; /* Cambiar el color al dorado original al hacer hover */
 }
 
 .star-icon-filled {
-  color: #ffd700;
+  color: goldenrod;
 }
 
 .comment-section {

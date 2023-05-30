@@ -48,7 +48,7 @@ const Detail = () => {
   const user = JSON.parse(localStorage.getItem("user"));
   const userRole = user && user.adminRole; // Verificar si user no es null antes de acceder a adminRole
   // const userName = user && user.username;
-  console.log("User", user)
+  // console.log("User", user)
   const containerClass = userRole ? styles.containerAdmin : styles.container;
 
   return (
@@ -86,7 +86,7 @@ const Detail = () => {
       </div>
       <div>
       <Reviews Reviews={detail.Reviews} />
-      <ReviewForm bookId={detail.id} user={user}/>
+      {/* <ReviewForm bookId={detail.id} user={user}/> */}
       </div>
     </div>
   );

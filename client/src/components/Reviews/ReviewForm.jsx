@@ -5,7 +5,7 @@ import { createReview } from "../../redux/actions/actions";
 import { useDispatch } from "react-redux";
 import Stars from "./Stars";
 
-const ReviewForm = ({ bookId, user }) => {
+const ReviewForm = ({ bookId, user, setBookId }) => {
   const [rating, setRating] = useState(0);
   const [comment, setComment] = useState("");
   const dispatch = useDispatch();
@@ -42,13 +42,22 @@ const ReviewForm = ({ bookId, user }) => {
       userName: user.name,
     };
      console.log(reviewData)
-    dispatch(createReview(reviewData));
+    if( rating !== 0 ){
+
+      dispatch(createReview(reviewData));
+      setRating(0)
+      setComment('')
+      setBookId('')
+      return alert('Thanks for you review!')
+    }
+    else return alert('Select a rating star')
   };
 
   return (
     <form className={styles["review-form"]} onSubmit={handleSubmit}>
-      <h2 className={styles["form-title"]}>Deja tu review</h2>
+      <h2 className={styles["form-title"]}>Leave your review</h2>
 
+        <span> Select a rating</span>
       <div className={styles["rating-section"]}>
         {[1, 2, 3, 4, 5].map((star, index) => (
           <FaStar

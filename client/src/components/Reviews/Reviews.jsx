@@ -2,7 +2,7 @@ import { useState } from "react";
 import Stars from "./Stars";
 import styles from "./Reviews.module.css";
 
-const Reviews = ({ bookId, Reviews }) => {
+const Reviews = ({  Reviews }) => {
   return (
     <div className={styles.container}>
       <h1 className={styles.title}>REVIEWS</h1>
@@ -11,7 +11,7 @@ const Reviews = ({ bookId, Reviews }) => {
           <div key={item.id} className={styles.review}>
             <div className={styles.starRating}>
               <Stars rating={item.rating} />
-              <span className={styles.starLabel}>{item.rating}</span>
+              {/* <span className={styles.starLabel}>{item.rating}</span> */}
             </div>
             <>
             <h2>{item.userName}</h2> 
