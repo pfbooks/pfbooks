@@ -53,23 +53,23 @@ const UsersTable = () => {
         return imageHeight + padding;
       };
 
-    return(
-        <div>
-            <DataGrid 
-                rows={users}
-                columns={columns}
-                getRowHeight={getRowHeight}
-                initialState={{
-                pagination: {
-                    paginationModel: { page: 0, pageSize: 5 },
-                },
-                }}
-                pageSizeOptions={[5, 10]}
-                checkboxSelection
-                disableRowSelectionOnClick
-            />
-        </div>
-    )
+    return (
+      <div style={{ height: "100%", width: "100%", marginLeft: "64px" }}>
+        <DataGrid
+          rows={users}
+          columns={columns}
+          getRowHeight={getRowHeight}
+          initialState={{
+            pagination: {
+              paginationModel: { page: 0, pageSize: 5 },
+            },
+          }}
+          pageSizeOptions={[5, 10]}
+          checkboxSelection
+          disableRowSelectionOnClick
+        />
+      </div>
+    );
 }
 
 export default UsersTable

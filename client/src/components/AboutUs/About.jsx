@@ -69,9 +69,9 @@ const About = () => {
     {
       name: 'Marcos ',
       lastName: 'Novella',
-      photo: require('./profile1.jpg').default,
+      photo: require('./marcos.jpeg').default,
       github: 'https://github.com/MarcosNovella',
-      linkedin: 'https://www.linkedin.com/in/lautarosoto'
+      linkedin: 'https://www.linkedin.com/in/marcos-novella-frey/'
     },
 
     {
