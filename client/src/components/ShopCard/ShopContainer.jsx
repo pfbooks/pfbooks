@@ -28,6 +28,7 @@ export const ShopContainer = ({ order }) => {
             title={b.title}
             quantity={b.quantity}
             price={b.price}
+            key={b.id}
             />
             );
           })}

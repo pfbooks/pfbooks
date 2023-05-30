@@ -3,8 +3,6 @@ import styles from "./ShopList.module.css";
 import { orderByIdUser } from "../../redux/actions/actions";
 import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom/cjs/react-router-dom";
-import Paginado from "../Paginado/Paginado";
 import { ShopContainer } from "../ShopCard/ShopContainer";
 
 const ShopList = () => {
@@ -31,6 +29,12 @@ const ShopList = () => {
         {/* <FontAwesomeIcon icon={FaShoppingCart} className={styles.icon} /> */}
         My Shopping
       </h1>
+      <br />
+        <span className={styles.spanSelect}>
+          Select a book and leave us a review
+        </span>
+        <br />
+      
       {order.length === 0 ? (
         <p>No hay compras realizadas.</p>
       ) : (
@@ -38,16 +42,12 @@ const ShopList = () => {
           {order.map((o) => {return (
               <ShopContainer
                 order={o}
+                key={o.id}
               />
           )})}
         </div>
       )}
-      <div>
-        <span className={styles.spanSelect}>
-          {/* <FontAwesomeIcon icon={FaCalendarAlt} className={styles.icon} /> */}
-          Select a book and leave us a review
-        </span>
-      </div>
+
     </div>
   );
 };
