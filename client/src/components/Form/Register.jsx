@@ -1,12 +1,12 @@
+import { useState } from "react";
+import { Snackbar, Alert, AlertTitle } from "@mui/material";
 import { useDispatch } from "react-redux";
 import { createUser } from "../../redux/actions/actions";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import styles from "./Register.module.css";
 import * as yup from "yup";
-import { useToasts } from "react-toast-notifications";
 import { Link, useHistory } from "react-router-dom/cjs/react-router-dom.min";
-import { FaHome } from "react-icons/fa";
 
 const Register = () => {
   const schema = yup.object().shape({
@@ -27,7 +27,9 @@ const Register = () => {
       .required("Campo requerido")
       .min(8, "La contraseña debe tener al menos 8 caracteres"),
   });
+
   const dispatch = useDispatch();
+  const history = useHistory();
   const {
     register,
     handleSubmit,
@@ -36,14 +38,16 @@ const Register = () => {
   } = useForm({
     resolver: yupResolver(schema),
   });
-  const { addToast } = useToasts();
-  const history = useHistory();
+
+  const [showSnackbar, setShowSnackbar] = useState(false);
 
   const onSubmit = (data) => {
     dispatch(createUser(data))
       .then(() => {
-        addToast("Usuario creado correctamente", { appearance: "success" });
-        history.push("/login")
+        setShowSnackbar(true);
+        setTimeout(() => {
+          history.push("/login");
+        }, 1500);
       })
       .catch((error) => {
         console.log(error);
@@ -56,93 +60,92 @@ const Register = () => {
 
   return (
     <div className={styles["container"]}>
-        <form
-          onSubmit={handleSubmit(onSubmit)}
-          className={styles["form-container"]}
-        >
-          {/* <Link to="/">
-            <FaHome
-              className={styles["home-icon"]}
-              style={{ color: "#04ab77" }}
-            />
-          </Link> */}
-          <h2 className={styles["form-title"]}>Register</h2>
-          <label htmlFor="name" className={styles["form-label"]}>
-            Name:
-          </label>
-          <div className={styles["input-container"]}>
-            <input
-              {...register("name", { onBlur: handleBlur })}
-              type="text"
-              placeholder="Name"
-              className={styles["form-input"]}
-            />
-            {errors.name && (
-              <p className={styles["error-message"]}>{errors.name.message}</p>
-            )}
-          </div>
-          <label htmlFor="lastName" className={styles["form-label"]}>
-            Last name:
-          </label>
-          <div className={styles["input-container"]}>
-            <input
-              {...register("lastName", { onBlur: handleBlur })}
-              type="text"
-              placeholder="Last name"
-              className={styles["form-input"]}
-              style={{ width: "100%" }}
-            />
-            {errors.lastName && (
-              <p className={styles["error-message"]}>
-                {errors.lastName.message}
-              </p>
-            )}
-          </div>
-          <label htmlFor="email" className={styles["form-label"]}>
-            Email:
-          </label>
-          <div className={styles["input-container"]}>
-            <input
-              {...register("email", { onBlur: handleBlur })}
-              type="email"
-              placeholder="Email"
-              className={styles["form-input"]}
-            />
-            {errors.email && (
-              <div className={styles["error-message"]}>
-                {errors.email.message}
-              </div>
-            )}
-          </div>
+      <Snackbar
+        open={showSnackbar}
+        autoHideDuration={1500}
+        onClose={() => setShowSnackbar(false)}
+        anchorOrigin={{
+          vertical: "top",
+          horizontal: "right",
+        }}
+      >
+        <Alert severity="success" onClose={() => setShowSnackbar(false)}>
+          <AlertTitle>Registro exitoso</AlertTitle>
+        </Alert>
+      </Snackbar>
 
-          <label htmlFor="password" className={styles["form-label"]}>
-            Password:
-          </label>
-          <div className={styles["input-container"]}>
-            <input
-              {...register("password", { onBlur: handleBlur })}
-              type="password"
-              placeholder="Password"
-              className={styles["form-input"]}
-            />
-            {errors.password && (
-              <div className={styles["error-message"]}>
-                {errors.password.message}
-              </div>
-            )}
-          </div>
+      <form onSubmit={handleSubmit(onSubmit)} className={styles["form-container"]}>
+        <h2 className={styles["form-title"]}>Register</h2>
+        <label htmlFor="name" className={styles["form-label"]}>
+          Name:
+        </label>
+        <div className={styles["input-container"]}>
+          <input
+            {...register("name", { onBlur: handleBlur })}
+            type="text"
+            placeholder="Name"
+            className={styles["form-input"]}
+          />
+          {errors.name && (
+            <p className={styles["error-message"]}>{errors.name.message}</p>
+          )}
+        </div>
+        <label htmlFor="lastName" className={styles["form-label"]}>
+          Last name:
+        </label>
+        <div className={styles["input-container"]}>
+          <input
+            {...register("lastName", { onBlur: handleBlur })}
+            type="text"
+            placeholder="Last name"
+            className={styles["form-input"]}
+            style={{ width: "100%" }}
+          />
+          {errors.lastName && (
+            <p className={styles["error-message"]}>{errors.lastName.message}</p>
+          )}
+        </div>
+        <label htmlFor="email" className={styles["form-label"]}>
+          Email:
+        </label>
+        <div className={styles["input-container"]}>
+          <input
+            {...register("email", { onBlur: handleBlur })}
+            type="email"
+            placeholder="Email"
+            className={styles["form-input"]}
+          />
+          {errors.email && (
+            <div className={styles["error-message"]}>{errors.email.message}</div>
+          )}
+        </div>
 
-          <button type="submit" className={styles["form-button"]}>
-            Send
-          </button>
+        <label htmlFor="password" className={styles["form-label"]}>
+          Password:
+        </label>
+        <div className={styles["input-container"]}>
+          <input
+            {...register("password", { onBlur: handleBlur })}
+            type="password"
+            placeholder="Password"
+            className={styles["form-input"]}
+          />
+          {errors.password && (
+            <div className={styles["error-message"]}>{errors.password.message}</div>
+          )}
+        </div>
 
-          <p>
-          Already have an acount? {" "}
-          <a href="/login" className={styles.link}>
+        <button type="submit" className={styles["form-button"]}>
+          Send
+        </button>
+
+        <p>
+          Already have an acount?{" "}
+          <Link to="/login" className={styles.link}>
             Login
-          </a>
+          </Link>
         </p>
-        </form>
+      </form>
     </div>
   );
 };

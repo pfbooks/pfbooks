@@ -11,7 +11,7 @@ import * as yup from "yup";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import styles from "./LoginForm.module.css";
 import { GoogleLogin } from "@react-oauth/google";
-import { useToasts } from "react-toast-notifications";
+import { Snackbar, Alert, AlertTitle } from "@mui/material";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 const LoginForm = () => {
@@ -20,10 +20,10 @@ const LoginForm = () => {
   const dispatch = useDispatch();
   const history = useHistory();
   const user = useSelector((state) => state.user);
-  const { addToast } = useToasts();
   const [showPassword, setShowPassword] = useState(false);
+  const [showSnackbar, setShowSnackbar] = useState(false);
 
-  //validations
+  // Validations
   const schema = yup.object().shape({
     name: yup
       .string()
@@ -42,6 +42,7 @@ const LoginForm = () => {
       .required("Campo requerido")
       .min(8, "La contraseña debe tener al menos 8 caracteres"),
   });
+
   const {
     register,
     formState: { errors },
@@ -53,6 +54,7 @@ const LoginForm = () => {
   useEffect(() => {
     console.log(user);
   }, [user]);
+
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
@@ -63,15 +65,12 @@ const LoginForm = () => {
       if (result.type === LOGIN_FAILURE) {
         alert(result.payload);
       } else {
-        const user = result.payload; // Obtener el objeto del usuario desde el resultado
+        const user = result.payload;
         const name = user.name;
-        const toastContent = (
-          <div>
-            Bienvenido, <strong>{name}</strong>
-          </div>
-        );
-        addToast(toastContent, { appearance: "success" });
-        history.push("/");
+        setShowSnackbar(true);
+        setTimeout(() => {
+          history.push("/");
+        }, 1500);
       }
     });
   };
@@ -81,18 +80,16 @@ const LoginForm = () => {
       if (result.type === LOGIN_FAILURE) {
         alert(result.payload);
       } else {
-        const user = result.payload; // Obtener el objeto del usuario desde el resultado
+        const user = result.payload;
         const name = user.name;
-        const toastContent = (
-          <div>
-            Bienvenido, <strong>{name}</strong>
-          </div>
-        );
-        addToast(toastContent, { appearance: "success" });
-        history.push("/");
+        setShowSnackbar(true);
+        setTimeout(() => {
+          history.push("/");
+        }, 1500);
       }
     });
   };
+
   const handleBlur = (event) => {
     trigger(event.target.name);
   };
@@ -103,20 +100,24 @@ const LoginForm = () => {
 
   return (
     <div className={styles["container"]}>
-      {/* <div className={styles["image-container"]}>
-        <img
-          src="https://cdn.pixabay.com/photo/2016/11/29/02/26/library-1866844_1280.jpg"
-          alt="Imagen"
-          className={styles["image"]}
-        />
-      </div> */}
-      <form 
-      className={styles["form-container"]} 
-      onSubmit={handleSubmit}>
+      <Snackbar
+        open={showSnackbar}
+        autoHideDuration={1500}
+        onClose={() => setShowSnackbar(false)}
+        anchorOrigin={{
+          vertical: "top",
+          horizontal: "right",
+        }}
+      >
+        <Alert severity="success" onClose={() => setShowSnackbar(false)}>
+          <AlertTitle>Éxito</AlertTitle>
+          Bienvenido, <strong>{user && user.name}</strong>
+        </Alert>
+      </Snackbar>
+
+      <form className={styles["form-container"]} onSubmit={handleSubmit}>
         <h2 className={styles["form-title"]}>Login</h2>
-          <label className={styles["form-label"]}>
-            Email:
-          </label>
+        <label className={styles["form-label"]}>Email:</label>
         <div className={styles["input-container"]}>
           <input
             {...register("email", { onBlur: handleBlur })}
@@ -134,39 +135,37 @@ const LoginForm = () => {
           )}
           <br />
         </div>
-          <label 
-          htmlFor="password" 
-          className={styles["form-label"]}>
-            Password
-          </label>
-          <div className={styles["input-container"]}>
-  <input
-    {...register("password", { onBlur: handleBlur })}
-    className={styles["form-input"]}
-    type={showPassword ? "text" : "password"}
-    name="password"
-    placeholder="Password"
-    value={password}
-    onChange={(e) => setPassword(e.target.value)}
-    required
-  />
-            {errors.password && (
+        <label htmlFor="password" className={styles["form-label"]}>
+          Password
+        </label>
+        <div className={styles["input-container"]}>
+          <input
+            {...register("password", { onBlur: handleBlur })}
+            className={styles["form-input"]}
+            type={showPassword ? "text" : "password"}
+            name="password"
+            placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
+          {errors.password && (
             <div className={styles["error-message"]}>
               {errors.password.message}
             </div>
           )}
-  {showPassword ? (
-    <FaEyeSlash
-      className={styles["show-password-button"]}
-      onClick={togglePasswordVisibility}
-    />
-  ) : (
-    <FaEye
-      className={styles["show-password-button"]}
-      onClick={togglePasswordVisibility}
-    />
-  )}
-</div>
+          {showPassword ? (
+            <FaEyeSlash
+              className={styles["show-password-button"]}
+              onClick={togglePasswordVisibility}
+            />
+          ) : (
+            <FaEye
+              className={styles["show-password-button"]}
+              onClick={togglePasswordVisibility}
+            />
+          )}
+        </div>
         <div id="googleAuth" className={styles.googleAuth}>
           <GoogleLogin
             onSuccess={handleGoogleResponse}

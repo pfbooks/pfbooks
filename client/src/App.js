@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { Route, Switch } from "react-router-dom";
-import { ToastProvider } from "react-toast-notifications";
-import "react-toastify/dist/ReactToastify.css";
 import NavBar from "./components/NavBar/NavBar";
 import AdminBar from "./components/AdminBar/AdminBar";
 import Home from "./components/Home/Home";
@@ -39,7 +37,6 @@ function App() {
   // const isProfileView = location.pathname === "/profile";
 
   return (
-    <ToastProvider>
       <div>
         <NavBar />
         {admin && (
@@ -63,7 +60,6 @@ function App() {
           <Route component={NotFound} />
         </Switch>
       </div>
-    </ToastProvider>
   );
 }
 
