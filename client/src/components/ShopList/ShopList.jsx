@@ -47,17 +47,7 @@ const ShopList = () => {
           {/* <FontAwesomeIcon icon={FaCalendarAlt} className={styles.icon} /> */}
           Select a book and leave us a review
         </span>
-        {/* <select className={styles.select} onChange={(event) => handler(event)}>
-          <option value="">Books</option>
-          {arrBooks.map((book) => (
-            <option key={book.id} value={book.id}>
-              {book.title}
-            </option>
-          ))}
-        </select> */}
       </div>
-
-      {/* <ReviewForm user={user} bookId={bookId} setBookId={setBookId} /> */}
     </div>
   );
 };

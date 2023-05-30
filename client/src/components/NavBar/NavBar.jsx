@@ -19,7 +19,7 @@ import About from "../AboutUs/About";
 const NavBar = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const history = useHistory();
-  const { cart } = useCart(CartContext);
+  const { cart, clearCart} = useCart();
   const [showMenu, setShowMenu] = useState(false);
   const handleMouseEnter = () => {
     setShowMenu(true);
@@ -57,6 +57,7 @@ const NavBar = () => {
 
   const handleLogout = () => {
     dispatch(logoutUser());
+    clearCart();
     history.push("/");
   };
 

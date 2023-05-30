@@ -1,8 +1,7 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom/cjs/react-router-dom";
 import Paginado from "../Paginado/Paginado";
 import { ShopCard } from "./ShopCard";
-import { useSelector } from "react-redux";
+import styles from "./ShopCard.module.css";
 
 export const ShopContainer = ({ order }) => {
   const [currentPage, setCurrentPage] = useState(1);
@@ -17,17 +16,24 @@ export const ShopContainer = ({ order }) => {
 }
 
   return (
-    <div key={o.id} className={styles.userCard} on>
-    <Paginado  size={size} currentBooks={currentBooks} />
-    <h5 className={styles.titleHeading2}>Order N° {o.id}</h5>
+    <div key={order.id} className={styles.userCard} >
+    <h5 className={styles.titleHeading2}>Order N° {order.id}</h5>
     <div className={styles.bookList}>
       <ul className={styles.bookListUl}>
-        {order.Books.map((b) => {
-          return (<ShopCard />
-          );
-        })}
+        {currentBooks.map((b) => {
+          return (
+            <ShopCard 
+            id= {b.id}
+            image={b.image}
+            title={b.title}
+            quantity={b.quantity}
+            price={b.price}
+            />
+            );
+          })}
       </ul>
     </div>
+    <Paginado  size={size} currentPage={currentPage}  handlePageChange={handlePageChange}/>
   </div>
   );
 };
