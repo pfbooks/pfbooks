@@ -14,13 +14,13 @@
 
 .buttonContainer{
     align-content: right;
-    margin-top: 10px;
+    margin-top: 5px;
     margin-bottom: 10px;
-    margin-left: 1200px;
+    margin-left: 1150px;
 }
 
 .container {
     height: 100%; 
-    width: 100%; 
+    width: 95%; 
     margin-left: 64px;
 }
