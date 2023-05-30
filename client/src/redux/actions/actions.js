@@ -315,7 +315,6 @@ export function allReviews() {
 //USER
 
 export function createUser(user) {
-    console.log(user);
     return async (dispatch) => {
         await axios.post(`${ENDPOINT_USER}`, user).then((result) => {
             return dispatch({

@@ -23,7 +23,12 @@ const authGoogleController = async (credential) =>  {
         })
 
         if (user) {
-            return generateUserResponse(user)
+            if(!user.isActive ) {
+                return { error: 'Usuario bloqueado', errorCode: 401 };
+            } else{
+                return generateUserResponse(user)
+            }
+
         } else {
             const createdUser = await User.create({
                 name:  ticket.getPayload().given_name,
