@@ -64,7 +64,7 @@ const OrdersTable = () => {
   ];
 
   return (
-    <div style={{height: "100%", width: "100%", marginLeft: "64px"}} >
+    <div style={{height: "100%", width: "95%", marginLeft: "64px"}} >
       <DataGrid
         rows={orders}
         columns={columns}

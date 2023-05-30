@@ -34,14 +34,14 @@ const UsersTable = () => {
                     <img src={params.value} alt="Book Cover" style={{ width: '100%', height: '100%' }} />
                 </div>
             ),
-            width: 100,
+            width: 120,
         },
-        { field: 'id', headerName: 'ID', width: 70 },
+        { field: 'id', headerName: 'ID', width: 120 },
         { field: 'name', headerName: 'Name', width: 200 },
-        { field: 'lastName', headerName: 'LastName', width: 240 },
-        { field: 'email', headerName: 'Email', width: 160 },
-        { field: 'adminRole', headerName: 'Admin', width: 100},
-        { field: 'isActive', headerName: 'IsActive', type: "boolean", width: 100, renderCell: (params) => (
+        { field: 'lastName', headerName: 'LastName', width: 200 },
+        { field: 'email', headerName: 'Email', width: 260 },
+        { field: 'adminRole', headerName: 'Admin', width: 120},
+        { field: 'isActive', headerName: 'IsActive', type: "boolean", width: 120, renderCell: (params) => (
             <input type='checkbox' checked={params.row.isActive} onChange={(event) => handleCheckbox(event, params.row)} value={params.row.name}/>
         ) }
       ];
@@ -54,7 +54,7 @@ const UsersTable = () => {
       };
 
     return (
-      <div style={{ height: "100%", width: "100%", marginLeft: "64px" }}>
+      <div style={{ height: "100%", width: "95%", marginLeft: "64px" }}>
         <DataGrid
           rows={users}
           columns={columns}
