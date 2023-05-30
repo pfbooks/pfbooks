@@ -120,7 +120,7 @@ const NavBar = () => {
                   </li>
                   <li className={styles.dropdownItem2} onClick={handleShop}>
                     <FaMoneyBill size={19} />
-                    <span className={styles.dropdownLink}>Shop</span>
+                    <span className={styles.dropdownLink}>My shop</span>
                   </li>
                 </div>
               ) : (

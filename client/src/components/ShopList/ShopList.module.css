@@ -6,6 +6,19 @@
   align-items: center;
   justify-content: center;
 }
+.titleHeading2 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  font-style: oblique;
+  padding: 10px;
+  text-align: center;
+  border: 1px solid #000000;
+  border-radius: 5px;
+  height: 35px;
+}
+
 
 .icon {
   margin-right: 10px;
@@ -27,31 +40,68 @@
 
 .bookList {
   display: flex;
-  flex-wrap: wrap;
-  align-items: center;
+  overflow-x: auto;
 }
 
-.bookCard {
+.bookListUl {
+  list-style: none;
   display: flex;
+  padding: 0;
+  margin: 0;
+}
+
+.bookItem {
+  display: flex;
+  flex-direction: column;
   align-items: center;
-  margin: 10px;
+  margin-right: 20px;
+  width: 200px;
+}
+
+.bookItemContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.bookImageContainer {
+  position: relative;
+}
+
+.bookImageContainer:hover::before {
+  content: "Add review";
+  position: absolute;
+  bottom: 0;
+  width: 80%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 14px;
 }
 
 .bookImage {
+  border-radius: 10px;
   width: 100px;
   height: 150px;
   object-fit: cover;
-  margin-right: 10px;
 }
 
 .bookInfo {
-  display: flex;
-  flex-direction: column;
+  text-align: center;
+}
+
+.bookTitle {
+  font-weight: bold;
+  margin-bottom: 5px;
 }
 
 .price {
-  display: flex;
-  align-items: center;
+  font-weight: bold;
+  margin-top: 5px;
 }
 
 .select {

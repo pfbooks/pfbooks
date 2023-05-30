@@ -112,7 +112,7 @@
   color: #333;
   cursor: pointer;
 }
-.dropdownItem {
+/* .dropdownItem {
   text-align: center;
   margin-top: -10px;
   border-radius: 0.5rem;
@@ -124,7 +124,7 @@
   font-weight: bold;
   color: #333;
   cursor: pointer;
-}
+} */
 
 .dropdownItem:hover {
   background-color: #dcdcdc;
