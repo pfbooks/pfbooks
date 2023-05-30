@@ -28,6 +28,8 @@ export const USER_DISABLED = "USER_DISABLED";
 export const UPDATE_USER_DATA = "UPDATE_USER_DATA";
 export const UPDATE_BOOK = "UPDATE_BOOK";
 export const ALL_ORDERS = "ALL_ORDERS";
+export const POST_REVIEW = "POST_REVIEW";
+export const ORDER_BY_USER = "ORDER_BY_USER";
 export const CREATE_BOOK = "CREATE_BOOK";
 
 const ENDPOINT_ORDER = "http://localhost:3001/order";
@@ -40,6 +42,7 @@ const ENDPOINT_LOGIN = "http://localhost:3001/login";
 const ENDPOINT_LOGIN_WHIT_GOOGLE = "http://localhost:3001/login/google"
 const API_URL = ''
 const ENDPOINT_REVIEW = "http://localhost:3001/reviews";
+const ENDPOINT_ORDER_BY_USER = "http://localhost:3001/order/by-user-id/";
 
 
 export function allBooks() {
@@ -216,7 +219,7 @@ export function createReview(review) {
             return dispatch({
                 type: CREATE_REVIEW,
                 payload: result,
-            });
+            })
         });
     };
 }
@@ -371,6 +374,7 @@ export const getAllUser = () => async (dispatch) =>{
     }
 }
 
+
 export const getUserData = () => async (dispatch) => {
     try {
         const user = JSON.parse(localStorage.getItem('user'));
@@ -442,3 +446,18 @@ export const loginWhitGoogle = (credential) => async (dispatch) => {
         });
     }
 };
+export function orderByIdUser(userId) {
+    return async (dispatch) => {
+        try {
+            const response = await axios.get(`http://localhost:3001/order/by-user-id/${userId}` );
+            const data = response.data;
+            dispatch({
+                type: ORDER_BY_USER,
+                payload: data,
+            });
+        } catch (error) {
+            console.log("orderByUser:", error);
+        }
+    };
+}
+

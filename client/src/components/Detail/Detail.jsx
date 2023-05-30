@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import { bookById } from "../../redux/actions/actions";
 import styles from "./Detail.module.css";
 import Reviews from "../Reviews/Reviews";
+import ReviewForm from "../Reviews/ReviewForm";
 import Stars from "../Reviews/Stars";
 import { useCart } from "../../hooks/useCart";
 import { RiShoppingCartLine } from "react-icons/ri";
@@ -46,6 +47,8 @@ const Detail = () => {
 
   const user = JSON.parse(localStorage.getItem("user"));
   const userRole = user && user.adminRole; // Verificar si user no es null antes de acceder a adminRole
+  // const userName = user && user.username;
+  // console.log("User", user)
   const containerClass = userRole ? styles.containerAdmin : styles.container;
 
   return (
@@ -81,7 +84,10 @@ const Detail = () => {
           )}
         </div>
       </div>
-      <Reviews reviews={detail.reviews} />
+      <div>
+      <Reviews Reviews={detail.Reviews} />
+      {/* <ReviewForm bookId={detail.id} user={user}/> */}
+      </div>
     </div>
   );
 };

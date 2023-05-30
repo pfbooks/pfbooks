@@ -15,7 +15,10 @@ import About from "./components/AboutUs/About";
 import UsersTable from "./components/UsersTable/UsersTable";
 import OrdersTable from "./components/OrdersTable/OrdersTable";
 import { useSelector } from "react-redux";
+import ReviewForm from "./components/Reviews/ReviewForm"
+import  ShopList  from "./components/ShopList/ShopList";
 import { useLocation } from "react-router-dom";
+
 
 function App() {
   const user = useSelector((state) => state.user);
@@ -50,6 +53,8 @@ function App() {
           <Route path="/books" component={BooksTable} />
           <Route path="/orders" component={OrdersTable} />
           <Route exact path="/" component={Home} />
+          {/* <Route path="/login" component={Form} /> */}
+          <Route path="/shop/:userId" component={ShopList} />
           <Route path="/detail/:id" component={Detail} />
           <Route path="/register" component={Register} />
           <Route path="/login" component={LoginForm} />
@@ -57,6 +62,7 @@ function App() {
           <Route path="/chart" component={Chart} />
           <Route path="/success" component={Success} />
           <Route path="/about" component={About} />
+          <Route path="/addreview" component={ReviewForm} />
           <Route component={NotFound} />
         </Switch>
       </div>
