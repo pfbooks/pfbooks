@@ -1,3 +1,4 @@
+
 .Container {
     /*!* display: flex;*/
     /*flex-wrap: wrap;*/
@@ -35,4 +36,34 @@
   .CartIcon {
     margin-right: 5px;
   }
-  
+        @media screen and (max-width: 1366px) and (max-height: 768px) {
+          .Container {
+          display: grid;
+          grid-template-columns: repeat(4, 1fr);
+          grid-gap: 20px;
+          padding: 1rem;
+          margin-left: 1.8rem;
+          /* margin-right: 12%; */
+          width: auto;
+          }
+    
+          .AddToCartButton {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+          }
+    
+          .AddToCartButton:hover {
+            background-color: #0056b3;
+          }
+    
+          .CartIcon {
+            margin-right: 5px;
+          }
+        }

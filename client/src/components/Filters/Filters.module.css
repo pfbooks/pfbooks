@@ -1,4 +1,35 @@
 .selectFilters {
+  font-size: 16px;
+  padding: 8px;
+  border-radius: 8px;
+  border: none;
+  background-color: #fff;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
+  margin-right: 16px;
+}
+
+.buttonBooks {
+  background-color: #04ab77;
+  color: #ffffff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.buttonBooks:hover {
+  background-color: #117253;
+}
+
+@media screen and (max-width: 1366px) and (max-height: 768px) {
+  .selectFiltersContainer {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 16px;
+  }
+
+  .selectFilters {
     font-size: 16px;
     padding: 8px;
     border-radius: 8px;
@@ -17,7 +48,4 @@
     cursor: pointer;
     transition: background-color 0.3s ease;
   }
-  
-  .buttonBooks:hover {
-    background-color: #117253;
-  }
+}
