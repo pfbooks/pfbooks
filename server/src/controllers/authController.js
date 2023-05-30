@@ -15,6 +15,9 @@ const authController = async (email, password) => {
     if (!user) {
       return { error: 'Usuario no encontrado', errorCode: 404};
     }
+    if(!user.isActive ){
+      return { error: 'Usuario bloqueado', errorCode: 401 };
+    }
     const validPassword = await bcrypt.compare(password, user.password);
     if (!validPassword) {
       return { error: 'Credenciales incorrectas', errorCode: 401 };
