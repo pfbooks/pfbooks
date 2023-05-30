@@ -31,6 +31,8 @@ export const ALL_ORDERS = "ALL_ORDERS";
 export const POST_REVIEW = "POST_REVIEW";
 export const ORDER_BY_USER = "ORDER_BY_USER";
 export const CREATE_BOOK = "CREATE_BOOK";
+export const BOOK_AVAILABILITY = "BOOK_AVAILABILITY";
+export const ALL_BOOKS_ADMIN = "ALL_BOOKS_ADMIN";
 
 const ENDPOINT_ORDER = "http://localhost:3001/order";
 const ENDPOINT_ADMIN = "http://localhost:3001/admin";
@@ -54,6 +56,17 @@ export function allBooks() {
             });
         });
     };
+}
+
+export function allBooksAdmin() {
+    return async (dispatch) => {
+        await axios.get(`${ENDPOINT_ADMIN}/allBooks`).then((result) => {
+            return dispatch({
+                type: ALL_BOOKS_ADMIN,
+                payload: result.data,
+            })
+        })
+    }
 }
 
 export function allOrders() {
@@ -152,6 +165,22 @@ export function userById(id){
             })
         } catch (error) {
             console.log("User info error:", error)
+        }
+    }
+}
+
+export const bookDisablement = (id, availability) => {
+    
+    return async (dispatch) => {
+        try {
+            const response = await axios.put(`${ENDPOINT_ADMIN}/availableBook`, {availability: !availability, id});
+            const data = response.data;
+            dispatch({
+                type: BOOK_AVAILABILITY,
+                payload: data,
+            });
+        } catch (error) {
+            console.log(error.message);
         }
     }
 }
