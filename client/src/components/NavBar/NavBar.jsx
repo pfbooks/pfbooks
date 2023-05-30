@@ -8,7 +8,7 @@ import { useLocation } from "react-router-dom";
 import { allBooks, logoutUser } from "../../redux/actions/actions";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { FaUser } from "react-icons/fa";
+import { FaUser, FaMoneyBill } from "react-icons/fa";
 import { FiLogOut } from "react-icons/fi";
 import { AiOutlineUserAdd, AiOutlineLogin } from "react-icons/ai";
 import { RiShoppingCartLine } from "react-icons/ri";
@@ -110,31 +110,29 @@ const NavBar = () => {
             <ul className={styles.dropdownList}>
               {user ? (
                 <div>
-                  <li className={styles.dropdownItem} onClick={handleLogout}>
+                  <li className={styles.dropdownItem2} onClick={handleLogout}>
                     <FiLogOut size={20} />
                     <span className={styles.dropdownLink}>Logout</span>
                   </li>
-                  <br />
-                  <li className={styles.dropdownItem} onClick={handleProfile}>
+                  <li className={styles.dropdownItem2} onClick={handleProfile}>
                     <FaUser size={20} />
                     <span className={styles.dropdownLink}>Profile</span>
                   </li>
-                  <br />
-                  <li className={styles.dropdownItem} onClick={handleShop}>
-                    <FaUser size={20} />
-                    <span className={styles.dropdownLink}>My shopping</span>
+                  <li className={styles.dropdownItem2} onClick={handleShop}>
+                    <FaMoneyBill size={19} />
+                    <span className={styles.dropdownLink}>My shop</span>
                   </li>
                 </div>
               ) : (
                 <>
                   <Link to={"/register"} className={styles.dropdownLink}>
-                    <li className={styles.dropdownItem}>
+                    <li className={styles.dropdownItem2}>
                       <AiOutlineUserAdd size={20} />
                       <span>Register</span>
                     </li>
                   </Link>
                   <Link to={"/login"} className={styles.dropdownLink}>
-                    <li className={styles.dropdownItem}>
+                    <li className={styles.dropdownItem2}>
                       <AiOutlineLogin size={20} />
                       <span>Login</span>
                     </li>
