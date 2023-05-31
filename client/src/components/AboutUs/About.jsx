@@ -7,6 +7,7 @@ import libroswebImage from './librosweb.jpg';
 import profile1Image from './profile1.jpg';
 import natalyImage from './nataly.jpg';
 import lautaroImage from './lautaro.jpg';
+import gastonImage from './gaston.jpg';
 import profile4Image from './profile4.jpg';
 import marcosImage from './marcos.jpeg';
 import profile6Image from './profile6.jpg';
@@ -80,7 +81,7 @@ const About = () => {
     {
       name: 'Gaston',
       lastName: 'Garcia Juri',
-      photo: profile6Image,
+      photo: gastonImage,
       github: 'https://github.com/gastigarciajuri',
       linkedin: 'https://www.linkedin.com/in/lautarosoto'
     },
