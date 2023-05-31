@@ -30,14 +30,15 @@ const ShopList = () => {
         My Shopping
       </h1>
       <br />
-        <span className={styles.spanSelect}>
-          Select a book and leave us a review
-        </span>
         <br />
       
       {order.length === 0 ? (
-        <p>No hay compras realizadas.</p>
+        <p className={styles.pCompras}>No purchases made.</p>
       ) : (
+      <div>
+        <span className={styles.spanSelect}>
+          Select a book and leave us a review
+        </span>
         <div className={styles.cardContainer}>
           {order.map((o) => {return (
               <ShopContainer
@@ -46,6 +47,8 @@ const ShopList = () => {
               />
           )})}
         </div>
+
+      </div>
       )}
 
     </div>

@@ -1,5 +1,6 @@
 import Card from "../Card/Card";
 import styles from "./CardsContainer.module.css";
+import NotFoundGif from './404.gif';
 import { useCart } from "../../hooks/useCart";
 import { useEffect, useState } from "react";
 
@@ -42,28 +43,38 @@ const CardsContainer = (props) => {
   }, [props.isLoading, props.books]);
 
   return (
-    <div className={styles.Container}>
+    <>
+
       {props.isLoading ? (
         <div className={styles.loading}>Cargando...</div>
       ) : props.books.length > 0 ? (
-        props.books.map((book) => (
-          <Card
-            key={book.id}
-            id={book.id}
-            title={book.title}
-            image={book.image}
-            price={book.price}
-            rating={book.rating}
-            handleAddToCart={handleAddToCart}
-            showNotification={showNotification}
-          />
-        ))
-      ) : noMatch ? (
-        <div className={styles.divNoMatch}>
-          No se encontraron resultados para tu búsqueda
+        <div className={styles.Container}>
+          {props.books.map((book) => (
+            <Card
+              key={book.id}
+              id={book.id}
+              title={book.title}
+              image={book.image}
+              price={book.price}
+              rating={book.rating}
+              handleAddToCart={handleAddToCart}
+              showNotification={showNotification}
+            />
+        ))}
         </div>
+        
+      )
+       : noMatch ? (
+        <div className={styles.gifContainer}>
+        <h1>Results not found</h1>
+        <p>Sorry, no results were found for your search.</p>
+        <button className={styles.NotFoundButton} onClick={() => {window.location.href = '/';}}>return to homepage</button>
+        <br />
+        <img src={NotFoundGif} alt="404 GIF" className={styles.gif} />
+      </div>
       ) : null}
-    </div>
+    
+    </>
   );
 };
 

@@ -52,8 +52,8 @@ const Home = () => {
     }, 1000);
   }, []);
 
-  return (
-    <div className={containerClass}>
+  return ( 
+     <div className={containerClass}>
       {isLoading ? (
         <div>
             <img src={Loading} alt="LOADING GIF" className={styles.gif} />         
@@ -103,7 +103,7 @@ const Home = () => {
             currentPage={currentPage}
 
           />
-          <Paginado  size={size} currentPage={currentPage}  handlePageChange={handlePageChange}/>
+          {books.length > 0 && <Paginado  size={size} currentPage={currentPage}  handlePageChange={handlePageChange}/>}
         </>
       )}
     </div>
