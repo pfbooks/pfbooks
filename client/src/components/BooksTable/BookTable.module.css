@@ -24,3 +24,14 @@
     width: 95%; 
     margin-left: 64px;
 }
+
+.saveButton {
+    background-color: #04ab77;
+    border-radius: 5px;
+    color: white;
+    border: none;
+}
+
+.saveButton:hover {
+    background-color: #117253;
+}

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { allBooks, updateBook, createBook } from "../../redux/actions/actions";
+import { allBooksAdmin, updateBook, createBook, bookAvailable } from "../../redux/actions/actions";
 import { DataGrid } from "@mui/x-data-grid";
 import {
   Dialog,
@@ -14,7 +14,7 @@ import {
 import styles from "./BookTable.module.css";
 
 const BooksTable = () => {
-  const books = useSelector((state) => state.books);
+  const books = useSelector((state) => state.booksAdmin);
   const dispatch = useDispatch();
   const [open, setOpen] = useState(false);
 
@@ -69,7 +69,7 @@ const BooksTable = () => {
   };
 
   useEffect(() => {
-    dispatch(allBooks());
+    dispatch(allBooksAdmin());
   }, [dispatch]);
 
   const handleClick = (book) => {
@@ -81,8 +81,8 @@ const BooksTable = () => {
           : book.genre,
     };
     dispatch(updateBook(updatedBook));
-    dispatch(allBooks());
     alert("Libro editado con éxito");
+    dispatch(allBooksAdmin());
   };
 
   const handleImageChange = (event) => {
@@ -97,13 +97,25 @@ const BooksTable = () => {
     reader.readAsDataURL(file);
   };
 
+  const handleCheckbox = (event, book) => {
+    console.log(event.target.checked)
+    console.log(book)
+    console.log(event.target.value)
+
+    let value;
+    if(event.target.checked) value = false
+    else value = true
+    dispatch(bookAvailable(book.id, value))
+    dispatch(allBooksAdmin())
+}
+
   const columns = [
     {
       field: "action",
       headerName: "Action",
       width: 100,
       renderCell: (params) => (
-        <button onClick={() => handleClick(params.row)}>Save</button>
+        <button className={styles.saveButton} onClick={() => handleClick(params.row)}>Save</button>
       ),
     },
     {
@@ -129,8 +141,8 @@ const BooksTable = () => {
       width: 100,
     },
     { field: "id", headerName: "ID", editable: true, width: 70 },
-    { field: "title", headerName: "Title", editable: true, width: 300 },
-    { field: "author", headerName: "Author", editable: true, width: 240 },
+    { field: "title", headerName: "Title", editable: true, width: 250 },
+    { field: "author", headerName: "Author", editable: true, width: 200 },
     {
       field: "price",
       headerName: "Price",
@@ -139,8 +151,11 @@ const BooksTable = () => {
       editable: true,
       renderCell: (params) => <div>$ {params.value}</div>,
     },
-    { field: "rating", headerName: "Rating", type: "number", editable: true, width: 160 },
-    { field: "genre", headerName: "Genre", editable: true, width: 200 },
+    { field: "rating", headerName: "Rating", type: "number", editable: true, width: 70 },
+    { field: "genre", headerName: "Genre", editable: true, width: 240 },
+    { field: 'available', headerName: 'Available', type: "boolean", width: 120, renderCell: (params) => (
+      <input type='checkbox' checked={params.row.availability} onChange={(event) => handleCheckbox(event, params.row)} value={params.row.title}/>
+  ) }
   ];
 
   const getRowHeight = () => {

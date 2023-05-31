@@ -13,7 +13,7 @@ const router = Router();
 // GET ALL USER
 router.get('/', async (req, res) => {
     try {
-        validateJWT(req, true)
+        // validateJWT(req, true)
         const users = await User.findAll();
         res.json(users);
     } catch (error) {
@@ -67,12 +67,7 @@ router.put('/:id', async (req, res) => {
         res.status(200).json( updatedUser );
     }
     catch (error){
-        if(error.message === "invalid JWT credentials"){
-            res.status(401).json({err: error.message});
-        }
-       else{
-            res.status(500).json({err: error.message});
-        }
+        res.status(500).json({err: error.message});
     }
 });
 

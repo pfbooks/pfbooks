@@ -2,13 +2,9 @@ const { QueryTypes } = require('sequelize');  /// uso RAW QUERIES - replacement 
 const { conn } = require('../db.js')
 
 
-const getAllGenres =  async (author)  => {
-    let query = 'SELECT distinct unnest(genre) as genre FROM "Books"';
-    if(author) {
-        query += ` WHERE author = '${author}'`;
-    }
+const getAllGenres =  async ()  => {
     const genres = await conn.query(
-        query,
+        'SELECT DISTINCT unnest(genre) as genre FROM "Books"',
         {
             type: QueryTypes.SELECT
         }

@@ -31,6 +31,8 @@ export const ALL_ORDERS = "ALL_ORDERS";
 export const POST_REVIEW = "POST_REVIEW";
 export const ORDER_BY_USER = "ORDER_BY_USER";
 export const CREATE_BOOK = "CREATE_BOOK";
+export const BOOK_AVAILABILITY = "BOOK_AVAILABILITY";
+export const ALL_BOOKS_ADMIN = "ALL_BOOKS_ADMIN";
 
 const ENDPOINT_ORDER = "http://localhost:3001/order";
 const ENDPOINT_ADMIN = "http://localhost:3001/admin";
@@ -56,6 +58,17 @@ export function allBooks() {
     };
 }
 
+export function allBooksAdmin() {
+    return async (dispatch) => {
+        await axios.get(`${ENDPOINT_ADMIN}/allBooks`).then((result) => {
+            return dispatch({
+                type: ALL_BOOKS_ADMIN,
+                payload: result.data,
+            })
+        })
+    }
+}
+
 export function allOrders() {
     return async (dispatch) => {
         await axios.get(`${ENDPOINT_ORDER}`).then((result) => {
@@ -67,17 +80,9 @@ export function allOrders() {
     };
 }
 
-export function allAuthors(genre) {
+export function allAuthors() {
     return async (dispatch) => {
-        let options = null
-        if(genre) {
-            options = {
-                params : {
-                    genre : genre
-                }
-            }
-        }
-        await axios.get(`${ENDPOINT_AUTHORS}`, options).then((result) => {
+        await axios.get(`${ENDPOINT_AUTHORS}`).then((result) => {
             return dispatch({
                 type: ALL_AUTHORS,
                 payload: result.data,
@@ -86,17 +91,9 @@ export function allAuthors(genre) {
     };
 }
 
-export function allGenre(author) {
+export function allGenre() {
     return async (dispatch) => {
-        let options = null
-        if(author) {
-            options = {
-                params : {
-                    author : author
-                }
-            }
-        }
-        await axios.get(`${ENDPOINT_GENRE}`, options).then((result) => {
+        await axios.get(`${ENDPOINT_GENRE}`).then((result) => {
             return dispatch({
                 type: ALL_GENRE,
                 payload: result.data,
@@ -124,13 +121,6 @@ export function filterBooks(genre, author) {
             });
         } else if (author && !genre) {
             await axios.get(`${ENDPOINT_BOOKS}?author=${author}`).then((result) => {
-                return dispatch({
-                    type: FILTER_BOOKS,
-                    payload: result.data,
-                });
-            });
-        } else if (!author && !genre) {
-            await axios.get(`${ENDPOINT_BOOKS}`).then((result) => {
                 return dispatch({
                     type: FILTER_BOOKS,
                     payload: result.data,
@@ -175,6 +165,22 @@ export function userById(id){
             })
         } catch (error) {
             console.log("User info error:", error)
+        }
+    }
+}
+
+export const bookAvailable = (id, availability) => {
+    
+    return async (dispatch) => {
+        try {
+            const response = await axios.put(`${ENDPOINT_ADMIN}/availableBook`, {availability: !availability, id});
+            const data = response.data;
+            dispatch({
+                type: BOOK_AVAILABILITY,
+                payload: data,
+            });
+        } catch (error) {
+            console.log(error.message);
         }
     }
 }
@@ -427,12 +433,7 @@ export const updateUserDataById = ( name, lastName, email) => async (dispatch) =
         const id = localStorageUser.id;
         const data = { id, name, lastName, email}
         console.log("data", data)
-        const res = await axios.put(`${ENDPOINT_USER}/${id}`, data,{
-            headers: {
-                Authorization: localStorageUser.token,
-            },
-        });
-
+        const res = await axios.put(`${ENDPOINT_USER}/${id}`, data );
         if (res.status === 200) {
             const userData = res.data.user;
             userData.token = localStorageUser.token
