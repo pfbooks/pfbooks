@@ -3,13 +3,14 @@ import { FaStar } from "react-icons/fa";
 import styles from "./ReviewForm.module.css";
 import { createReview } from "../../redux/actions/actions";
 import { useDispatch, useSelector } from "react-redux";
-import Stars from "./Stars";
 import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 import { bookById } from "../../redux/actions/actions";
+import { useHistory } from "react-router-dom";
 
 
 const ReviewForm = () => {
 
+  const history = useHistory()
   const [rating, setRating] = useState(0);
   const [comment, setComment] = useState("");
   const dispatch = useDispatch();
@@ -56,7 +57,9 @@ const ReviewForm = () => {
       dispatch(createReview(reviewData));
       setRating(0)
       setComment('')
+      history.push(`/shop/${user.id}`);
       return alert('Thanks for you review!')
+
     }
     else return alert('Select a rating star')
   };
