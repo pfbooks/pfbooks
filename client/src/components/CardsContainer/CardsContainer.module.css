@@ -1,15 +1,4 @@
-
 .Container {
-    /*!* display: flex;*/
-    /*flex-wrap: wrap;*/
-    /*justify-content: space-between; *!*/
-    /*display: grid;*/
-    /*grid-template-columns: repeat(4, 1fr);*/
-    /*justify-content: center;*/
-    /*margin-left: 3%;*/
-    /*!* margin-right: 2%; *! */
-    /*gap: 50px;*/
-    /*margin-bottom: 30px;*/
     display: grid;
     grid-template-columns: 3fr 3fr 3fr 3fr;
     grid-gap: 30px;
@@ -33,6 +22,19 @@
     background-color: #0056b3;
   }
   
+  .divNoMatch {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    font-weight: bold;
+    margin-left: 26rem;
+    margin-top: 4rem;
+    margin-bottom: 4rem;
+    padding: 1rem;
+    width: 75%;
+  }
+
   .CartIcon {
     margin-right: 5px;
   }
