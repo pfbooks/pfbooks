@@ -3,6 +3,7 @@ import { FaCheckCircle } from "react-icons/fa";
 import styles from "./Success.module.css";
 import { useCart } from "../../hooks/useCart"
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 const Success = () => {
   const { cart, clearCart } = useCart();
@@ -29,6 +30,9 @@ const Success = () => {
     <div className={styles.container}>
       <FaCheckCircle className={styles.icon} />
       <h1 className={styles.title}>¡Pago Exitoso!</h1>
+      <Link to={`/shop/${user.id}`}>
+        <button className={styles.buttonLink}>My Shop</button>
+      </Link>
     </div>
   );
 };

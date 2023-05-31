@@ -1,15 +1,22 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FaStar } from "react-icons/fa";
 import styles from "./ReviewForm.module.css";
 import { createReview } from "../../redux/actions/actions";
-import { useDispatch } from "react-redux";
-import Stars from "./Stars";
+import { useDispatch, useSelector } from "react-redux";
+import { useParams } from "react-router-dom/cjs/react-router-dom.min";
+import { bookById } from "../../redux/actions/actions";
+import { useHistory } from "react-router-dom";
 
-const ReviewForm = ({ bookId, user, setBookId }) => {
+
+const ReviewForm = () => {
+
+  const history = useHistory()
   const [rating, setRating] = useState(0);
   const [comment, setComment] = useState("");
   const dispatch = useDispatch();
-
+  const book = useSelector(state => state.detail)
+  const user = JSON.parse(localStorage.getItem("user"));
+  const { bookId } = useParams()
   const handleStarHover = (star) => {
     const rat = star !== 0 ? star : 0; // Si star es 0, establece el rating en 0, de lo contrario, usa el valor de star
     const stars = document.getElementsByClassName(styles["star-icon"]);
@@ -22,6 +29,9 @@ const ReviewForm = ({ bookId, user, setBookId }) => {
       }
     }
   };
+  useEffect(() => {
+    dispatch(bookById(bookId));
+  }, [dispatch, bookId]);
 
   const handleStarClick = (star) => {
     setRating(star);
@@ -47,13 +57,19 @@ const ReviewForm = ({ bookId, user, setBookId }) => {
       dispatch(createReview(reviewData));
       setRating(0)
       setComment('')
-      setBookId('')
+      history.push(`/shop/${user.id}`);
       return alert('Thanks for you review!')
+
     }
     else return alert('Select a rating star')
   };
 
   return (
+    <>
+      <div className={styles.centeredContainer}>
+      <h3 className={styles.titleHeading2}>{book.title}</h3>
+      <img className={styles.bookImage} src={book.image} alt={book.id}/>
+      </div>
     <form className={styles["review-form"]} onSubmit={handleSubmit}>
       <h2 className={styles["form-title"]}>Leave your review</h2>
 
@@ -88,6 +104,7 @@ const ReviewForm = ({ bookId, user, setBookId }) => {
         Enviar
       </button>
     </form>
+    </>
   );
 };
 

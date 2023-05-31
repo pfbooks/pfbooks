@@ -62,7 +62,7 @@ function App() {
           <Route path="/chart" component={Chart} />
           <Route path="/success" component={Success} />
           <Route path="/about" component={About} />
-          <Route path="/addreview" component={ReviewForm} />
+          <Route path="/addReview/:bookId" component={ReviewForm} />
           <Route component={NotFound} />
         </Switch>
       </div>

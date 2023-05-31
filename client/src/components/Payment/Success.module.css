@@ -17,3 +17,17 @@
   font-size: 24px;
   font-weight: bold;
 }
+
+.buttonLink {
+  background-color: #04ab77;
+  color: #ffffff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.buttonLink:hover {
+  background-color: #117253;
+}
