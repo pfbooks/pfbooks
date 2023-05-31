@@ -169,7 +169,7 @@ export function userById(id){
     }
 }
 
-export const bookDisablement = (id, availability) => {
+export const bookAvailable = (id, availability) => {
     
     return async (dispatch) => {
         try {
