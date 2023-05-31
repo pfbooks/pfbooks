@@ -27,8 +27,5 @@ module.exports = (sequelize) => {
             type: DataTypes.STRING,
             allowNull:false,
             defaultValue: 'Anónimo'
-
         },
-    },
-    { timestamps: false });
-};
+    });};

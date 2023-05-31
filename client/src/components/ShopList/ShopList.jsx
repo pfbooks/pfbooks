@@ -31,7 +31,7 @@ const ShopList = () => {
       </h1>
       <br />
         <br />
-      
+
       {order.length === 0 ? (
         <p className={styles.pCompras}>No purchases made.</p>
       ) : (

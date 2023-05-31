@@ -52,41 +52,48 @@ const Detail = () => {
   const containerClass = userRole ? styles.containerAdmin : styles.container;
 
   return (
-    <div className={styles.detailContainer}>
-      <div className={styles.contentContainer}>
-        <div className={styles.imageContainer}>
-          <img src={detail.image} alt={id} className={styles.image} />
-        </div>
-        <div className={styles.infoContainer}>
-          <h2 className={styles.title}>{detail.title}</h2>
-          <p className={styles.author}>Author: {detail.author}</p>
-          <p className={styles.genre}>Genres: {detail.genre}</p>
-          <div className={styles.category}>{detail.category}</div>
-          <p className={styles.description}>{detail.description}</p>
-        </div>
-        <div className={styles.sidebar}>
-          <div className={styles.topRightContainer}>
-            <div className={styles.ratingContainer}>
-              <p className={styles.ratingLabel}>Rating</p>
-              <Stars rating={detail.rating} />
-              <span className={styles.rating}>{detail.rating}</span>
-            </div>
-            <p className={styles.price}>$ {detail.price}</p>
+    <div>
+          <div className={styles.detailContainer}>
+        <div className={styles.contentContainer}>
+          <div className={styles.imageContainer}>
+            <img src={detail.image} alt={id} className={styles.image} />
           </div>
-          <button className={styles.addToCartButton} onClick={handleAddToCart}>
-            ADD TO CART
-            <RiShoppingCartLine className={styles.CartIcon} />
-          </button>
-          {showNotification && (
-            <div className={styles.notification}>
-              Product added successfully
+          <div className={styles.infoContainer}>
+            <h2 className={styles.title}>{detail.title}</h2>
+            <p className={styles.author}>Author: {detail.author}</p>
+            <p className={styles.genre}>Genres: {detail.genre}</p>
+            <div className={styles.category}>{detail.category}</div>
+            <p className={styles.description}>{detail.description}</p>
+          </div>
+          <div className={styles.sidebar}>
+            <div className={styles.topRightContainer}>
+              <div className={styles.ratingContainer}>
+                <p className={styles.ratingLabel}>Rating</p>
+                <Stars rating={detail.rating} />
+                <span className={styles.rating}>{detail.rating}</span>
+              </div>
+              <p className={styles.price}>$ {detail.price}</p>
             </div>
-          )}
+            <button
+              className={styles.addToCartButton}
+              onClick={handleAddToCart}
+            >
+              ADD TO CART
+              <RiShoppingCartLine className={styles.CartIcon} />
+            </button>
+            <div className={styles.notificationContainer}>
+              {showNotification && (
+                <div className={styles.notification}>
+                  Product added successfully
+                </div>
+              )}
+            </div>
+          </div>
         </div>
       </div>
-      <div>
-      <Reviews Reviews={detail.Reviews} />
-      {/* <ReviewForm bookId={detail.id} user={user}/> */}
+      <div className={styles.reviews}>
+        <Reviews Reviews={detail.Reviews} />
+        {/* <ReviewForm bookId={detail.id} user={user}/> */}
       </div>
     </div>
   );

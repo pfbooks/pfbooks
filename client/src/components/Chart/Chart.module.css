@@ -1,78 +1,134 @@
+.botones {
+  display: flex;
+  justify-content: center; /* Ajusta el espacio entre los elementos */
+  align-items: center;
+  margin-bottom: 20px;
+  flex-wrap: wrap; 
+}
 .cartContainer {
-    display: flex;
-    flex-wrap: wrap;
-  }
-  .container {
-    display: flex;
-    width: 15%;
-    align-items: center;
-    justify-content: center;
-    margin-top: 20px;
-    background-color: #f5f5f5;
-    padding: 10px;
-    border-radius: 20px;
-    border: 2px solid #04ab77; /* Agrega el borde */
-  }
-  
-  .icon {
-    font-size: 24px;
-    color: #555555;
-    margin-right: 8px;
-  }
-  
-  .total {
-    font-size: 18px;
-  }
-  
-  
-    
-  .productContainer {
-    width: 300px;
-    margin: 10px;
-    padding: 20px;
-    background-color: #f5f5f5;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-    display: flex;
-    align-items: center;
-  }
-  .totalContainer {
-    display: flex;
-    align-items: center;
-    padding: 10px;
-    background-color: #f2f2f2;
-    border-radius: 5px;
-  }
-  
-  .totalContainer svg {
-    margin-right: 10px;
-  }
-  
-  .productContainer img {
-    width: 80px;
-    height: 80px;
-    margin-right: 20px;
-  }
-  
-  .deleteButton {
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
-    color: #ff0000;
-    font-size: 20px;
-  }
-  
-  .deleteButton:hover {
-    color: #cc0000;
-  }
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center; /* Centra horizontalmente los elementos */
 
-.cleanButton {
+}
+
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end; /* Cambia 'center' a 'flex-end' */
+  background-color: #f5f5f5;
+  padding: 10px;
+  border-radius: 20px;
+  border: 2px solid #04ab77;
+}
+.container2 {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+}
+.buttonMp {
   background-color: #04ab77;
   color: #ffffff;
+  padding: 10px 20px;
+  border: none;
+  margin-top: 10px;
+  
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  display: flex;
+  justify-content: center; /* Ajusta el espacio entre los elementos */
+  align-items: center;
+  margin-bottom: 20px;
+  flex-wrap: wrap; /* Añade esta propiedad para envolver los elementos en caso de que haya poco espacio horizontal */
+}
+.icon {
+  font-size: 24px;
+  color: #555555;
+}
+
+
+.total {
+  font-size: 18px;
+  text-align: center;
+  margin-left: -5px;
+}
+
+.productContainer {
+  width: 300px;
+  margin: 10px;
+  padding: 20px;
+  background-color: #f5f5f5;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); /* Ajusta el valor de la sombra según tus preferencias */
+  border-radius: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.totalClear{
+  display: flex;
+  justify-content: inherit;
+  margin-top: 5dvh;
+}
+
+.totalContainer {
+  margin-left: 24.5dvh;
+  margin-right: 2dvh;
+  display: flex;
+  align-items: center;
+  border-radius: 5px;
+  justify-content: center;
+  width: 67%;
+  background-color: #f5f5f5;
+  padding: 10px;
+  border-radius: 20px;
+  border: 2px solid #04ab77;
+}
+
+
+
+.totalContainer .icon {
+  margin-right: 10px;
+}
+
+/* .totalContainer svg {
+  margin-right: 10px;
+} */
+
+.productContainer img {
+  width: 80px;
+  height: 80px;
+  margin-right: 20px;
+}
+.deleteButton {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  color: #186571;
+  font-size: 20px;
+}
+  
+.deleteButton:hover {
+  transform: scale(1.2);
+}
+
+
+.cleanButton {
+    /* background-color: #04ab77;
+    color: #ffffff; */
   padding: 10px 20px;
   border: none;
   border-radius: 4px;
   cursor: pointer;
   transition: background-color 0.3s ease;
+  background-color: #f5f5f5;
+  padding: 10px;
+  border-radius: 20px;
+  border: 2px solid #04ab77;
+  font-size: 15px;
+}
+.buttonIcon {
+  margin-right: 5px; /* Ajusta el margen derecho según tus preferencias */
 }
   
 .emptyCartContainer {
@@ -86,23 +142,25 @@
   padding: 20px;
   text-align: center;
 }
-
 .buttonEmptyCart {
   background-color: #04ab77;
-    color: #ffffff;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
+  color: #ffffff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
 .buttonEmpty.buttonEmptyCart {
   background-color: #117253;
 }
 
+
 .title {
   text-align: center;
   font-size: 24px;
   margin-bottom: 20px;
 }
+
+

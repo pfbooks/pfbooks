@@ -5,6 +5,7 @@ import {
   faPlus,
   faMinus,
   faTrash,
+  faTrashAlt,
   faDollarSign,
 } from "@fortawesome/free-solid-svg-icons";
 import { useHistory, Link } from "react-router-dom";
@@ -27,7 +28,7 @@ const Chart = () => {
   const handleIncreaseQuantity = (productId) => {
     increaseQuantity({ id: productId });
   };
-  
+
   const handleDecreaseQuantity = (productId) => {
     const product = cart.find((item) => item.id === productId);
     if (product && product.quantity === 1) {
@@ -36,16 +37,16 @@ const Chart = () => {
       decreaseQuantity({ id: productId });
     }
   };
-  const [isLogged, setIsLogged] = useState(false)
+  const [isLogged, setIsLogged] = useState(false);
   const handleClearCart = () => {
     clearCart();
   };
   const user = JSON.parse(localStorage.getItem("user"));
   const handleMP = () => {
-    if(!user){
-      history.push("/login")
-    } 
-    setIsLogged(true)
+    if (!user) {
+      history.push("/login");
+    }
+    setIsLogged(true);
   };
 
   const calculateTotal = () => {
@@ -68,10 +69,6 @@ const Chart = () => {
         </div>
       ) : (
         <div>
-          <div className={styles.container}>
-            <FontAwesomeIcon icon={faDollarSign} className={styles.icon} />
-            <p className={styles.total}>Total: ${calculateTotal()}</p>
-          </div>
           <div className={styles.cartContainer}>
             {cart.map((product) => (
               <div key={product.id} className={styles.productContainer}>
@@ -84,6 +81,8 @@ const Chart = () => {
                     <button onClick={() => handleIncreaseQuantity(product.id)}>
                       <FontAwesomeIcon icon={faPlus} />
                     </button>
+                    <span>&nbsp;</span>
+                    <span>&nbsp;</span>
                     <button onClick={() => handleDecreaseQuantity(product.id)}>
                       <FontAwesomeIcon icon={faMinus} />
                     </button>
@@ -98,20 +97,33 @@ const Chart = () => {
               </div>
             ))}
           </div>
-          <div>
-            {
-              !isLogged &&
-              <button className={styles.cleanButton} onClick={handleMP}>
-              Go to pay
-            </button>}
-            {
-              isLogged && <ButtonMP />
-            }
+          <div className={styles.totalClear}>
+            <div className={styles.totalContainer}>
+              <h3>Total: </h3>
+              <span>&nbsp;</span>
+              <span>&nbsp;</span>
+              <span>&nbsp;</span>
+              <FontAwesomeIcon icon={faDollarSign} className={styles.icon} />
+              <p className={styles.total}>{calculateTotal()}</p>
+            </div>
+            <button className={styles.cleanButton} onClick={handleClearCart}>
+              <FontAwesomeIcon
+                icon={faTrashAlt}
+                className={styles.buttonIcon}
+              />
+              Clean cart
+            </button>
           </div>
-          <br />
-          <button className={styles.cleanButton} onClick={handleClearCart}>
-            Clean chart
-          </button>
+          <div className={styles.botones}>
+            <div>
+              {!isLogged && (
+                <button className={styles.buttonMp} onClick={handleMP}>
+                  Go to pay
+                </button>
+              )}
+              {isLogged && <ButtonMP />}
+            </div>
+          </div>
         </div>
       )}
     </div>
