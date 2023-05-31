@@ -1,0 +1,124 @@
+.titleHeading {
+    font-size: 24px;
+    margin-bottom: 10px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .titleHeading2 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    font-style: oblique;
+    padding: 10px;
+    text-align: center;
+    border: 1px solid #000000;
+    border-radius: 5px;
+    height: 35px;
+  }
+  
+  
+  .icon {
+    margin-right: 10px;
+  }
+  
+  .cardContainer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-left: -10px;
+  }
+  
+  .userCard {
+    padding: 10px;
+    margin: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .bookList {
+    display: flex;
+    overflow-x: auto;
+  }
+  
+  .bookListUl {
+    list-style: none;
+    display: flex;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .bookItem {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-right: 20px;
+    width: 200px;
+  }
+  
+  .bookItemContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  
+  .bookImageContainer {
+    position: relative;
+  }
+  
+  .bookImageContainer:hover::before {
+    content: "Add review";
+    position: absolute;
+    bottom: 0;
+    width: 80%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 14px;
+  }
+  
+  .bookImage {
+    border-radius: 10px;
+    width: 100px;
+    height: 150px;
+    object-fit: cover;
+  }
+  
+  .bookInfo {
+    text-align: center;
+  }
+  
+  .bookTitle {
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+  
+  .price {
+    font-weight: bold;
+    margin-top: 5px;
+  }
+  
+  .select {
+    margin-top: 50px;
+    margin-left: 150px;
+    padding: 5px 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    width: 200px;
+  }
+  
+  .select option {
+    font-size: 16px;
+  }
+  
+  .spanSelect {
+    margin-left: 150px;
+  }
