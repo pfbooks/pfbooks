@@ -10,8 +10,10 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    background: linear-gradient(0deg, rgba(244,244,244,1) 0%, rgba(213,213,213,0.870765493697479) 100%);
     font-size: 18px;
     font-style: oblique;
+    color: #3b3a3a;
     padding: 10px;
     text-align: center;
     border: 1px solid #000000;
@@ -32,14 +34,18 @@
   }
   
   .userCard {
+    justify-content: center;
+    align-items: center;
     padding: 10px;
     margin: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
+    width: 900px;
   }
   
   .bookList {
     display: flex;
+    justify-content: center;
     overflow-x: auto;
   }
   
@@ -48,6 +54,7 @@
     display: flex;
     padding: 0;
     margin: 0;
+    justify-content: center;
   }
   
   .bookItem {

@@ -4,6 +4,7 @@
   align-items: center;
 }
 
+
 .rating-section {
   display: flex;
   justify-content: center;
@@ -67,14 +68,17 @@
   text-align: center;
   display: flex;
   align-items: center;
+  background: linear-gradient(0deg, rgba(244,244,244,1) 0%, rgba(213,213,213,0.870765493697479) 100%);
   justify-content: center;
   border: 1px solid black;
+  width: 15%;
   border-radius: 5px;
   padding: 5px;
 }
 
 .bookImage {
   display: flex;
+  border-radius: 10px;
   width: 215px;
   height: 300px;
   align-items: center;

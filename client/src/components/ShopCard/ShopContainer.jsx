@@ -11,30 +11,34 @@ export const ShopContainer = ({ order }) => {
   const firstIndex = lastIndex - booksPerPage;
   const size = books.length / booksPerPage;
   const currentBooks = books.slice(firstIndex, lastIndex);
-  const handlePageChange = (number)=> {
-    setCurrentPage(number)
-}
+  const handlePageChange = (number) => {
+    setCurrentPage(number);
+  };
 
   return (
-    <div key={order.id} className={styles.userCard} >
-    <h5 className={styles.titleHeading2}>Order N° {order.id}</h5>
-    <div className={styles.bookList}>
-      <ul className={styles.bookListUl}>
-        {currentBooks.map((b) => {
-          return (
-            <ShopCard 
-            id= {b.id}
-            image={b.image}
-            title={b.title}
-            quantity={b.quantity}
-            price={b.price}
-            key={b.id}
-            />
+    <div key={order.id} className={styles.userCard}>
+      <h5 className={styles.titleHeading2}>Order N° {order.id}</h5>
+      <div className={styles.bookList}>
+        <ul className={styles.bookListUl}>
+          {currentBooks.map((b) => {
+            return (
+              <ShopCard
+                id={b.id}
+                image={b.image}
+                title={b.title}
+                quantity={b.quantity}
+                price={b.price}
+                key={b.id}
+              />
             );
           })}
-      </ul>
+        </ul>
+      </div>
+      <Paginado
+        size={size}
+        currentPage={currentPage}
+        handlePageChange={handlePageChange}
+      />
     </div>
-    <Paginado  size={size} currentPage={currentPage}  handlePageChange={handlePageChange}/>
-  </div>
   );
 };

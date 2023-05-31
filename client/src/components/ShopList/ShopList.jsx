@@ -34,7 +34,7 @@ const ShopList = () => {
           Select a book and leave us a review
         </span>
         <br />
-      
+
       {order.length === 0 ? (
         <p>No hay compras realizadas.</p>
       ) : (
