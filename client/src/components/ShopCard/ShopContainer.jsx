@@ -34,11 +34,11 @@ export const ShopContainer = ({ order }) => {
           })}
         </ul>
       </div>
-      <Paginado
+      {books.length > 4 && <Paginado
         size={size}
         currentPage={currentPage}
         handlePageChange={handlePageChange}
-      />
+      />}
     </div>
   );
 };
