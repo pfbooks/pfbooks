@@ -201,28 +201,28 @@
   text-decoration: none !important; /* Asegura que el subrayado se elimine */
 
 
-.aboutButton {
-  color: rgb(15, 15, 15); font-size: 17px; 
+.aboutButton { 
+  color: #2e2e2e; 
+  font-size: 15px; 
   line-height: 17px; 
-  padding: 7px; 
   border-radius: 9px; 
-  font-weight: bold;
+  font-weight: bolder;
   text-decoration: none; 
-  font-variant: normal; 
-  text-transform: none; 
-  border: 2px solid rgb(255, 255, 255); display: inline-block;}
+  font-family: Arial, Helvetica, sans-serif;
+}  
 
   .aboutButton:hover {
-  background: #c4c5c5; }
+    transform: scale(1.1);
+    transition: transform 0.3s ease; }
   .aboutButoon:active {
-  background: #c6c8c9; }
+  background: white; }
 
 .aboutButton span {
-  font-weight: bold; /* Aplica la negrita a las letras dentro del botón */
+  font-weight: bold; 
 }
 
 .aboutButton:hover,
-.aboutButton:focus {
+.aboutButton:focus  {
   text-decoration: none !important; /* Asegura que el subrayado se elimine en el hover y el foco */
 }
 

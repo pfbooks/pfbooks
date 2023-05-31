@@ -81,7 +81,7 @@ const NavBar = () => {
 
       {showAbout && (
         <Link to="/about" className={styles.aboutLink}>
-          <button className={styles.aboutButton}>About</button>
+          <p className={styles.aboutButton}>About Us</p>
         </Link>
       )}
 

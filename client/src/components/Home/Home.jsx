@@ -101,7 +101,7 @@ const Home = () => {
             size={size}
             handlePageChange={handlePageChange}
             currentPage={currentPage}
-          />
+            />
         </>
       )}
     </div>
