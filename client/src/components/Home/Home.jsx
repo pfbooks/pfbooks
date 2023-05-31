@@ -102,6 +102,7 @@ const Home = () => {
             handlePageChange={handlePageChange}
             currentPage={currentPage}
           />
+          <Paginado  size={size} currentPage={currentPage}  handlePageChange={handlePageChange}/>
         </>
       )}
     </div>
