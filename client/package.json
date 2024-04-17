@@ -28,6 +28,7 @@
     "firebase": "^9.22.0",
     "jquery": "^3.7.0",
     "npm-check-updates": "^16.10.12",
+    "pfbooks": "file:..",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-dropzone": "^14.2.3",

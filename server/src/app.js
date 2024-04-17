@@ -2,13 +2,16 @@ const express = require('express');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
+const path = require('path')
 const routes = require('./routes/index.js');
 require('dotenv').config();
 const cors = require('cors')
 
+const dirname = path.resolve();
 const server = express();
 
 server.name = 'API';
+
 
 server.use(cors());
 server.use(bodyParser.urlencoded({ extended: true, limit: '50mb' }));
@@ -25,6 +28,15 @@ server.use((req, res, next) => {
 });
 
 server.use('/', routes);
+
+
+server.use(express.static(path.join(dirname, '/client/build')));
+
+server.get('*', (req, res) => {
+  res.sendFile(path.join(dirname, "client", "build", "index.html"));
+});
+
+
 
 // Error catching endware.
 server.use((err, req, res, next) => { // eslint-disable-line no-unused-vars
