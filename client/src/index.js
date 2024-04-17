@@ -5,7 +5,9 @@ import App from './App';
 import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
 import reportWebVitals from './reportWebVitals';
-import store from "./redux/store/store"
+import store from "./redux/store/store";
+import { GoogleOAuthProvider } from '@react-oauth/google';
+import { CartProvider } from './context/cart';
 
 
 // const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -18,11 +20,15 @@ import store from "./redux/store/store"
   
 // );
 ReactDOM.render(
-  <Provider store={store}>
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
-  </Provider>,
+    <GoogleOAuthProvider clientId="731677644134-tqclurd408lthelar85vugcohl4s850v.apps.googleusercontent.com">
+      <Provider store={store}>
+        <BrowserRouter>
+        <CartProvider>
+          <App />
+        </CartProvider>
+        </BrowserRouter>
+      </Provider>
+    </GoogleOAuthProvider>,
   document.getElementById('root')
 );
 

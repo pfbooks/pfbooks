@@ -1,0 +1,26 @@
+.titleHeading {
+  font-size: 24px;
+  margin-bottom: 10px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cardContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.spanSelect {
+  font-weight: bolder;
+  font-size: 16px;
+  margin-left: 220px;
+}
+
+.pCompras{
+  text-align: center;
+}

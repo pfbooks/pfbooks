@@ -35,7 +35,7 @@ module.exports = (sequelize) => {
             },
 
             rating: {
-                type: DataTypes.INTEGER,
+                type: DataTypes.FLOAT,
                 allowNull: false,
             },
 
@@ -47,6 +47,18 @@ module.exports = (sequelize) => {
             description: {
                 type: DataTypes.TEXT,
             },
+
+            numReviews: {
+                type: DataTypes.INTEGER,
+                allowNull: false,
+                defaultValue: 1
+            },
+
+            availability: {
+                type: DataTypes.BOOLEAN,
+                allowNull:false,
+                defaultValue: true,
+            }
         },
 
         { timestamps: false });
