@@ -34,17 +34,18 @@ export const CREATE_BOOK = "CREATE_BOOK";
 export const BOOK_AVAILABILITY = "BOOK_AVAILABILITY";
 export const ALL_BOOKS_ADMIN = "ALL_BOOKS_ADMIN";
 
-const ENDPOINT_ORDER = "http://localhost:3001/order";
-const ENDPOINT_ADMIN = "http://localhost:3001/admin";
-const ENDPOINT_BOOKS = "http://localhost:3001/books";
-const ENDPOINT_GENRE = "http://localhost:3001/genre";
-const ENDPOINT_AUTHORS = "http://localhost:3001/authors";
-const ENDPOINT_USER = "http://localhost:3001/user";
-const ENDPOINT_LOGIN = "http://localhost:3001/login";
-const ENDPOINT_LOGIN_WHIT_GOOGLE = "http://localhost:3001/login/google"
+const ENDPOINT_RENDER = "https://pfbooks.onrender.com";
+const ENDPOINT_ORDER = `${ENDPOINT_RENDER}/order`;
+const ENDPOINT_ADMIN = `${ENDPOINT_RENDER}/admin`;
+const ENDPOINT_BOOKS = `${ENDPOINT_RENDER}/books`;
+const ENDPOINT_GENRE = `${ENDPOINT_RENDER}/genre`;
+const ENDPOINT_AUTHORS = `${ENDPOINT_RENDER}/authors`;
+const ENDPOINT_USER = `${ENDPOINT_RENDER}/user`;
+const ENDPOINT_LOGIN = `${ENDPOINT_RENDER}/login`;
+const ENDPOINT_LOGIN_WHIT_GOOGLE = `${ENDPOINT_RENDER}/login/google`
 const API_URL = ''
-const ENDPOINT_REVIEW = "http://localhost:3001/reviews";
-const ENDPOINT_ORDER_BY_USER = "http://localhost:3001/order/by-user-id/";
+const ENDPOINT_REVIEW= `${ENDPOINT_RENDER}/reviews`;
+const ENDPOINT_ORDER_BY_USER = `${ENDPOINT_RENDER}/order/by-user-id/`;
 
 
 export function allBooks() {
@@ -477,7 +478,7 @@ export const loginWhitGoogle = (credential) => async (dispatch) => {
 export function orderByIdUser(userId) {
     return async (dispatch) => {
         try {
-            const response = await axios.get(`http://localhost:3001/order/by-user-id/${userId}` );
+            const response = await axios.get(`${ENDPOINT_ORDER_BY_USER}/${userId}` );
             const data = response.data;
             dispatch({
                 type: ORDER_BY_USER,
