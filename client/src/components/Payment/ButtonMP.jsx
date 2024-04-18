@@ -14,7 +14,7 @@ initMercadoPago("TEST-75896b1c-2143-43c1-82c4-274c670747f1");
 // Then some document.querySelector('.cho-container') to get the element
 // and then use the mp.checkout() method
 
-const endpoint = "http://localhost:3001";
+const endpoint = "https://pfbooks.onrender.com";
 // const obj = {
 //     user: {
 //         name: 'Jorge',
