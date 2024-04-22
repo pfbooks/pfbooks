@@ -34,18 +34,18 @@ export const CREATE_BOOK = "CREATE_BOOK";
 export const BOOK_AVAILABILITY = "BOOK_AVAILABILITY";
 export const ALL_BOOKS_ADMIN = "ALL_BOOKS_ADMIN";
 
-const ENDPOINT_RENDER = "https://pfbooks.onrender.com";
-const ENDPOINT_ORDER = `${ENDPOINT_RENDER}/order`;
-const ENDPOINT_ADMIN = `${ENDPOINT_RENDER}/admin`;
-const ENDPOINT_BOOKS = `${ENDPOINT_RENDER}/books`;
-const ENDPOINT_GENRE = `${ENDPOINT_RENDER}/genre`;
-const ENDPOINT_AUTHORS = `${ENDPOINT_RENDER}/authors`;
-const ENDPOINT_USER = `${ENDPOINT_RENDER}/user`;
-const ENDPOINT_LOGIN = `${ENDPOINT_RENDER}/login`;
-const ENDPOINT_LOGIN_WHIT_GOOGLE = `${ENDPOINT_RENDER}/login/google`
+const ENDPOINT_SERVER = process.env.REACT_APP_ENV === 'develop' ? 'http://localhost:3001' : "https://pfbooks.onrender.com";
+const ENDPOINT_ORDER = `${ENDPOINT_SERVER}/order`;
+const ENDPOINT_ADMIN = `${ENDPOINT_SERVER}/admin`;
+const ENDPOINT_BOOKS = `${ENDPOINT_SERVER}/books`;
+const ENDPOINT_GENRE = `${ENDPOINT_SERVER}/genre`;
+const ENDPOINT_AUTHORS = `${ENDPOINT_SERVER}/authors`;
+const ENDPOINT_USER = `${ENDPOINT_SERVER}/user`;
+const ENDPOINT_LOGIN = `${ENDPOINT_SERVER}/login`;
+const ENDPOINT_LOGIN_WHIT_GOOGLE = `${ENDPOINT_SERVER}/login/google`
 const API_URL = ''
-const ENDPOINT_REVIEW= `${ENDPOINT_RENDER}/reviews`;
-const ENDPOINT_ORDER_BY_USER = `${ENDPOINT_RENDER}/order/by-user-id/`;
+const ENDPOINT_REVIEW= `${ENDPOINT_SERVER}/reviews`;
+const ENDPOINT_ORDER_BY_USER = `${ENDPOINT_SERVER}/order/by-user-id/`;
 
 
 export function allBooks() {

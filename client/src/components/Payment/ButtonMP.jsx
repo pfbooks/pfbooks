@@ -7,22 +7,9 @@ import styles from "./ButtonMP.module.css";
 import { initMercadoPago, Wallet } from "@mercadopago/sdk-react";
 initMercadoPago("TEST-75896b1c-2143-43c1-82c4-274c670747f1");
 
-// In this example i'm using React
-// Other way to use this is using the script tag in the html file
-// and then use the global variable window.MercadoPago
 
-// Then some document.querySelector('.cho-container') to get the element
-// and then use the mp.checkout() method
+const endpoint = process.env.REACT_APP_ENV === 'develop' ? 'http://localhost:3001' : "https://pfbooks.onrender.com";
 
-const endpoint = "https://pfbooks.onrender.com";
-// const obj = {
-//     user: {
-//         name: 'Jorge',
-//         lastName: 'JImenez',
-//         email: 'jorge970102@test.com'
-//     },
-//     items: cart
-// }
 
 const ButtonMP = () => {
   const [prefrenceId, setPreference] = useState("");
