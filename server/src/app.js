@@ -10,6 +10,8 @@ const cors = require('cors')
 const dirname = path.resolve();
 const server = express();
 
+const SERVER_ENDPOINT = process.env.NODE_ENVIROMENT === 'develop' ? 'http://localhost:3000' : 'https://pfbooks.onrender.com';
+
 server.name = 'API';
 
 
@@ -20,7 +22,7 @@ server.use(cookieParser());
 server.use(morgan('dev'));
 server.use(express.json());
 server.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', 'https://pfbooks.onrender.com');
+  res.header('Access-Control-Allow-Origin', SERVER_ENDPOINT);
   res.header('Access-Control-Allow-Credentials', 'true');
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, authorization');
   res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE');

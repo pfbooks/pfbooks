@@ -2,8 +2,8 @@ require("dotenv").config();
 
 const {Sequelize} = require("sequelize");
 
-const {DB_USER, DB_PASSWORD, DB_HOST} = process.env;
-
+const {DB_USER, DB_PASSWORD, DB_HOST, NODE_ENVIROMENT, DB_LOCAL_PASSWORD, DB_LOCAL_USER, DB_LOCAL_HOST} = process.env;
+const DB_ENDPOINT = NODE_ENVIROMENT === 'develop' ? `postgres://${DB_LOCAL_USER}:${DB_LOCAL_PASSWORD}@${DB_LOCAL_HOST}/books_ecommerce` : `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/books_ecommerce`
 
 const OrderModel = require("./models/Order")
 const BookModel = require("./models/Book");
@@ -12,7 +12,7 @@ const ReviewModel = require("./models/Reviews");
 const BookOrderModel = require("./models/BookOrder")
 
 const sequelize = new Sequelize(
-    `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/books_ecommerce`,
+    `${DB_ENDPOINT}`,
     //'postgresql://postgres:k6EeWA2l16yqsRgAaYwR@containers-us-west-74.railway.app:7826/railway',
     {
         logging: false,
