@@ -18,6 +18,7 @@ import { useSelector } from "react-redux";
 import ReviewForm from "./components/Reviews/ReviewForm";
 import ShopList from "./components/ShopList/ShopList";
 import { useLocation } from "react-router-dom";
+import LandingPage from "./views/LandingPage";
 
 function PrivateRoute({ component: Component, admin, ...rest }) {
   return (
@@ -74,7 +75,7 @@ function App() {
           component={OrdersTable}
           admin={admin}
         />
-        <Route exact path="/" component={Home} />
+        <Route exact path="/" component={LandingPage} />
         <Route path="/shop/:userId" component={ShopList} />
         <Route path="/detail/:id" component={Detail} />
         <Route path="/register" component={Register} />
