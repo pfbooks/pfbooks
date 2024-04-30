@@ -25,7 +25,7 @@ const Success = () => {
 
     clearCart()
 
-  }, []);
+  },);
   return (
     <div className={styles.container}>
       <FaCheckCircle className={styles.icon} />

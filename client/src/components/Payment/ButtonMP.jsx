@@ -5,7 +5,7 @@ import { useCart } from "../../hooks/useCart";
 import styles from "./ButtonMP.module.css";
 
 import { initMercadoPago, Wallet } from "@mercadopago/sdk-react";
-initMercadoPago("TEST-75896b1c-2143-43c1-82c4-274c670747f1");
+initMercadoPago("TEST-85f9b50d-0f48-4873-829d-2239d74e8c1a");
 
 
 const endpoint = process.env.REACT_APP_ENV === 'develop' ? 'http://localhost:3001' : "https://pfbooks.onrender.com";

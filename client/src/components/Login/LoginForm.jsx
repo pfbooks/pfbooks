@@ -51,9 +51,6 @@ const LoginForm = () => {
     resolver: yupResolver(schema),
   });
 
-  useEffect(() => {
-    console.log(user);
-  }, [user]);
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);

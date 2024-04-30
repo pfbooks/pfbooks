@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect} from "react";
 import styles from "./ShopList.module.css";
 import { orderByIdUser } from "../../redux/actions/actions";
 import { useParams } from "react-router-dom/cjs/react-router-dom.min";
@@ -8,7 +8,7 @@ import { ShopContainer } from "../ShopCard/ShopContainer";
 const ShopList = () => {
   const { userId } = useParams();
   const dispatch = useDispatch();
-  const user = JSON.parse(localStorage.getItem("user"));
+  // const user = JSON.parse(localStorage.getItem("user"));
 
 
   useEffect(() => {

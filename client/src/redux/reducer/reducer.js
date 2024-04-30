@@ -230,17 +230,6 @@ const rootReducer = (state = initialState, action) => {
             };
 
 
-    case CLEAR:
-      return {
-        ...state,
-        detail: action.payload,
-      };
-    //REDUCERS USER
-    case CREATE_USER:
-      return {
-        ...state,
-      };
-
     case USER_DISABLED:
       return {
         ...state,

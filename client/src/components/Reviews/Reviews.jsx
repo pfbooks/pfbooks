@@ -1,4 +1,3 @@
-import { useState } from "react";
 import Stars from "./Stars";
 import styles from "./Reviews.module.css";
 
