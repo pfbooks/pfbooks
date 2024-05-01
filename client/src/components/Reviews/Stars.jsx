@@ -33,7 +33,7 @@ const Stars = ({ rating }) => {
       </span>
     );
   });
-  return <div>{ratingStars}</div>;
+  return <div className="flex justify-center">{ratingStars}</div>;
 };
 
 export default Stars;

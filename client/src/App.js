@@ -75,6 +75,7 @@ function App() {
           component={OrdersTable}
           admin={admin}
         />
+        <Route exact path="/home" component={Home} />
         <Route exact path="/" component={LandingPage} />
         <Route path="/shop/:userId" component={ShopList} />
         <Route path="/detail/:id" component={Detail} />
