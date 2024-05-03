@@ -35,13 +35,19 @@ function TopRated() {
 
   return (
 
-    <div className=''>
-      <div>TopRated
+    <div className='flex flex-col justify-center items-center m-[100px]'>
 
-        <div className='flex flex-row'>
+      <div>
+        <h1> Top Rated</h1>
+      </div>
 
-          {topRatedBooks.map(book => {
-            return (
+
+    <div className='grid grid-cols-3 grid-rows-2 h-auto w-auto m-10'>
+
+        {topRatedBooks.map(book => {
+          return (
+            <div className=' col-start-auto row-start-acol-span-1 uto row-span-1'>
+
               <Card
                 key={book.id}
                 id={book.id}
@@ -51,13 +57,16 @@ function TopRated() {
                 rating={book.rating}
                 handleAddToCart={handleAddToCart}
                 showNotification={showNotification}
-              />
-            )
-          })}
-        </div>
-      </div>
+                />
+            </div>
+          )
+        })}
+      
+
     </div>
-  )
+    </div>
+
+)
 }
 
 export default TopRated;
