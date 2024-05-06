@@ -20,7 +20,7 @@ function TopRated() {
     if (showNotification) {
       timeoutId = setTimeout(() => {
         setShowNotification(false);
-      }, 3000); // Duración de la animación o tiempo que deseas mostrar el cartelito
+      }, 3000);
     }
 
     return () => {
@@ -46,7 +46,7 @@ function TopRated() {
 
         {topRatedBooks.map(book => {
           return (
-            <div className=' col-start-auto row-start-acol-span-1 uto row-span-1'>
+            <div className=' col-start-auto row-start-acol-span-1 uto row-span-1' key={book.id}>
 
               <Card
                 key={book.id}
@@ -61,8 +61,8 @@ function TopRated() {
             </div>
           )
         })}
-      
 
+    
     </div>
     </div>
 

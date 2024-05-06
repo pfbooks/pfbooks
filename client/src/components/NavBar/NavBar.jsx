@@ -73,7 +73,7 @@ const NavBar = () => {
         <img className={styles.logoImg} src={logo} alt="Logo" />
       </Link>
 
-      {location.pathname === "/" && (
+      {location.pathname === "/home" && (
         <div className={styles.divSerchBar}>
           <Search handlePageChange={handlePageChange} />
         </div>

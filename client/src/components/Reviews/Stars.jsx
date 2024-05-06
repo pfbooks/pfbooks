@@ -4,7 +4,7 @@ import { AiOutlineStar } from "react-icons/ai";
 import styled from "styled-components";
 
 const StyledFaStar = styled(FaStar)`
-  color: goldenrod;
+  color: #04ab77;
   position: relative;
   &::before {
     content: "";
@@ -26,9 +26,9 @@ const Stars = ({ rating }) => {
         {rating >= index + 1 ? (
           <StyledFaStar />
         ) : rating >= number ? (
-          <FaStarHalfAlt style={{ color: "goldenrod" }} />
+          <FaStarHalfAlt style={{ color: "#04ab77" }} />
         ) : (
-          <AiOutlineStar style={{ color: "goldenrod" }} />
+          <AiOutlineStar style={{ color: "#04ab77" }} />
         )}
       </span>
     );

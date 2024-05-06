@@ -9,7 +9,8 @@ const OrderModel = require("./models/Order")
 const BookModel = require("./models/Book");
 const UserModel = require("./models/User");
 const ReviewModel = require("./models/Reviews");
-const BookOrderModel = require("./models/BookOrder")
+const BookOrderModel = require("./models/BookOrder");
+const FavoritesModel = require("./models/Favorites");
 
 const sequelize = new Sequelize(
     `${DB_ENDPOINT}`,
@@ -28,8 +29,9 @@ OrderModel(sequelize);
 BookModel(sequelize);
 UserModel(sequelize);
 ReviewModel(sequelize);
+FavoritesModel(sequelize);
 
-const {Book, User, Reviews, Order, BookOrder} = sequelize.models;
+const {Book, User, Reviews, Order, BookOrder, Favorites} = sequelize.models;
 
 //relacion entre usuario y login
 // User.belongsTo(Person, {
@@ -55,11 +57,17 @@ Order.belongsToMany(Book, {through: "BookOrder"});
 Book.belongsToMany(Reviews, {through: "BookReviews"});
 Reviews.belongsToMany(Book, {through: "BookReviews"});
 
+User.belongsToMany(Book, { through: Favorites });
+Book.belongsToMany(User, { through: Favorites });
+
+
+
 module.exports = {
     Book,
     User,
     Reviews,
     Order,
     BookOrder,
+    Favorites,
     conn: sequelize,
 };

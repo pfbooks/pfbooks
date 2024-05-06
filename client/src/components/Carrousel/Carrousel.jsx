@@ -11,7 +11,7 @@ const Carousel = () => {
     const imgNode = listNode.querySelectorAll("li > img")[currentIndex];
     if(imgNode){
       imgNode.scrollIntoView({
-        inline: "start",
+        // inline: "start",
         behavior: "smooth"
       })
     }
