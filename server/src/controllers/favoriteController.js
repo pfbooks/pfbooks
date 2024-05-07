@@ -26,12 +26,20 @@ const addFavorite = async (userId, bookId) => {
     if (existingFavorite) throw Error('Already exist');
 
 
-    const favorite = await Favorites.create({
+    await Favorites.create({
         UserId: userId,
         BookId: bookId
     })
 
-    return favorite;
+    const allFavorites = await Favorites.findAll({
+        where: {
+            UserId: userId
+        }
+    });
+
+    const favoritesBooks = allFavorites.map(fav => fav.BookId);
+
+    return favoritesBooks;
 
 }
 
@@ -42,12 +50,20 @@ const deleteFavorite = async (userId, bookId) => {
             BookId: bookId
         }
     })
-    if(existingFavorite) {
+    if (existingFavorite) {
         await existingFavorite.destroy();
-        return 'Book removed from favorites'
+        const allFavorites = await Favorites.findAll({
+            where: {
+                UserId: userId
+            }
+        });
+    
+        const favoritesBooks = allFavorites.map(fav => fav.BookId);
+    
+        return favoritesBooks;
     }
 
-    return `The book is not in the ${"user's"} favorites list`
+    throw Error(`This book is not in the ${"user's"} favorites list`);
 
 }
 

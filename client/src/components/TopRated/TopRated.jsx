@@ -42,7 +42,7 @@ function TopRated() {
       </div>
 
 
-    <div className='grid grid-cols-3 grid-rows-2 h-auto w-auto m-10'>
+    <div className='grid grid-cols-3 grid-rows-2 h-auto w-auto m-10 gap-x-3 gap-y-3'>
 
         {topRatedBooks.map(book => {
           return (

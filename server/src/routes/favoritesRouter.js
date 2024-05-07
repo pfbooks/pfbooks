@@ -21,7 +21,7 @@ favoritesRouter.post('/add/:userId', async (req, res) => {
         const {userId} = req.params;
         const {bookId} = req.body;
         const response = await addFavorite(userId, bookId);
-        res.status(201).json({message: 'Book added to favorites', response});
+        res.status(201).json(response);
     } catch (error) {
         console.log({error : error.message})
         res.status(400).json({error: error.message})

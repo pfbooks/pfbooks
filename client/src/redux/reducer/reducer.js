@@ -22,7 +22,10 @@ import {
   ORDER_BY_USER,
   CREATE_BOOK,
   BOOK_AVAILABILITY,
-  ALL_BOOKS_ADMIN
+  ALL_BOOKS_ADMIN,
+  GET_FAVORITES,
+  ADD_FAVORITE,
+  DELETE_FAVORITE
 } from "../actions/actions";
 import {
   CREATE_USER,
@@ -46,7 +49,8 @@ const initialState = {
   isLoading: false,
   error: null,
   orders: [],
-  booksAdmin: []
+  booksAdmin: [],
+  favorites: []
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -214,20 +218,20 @@ const rootReducer = (state = initialState, action) => {
         allReviews: action.payload,
       };
 
-        case CLEAR:
-            return {
-                ...state,
-                detail: action.payload,
-            };
-        //REDUCERS USER
-        case CREATE_USER:
-            return {
-                ...state,
-            };
-        case CREATE_BOOK:
-            return {
-                ...state,
-            };
+    case CLEAR:
+      return {
+        ...state,
+        detail: action.payload,
+      };
+    //REDUCERS USER
+    case CREATE_USER:
+      return {
+        ...state,
+      };
+    case CREATE_BOOK:
+      return {
+        ...state,
+      };
 
 
     case USER_DISABLED:
@@ -235,7 +239,7 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         user: action.payload,
       };
-    
+
     case BOOK_AVAILABILITY:
       return {
         ...state,
@@ -294,6 +298,25 @@ const rootReducer = (state = initialState, action) => {
 
     default:
       return { ...state };
+
+    case GET_FAVORITES:
+      return {
+        ...state,
+        favorites: action.payload
+      }
+
+    case ADD_FAVORITE:
+      return {
+        ...state,
+        favorites: action.payload
+      }
+    case DELETE_FAVORITE:
+      return {
+        ...state,
+        favorites: action.payload
+      }
+
+
   }
 };
 

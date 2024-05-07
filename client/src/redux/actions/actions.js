@@ -33,6 +33,10 @@ export const ORDER_BY_USER = "ORDER_BY_USER";
 export const CREATE_BOOK = "CREATE_BOOK";
 export const BOOK_AVAILABILITY = "BOOK_AVAILABILITY";
 export const ALL_BOOKS_ADMIN = "ALL_BOOKS_ADMIN";
+export const GET_FAVORITES = "GET_FAVORITES";
+export const DELETE_FAVORITE = "DELETE_FAVORITE";
+export const ADD_FAVORITE = "ADD_FAVORITE";
+
 
 const ENDPOINT_SERVER = process.env.REACT_APP_ENV === 'develop' ? 'http://localhost:3001' : "https://pfbooks.onrender.com";
 const ENDPOINT_ORDER = `${ENDPOINT_SERVER}/order`;
@@ -44,8 +48,9 @@ const ENDPOINT_USER = `${ENDPOINT_SERVER}/user`;
 const ENDPOINT_LOGIN = `${ENDPOINT_SERVER}/login`;
 const ENDPOINT_LOGIN_WHIT_GOOGLE = `${ENDPOINT_SERVER}/login/google`
 const API_URL = ''
-const ENDPOINT_REVIEW= `${ENDPOINT_SERVER}/reviews`;
+const ENDPOINT_REVIEW = `${ENDPOINT_SERVER}/reviews`;
 const ENDPOINT_ORDER_BY_USER = `${ENDPOINT_SERVER}/order/by-user-id/`;
+const ENDPOINT_FAVORITES = `${ENDPOINT_SERVER}/favorites`;
 
 
 export function allBooks() {
@@ -148,7 +153,7 @@ export function bookByTitle(title) {
     };
 }
 
-export function userById(id){
+export function userById(id) {
     return async (dispatch) => {
         try {
             const localStorageUser = JSON.parse(localStorage.getItem('user'))
@@ -171,10 +176,10 @@ export function userById(id){
 }
 
 export const bookAvailable = (id, availability) => {
-    
+
     return async (dispatch) => {
         try {
-            const response = await axios.put(`${ENDPOINT_ADMIN}/availableBook`, {availability: !availability, id});
+            const response = await axios.put(`${ENDPOINT_ADMIN}/availableBook`, { availability: !availability, id });
             const data = response.data;
             dispatch({
                 type: BOOK_AVAILABILITY,
@@ -188,22 +193,22 @@ export const bookAvailable = (id, availability) => {
 
 export const userDisablement = (id, isActive) => {
     return async (dispatch) => {
-      try {
-        const response = await axios.put(`${ENDPOINT_ADMIN}/enablementUser`, { isActive: !isActive, id });
-        const data = response.data;
-        dispatch({
-          type: USER_DISABLED,
-          payload: data,
-        })
-      } catch (error) {
-        console.log(error.message)
-      }
+        try {
+            const response = await axios.put(`${ENDPOINT_ADMIN}/enablementUser`, { isActive: !isActive, id });
+            const data = response.data;
+            dispatch({
+                type: USER_DISABLED,
+                payload: data,
+            })
+        } catch (error) {
+            console.log(error.message)
+        }
     }
-  }
+}
 
 export function updateBook(book) {
     return async (dispatch) => {
-        await axios.put(`${ENDPOINT_BOOKS}/update`, book).then(result  => {
+        await axios.put(`${ENDPOINT_BOOKS}/update`, book).then(result => {
             return dispatch({
                 type: UPDATE_BOOK,
                 payload: result.data
@@ -214,18 +219,18 @@ export function updateBook(book) {
 
 export function putProfileImage(id, imageUrl) {
     return async (dispatch) => {
-      try {
-        const response = await axios.put(`${ENDPOINT_USER}/image/${id}`, { imageUrl }); // Incluye imageUrl en el cuerpo de la solicitud
-        const data = response.data;
-        dispatch({
-          type: PUT_PROFILE_IMAGE,
-          payload: data,
-        });
-      } catch (error) {
-        console.log('Error en la imagen');
-      }
+        try {
+            const response = await axios.put(`${ENDPOINT_USER}/image/${id}`, { imageUrl }); // Incluye imageUrl en el cuerpo de la solicitud
+            const data = response.data;
+            dispatch({
+                type: PUT_PROFILE_IMAGE,
+                payload: data,
+            });
+        } catch (error) {
+            console.log('Error en la imagen');
+        }
     };
-  }
+}
 
 export function bookById(id) {
     return async (dispatch) => {
@@ -332,7 +337,7 @@ export function createUser(user) {
     }
 }
 
-export function createBook(book){
+export function createBook(book) {
     console.log(book);
     return async (dispatch) => {
         await axios.post(`${ENDPOINT_BOOKS}/addBook`, book).then((result) => {
@@ -347,7 +352,7 @@ export function createBook(book){
 
 export const loginUser = (email, password) => async (dispatch) => {
     try {
-        const res = await axios.post(`${ENDPOINT_LOGIN}`, {email, password});
+        const res = await axios.post(`${ENDPOINT_LOGIN}`, { email, password });
         if (res.status === 200) {
             const userData = res.data.user;
             // Guardar el token en local storage para persistencia
@@ -384,7 +389,7 @@ export const logoutUser = () => (dispatch) => {
     });
 };
 
-export const getAllUser = () => async (dispatch) =>{
+export const getAllUser = () => async (dispatch) => {
     try {
         const user = JSON.parse(localStorage.getItem('user'));
         const res = await axios.get(`${ENDPOINT_USER}`, {
@@ -428,13 +433,13 @@ export const getUserData = () => async (dispatch) => {
 };
 
 
-export const updateUserDataById = ( name, lastName, email) => async (dispatch) =>{
+export const updateUserDataById = (name, lastName, email) => async (dispatch) => {
     try {
         const localStorageUser = JSON.parse(localStorage.getItem("user"));
         const id = localStorageUser.id;
-        const data = { id, name, lastName, email}
+        const data = { id, name, lastName, email }
         console.log("data", data)
-        const res = await axios.put(`${ENDPOINT_USER}/${id}`, data );
+        const res = await axios.put(`${ENDPOINT_USER}/${id}`, data);
         if (res.status === 200) {
             const userData = res.data.user;
             userData.token = localStorageUser.token
@@ -446,14 +451,14 @@ export const updateUserDataById = ( name, lastName, email) => async (dispatch) =
             });
         }
     } catch (error) {
-            console.log(error.message)
+        console.log(error.message)
     }
 }
 
 
 export const loginWhitGoogle = (credential) => async (dispatch) => {
     try {
-        const res = await axios.post(`${ENDPOINT_LOGIN_WHIT_GOOGLE}`, {credential});
+        const res = await axios.post(`${ENDPOINT_LOGIN_WHIT_GOOGLE}`, { credential });
         if (res.status === 200) {
             const userData = res.data.user;
             console.log(userData)
@@ -478,7 +483,7 @@ export const loginWhitGoogle = (credential) => async (dispatch) => {
 export function orderByIdUser(userId) {
     return async (dispatch) => {
         try {
-            const response = await axios.get(`${ENDPOINT_ORDER_BY_USER}/${userId}` );
+            const response = await axios.get(`${ENDPOINT_ORDER_BY_USER}/${userId}`);
             const data = response.data;
             dispatch({
                 type: ORDER_BY_USER,
@@ -490,3 +495,51 @@ export function orderByIdUser(userId) {
     };
 }
 
+export function getFavorites(userId) {
+    return async (dispatch) => {
+        try {
+            const response = await axios.get(`${ENDPOINT_FAVORITES}/${userId}`);
+            const data = response.data;
+            dispatch({
+                type: GET_FAVORITES,
+                payload: data
+            });
+        } catch (error) {
+            console.log(error.message)
+        }
+
+    }
+}
+
+export function addFavorite(userId, bookId) {
+    return async (dispatch) => {
+        try {
+            const response = await axios.post(`${ENDPOINT_FAVORITES}/add/${userId}`, { bookId });
+            const data = response.data;
+            dispatch({
+                type: ADD_FAVORITE,
+                payload: data
+            })
+
+
+        } catch (error) {
+            console.log(error.message);
+        }
+    }
+}
+export function deleteFavorite(userId, bookId) {
+    return async (dispatch) => {
+        try {
+            const response = await axios.delete(`${ENDPOINT_FAVORITES}/delete/${userId}`, { data: {bookId} });
+            const data = response.data;
+            dispatch({
+                type: DELETE_FAVORITE,
+                payload: data
+            })
+
+
+        } catch (error) {
+            console.log(error.message);
+        }
+    }
+}
