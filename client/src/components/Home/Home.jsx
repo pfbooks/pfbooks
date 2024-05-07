@@ -6,6 +6,7 @@ import Paginado from "../Paginado/Paginado";
 import Filters from "../Filters/Filters";
 import styles from "./Home.module.css";
 import Loading from "./Loader-unscreen.gif";
+import { getFavorites } from "../../redux/actions/actions";
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -19,6 +20,7 @@ const Home = () => {
   const [isLoading, setIsLoading] = useState(true);
   const currentBooks = books.slice(firstIndex, lastIndex);
   const user = JSON.parse(localStorage.getItem("user"));
+  const userId = user?.id
   const isAdmin = user && user.adminRole;
   const containerClass = isAdmin
     ? styles.homeContainerAdmin
@@ -51,6 +53,13 @@ const Home = () => {
       setIsLoading(false);
     }, 1000);
   }, []);
+
+  useEffect(() => {
+    if(userId){
+      dispatch(getFavorites(userId));
+    }
+
+  }, [dispatch, userId])
 
   return ( 
      <div className={containerClass}>
