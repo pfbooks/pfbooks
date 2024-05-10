@@ -37,9 +37,11 @@ const Carousel = () => {
 
   return (
     <div className=' w-[95%] h-[400px] m-0'>
-      <div className=' relative h-full'>
-        <div onClick={() => handleScroll('prev')} className=' absolute top-[50%] z-10 left-8 transform -translate-y-1/2 text-5xl font-bold text-white cursor-pointer'>&#8249;</div>
-        <div onClick={() => handleScroll('next')} className=' absolute top-[50%] z-10 right-8 transform -translate-y-1/2 text-5xl font-bold text-white cursor-pointer'>&#8250;</div>
+      <div className=' relative h-full'>  
+      <div className=' absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2'>
+        <div onClick={() => handleScroll('prev')} className=' btn btn-circle bg-slate-700 border-slate-700 text-white hover:text-black'>❮</div>
+        <div onClick={() => handleScroll('next')} className=' btn btn-circle bg-slate-700 border-slate-700 text-white hover:text-black'>❯</div>
+      </div>                        
         <div className=' w-full h-full rounded-[20px] border border-solid border-slate-200 overflow-hidden'>
         <ul ref={listRef} className="flex overflow-hidden m-0 p-0 w-full">
           {data.map((b) => (

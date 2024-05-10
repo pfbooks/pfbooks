@@ -35,10 +35,10 @@ function TopRated() {
 
   return (
 
-    <div className='flex flex-col justify-center items-center m-[100px]'>
+    <div className='flex flex-col justify-center m-[100px]'>
 
-      <div>
-        <h1> Top Rated</h1>
+      <div className=' flex m-10'>
+        <h1 className=' text-5xl font-bold'>TOP RATED BOOKS</h1>
       </div>
 
 

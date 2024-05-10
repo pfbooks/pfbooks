@@ -12,6 +12,7 @@ import { useHistory, Link } from "react-router-dom";
 import styles from "./Chart.module.css";
 import ButtonMP from "../Payment/ButtonMP";
 import { CartContext } from "../../context/cart";
+import calculateTotal from "../../utils/calculateTotal";
 
 const Chart = () => {
   const {
@@ -49,13 +50,6 @@ const Chart = () => {
     setIsLogged(true);
   };
 
-  const calculateTotal = () => {
-    let total = 0;
-    cart.forEach((product) => {
-      total += product.unit_price * product.quantity;
-    });
-    return total;
-  };
 
   return (
     <div>
@@ -104,7 +98,7 @@ const Chart = () => {
               <span>&nbsp;</span>
               <span>&nbsp;</span>
               <FontAwesomeIcon icon={faDollarSign} className={styles.icon} />
-              <p className={styles.total}>{calculateTotal()}</p>
+              <p className={styles.total}>{calculateTotal(cart)}</p>
             </div>
             <button className={styles.cleanButton} onClick={handleClearCart}>
               <FontAwesomeIcon

@@ -30,15 +30,26 @@ const Search = ({handlePageChange}) => {
     }
 
     return (
-        <div className={styles.search}>
-            <input className={styles.searchInput}
-            type = 'text' placeholder="Search books" 
-            value={title} 
-            onChange={(e) => handleChange(e)}
+        // <div className={styles.search}>
+        //     <input className={styles.searchInput}
+        //     type = 'text' placeholder="Search books" 
+        //     value={title} 
+        //     onChange={(e) => handleChange(e)}
             
-            /> 
-            <button className={styles.searchButton} onClick={(event) => handleSubmit(event)}> <FiSearch style={{ color: "white" }}/></button>
-        </div>
+        //     /> 
+        //     <button className={styles.searchButton} onClick={(event) => handleSubmit(event)}> <FiSearch style={{ color: "white" }}/></button>
+        // </div>
+        <div className="form-control relative ">
+        <input 
+            type="text" 
+            placeholder="Search" 
+            className="input input-bordered w-24 md:w-auto"
+            onChange={(e) => handleChange(e)}
+            value={title} />
+            <div className=" absolute right-2 top-3 border-l-2">
+                <button className=" mx-2" onClick={(event) => handleSubmit(event)}> <FiSearch style={{ color: "black" }}/></button>
+            </div>
+      </div>
     )
 
 }
